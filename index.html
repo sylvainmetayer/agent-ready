@@ -1,107 +1,134 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
-	<head>
-		<script src="jquery.js"></script>
-		<script src="sorcery.js"></script>
-		<link type="text/css" rel="stylesheet" href="style.css" />
-		<meta lang="fr" xml:lang="fr" content="text/html;charset=UTF-8" http-equiv="Content-Type">
-		<title>Sword & Sorcery</title>
-	</head>
+<head>
+    <script src="jquery.js"></script>
+    <script src="sorcery.js"></script>
+    <link type="text/css" rel="stylesheet" href="style.css"/>
+    <meta lang="fr" xml:lang="fr" content="text/html;charset=UTF-8" http-equiv="Content-Type">
+    <title>Sword & Sorcery</title>
+</head>
 
-	<body>
-		<div id="status">
-			<div class="life">
-				Life : <span class="value">--</span>
-			</div>
-		</div>
+<body>
+<div id="status">
+    <div class="life">
+        Life : <span class="value">--</span>
+        <br/>
+        inventory
+        <ul id="inventory">
 
-		<div class="section" id="intro">
-			<h2>Epic dungeon of the evil necromancer</h2>
-			En voila un jeu qu'il est bien.
+        </ul>
+    </div>
+</div>
 
-			<action name="reset"/>
+<div class="section" id="intro">
+    <h2>Epic dungeon of the evil necromancer</h2>
+    En voila un jeu qu'il est bien.
 
-			<button go="wakeUp">Commencer l'aventure !</button>
-		</div>
+    <action name="reset"/>
 
-
-		<div class="section" id="wakeUp">
-			Vous ouvez les yeux... Tout est noir autour de vous...
-
-			<action name="start"/>
-
-			<button go="cavern">Se relever</button>
-		</div>
+    <button go="wakeUp">Commencer l'aventure !</button>
+</div>
 
 
-		<div class="section" id="cavern">
-			Vous êtes dans une caverne sombre. La seule issue semble être
-			une porte à quelques mètres de là.
+<div class="section" id="wakeUp">
+    Vous ouvez les yeux... Tout est noir autour de vous...
 
-			<button go="doorLocked">Sortir</button>
-			<button go="wait">Attendre</button>
-			<button go="examine">Examiner le sol</button>
-		</div>
+    <action name="start"/>
 
-
-		<div class="section" id="examine">
-			Rien de plus que des petits cailloux et de la poussière...
-
-			<button go="doorLocked">Sortir</button>
-			<button go="wait">Attendre</button>
-		</div>
+    <button go="cavern">Se relever</button>
+</div>
 
 
-		<div class="section" id="wait">
-			Vous attendez quelques minutes, mais rien ne se passe...
-			<button go="wait">Continuer à attendre</button>
-			<button go="hitWall">Se taper la tête contre le mur</button>
-			<button go="doorLocked">Sortir</button>
-			<button go="examine">Examiner le sol</button>
-		</div>
+<div class="section" id="cavern">
+    Vous êtes dans une caverne sombre. La seule issue semble être
+    une porte à quelques mètres de là.
+
+    <button go="doorLocked">Sortir</button>
+    <button go="wait">Attendre</button>
+    <button go="examine">Examiner le sol</button>
+</div>
 
 
-		<div class="section" id="hitWall">
-			<p>Aie ! Vous perdez 1 point de vie...</p>
-			<p>Quelque chose tombe du plafond : une clé était cachée dans une
-			faille.</p>
+<div class="section" id="examine">
+    Rien de plus que des petits cailloux et de la poussière...
 
-			<action name="hit"/>
-
-			<button go="exit">Utiliser la clé et ouvrir la porte</button>
-		</div>
+    <button go="doorLocked">Sortir</button>
+    <button go="wait">Attendre</button>
+</div>
 
 
-		<div class="section" id="doorLocked">
-			Malheureusement, une porte en bois bloque le passage. Elle a l'air vraiment solide&nbsp;:
-			peu probable que vous puissiez la défoncer.
-			<button go="hitDoor">Donner un grand coup d'épaule</button>
-			<button go="cavern">Retourner sur vos pas</button>
-		</div>
+<div class="section" id="wait">
+    Vous attendez quelques minutes, mais rien ne se passe...
+    <button go="wait">Continuer à attendre</button>
+    <button go="hitWall">Se taper la tête contre le mur</button>
+    <button go="doorLocked">Sortir</button>
+    <button go="examine">Examiner le sol</button>
+</div>
 
 
-		<div class="section" id="hitDoor">
-			BLAM ! La porte n'a pas bougé d'un poil. Par contre, votre épaule, elle, s'est enfoncée de quelques centimètres.
-			Vous perdez 1 point de vie.
+<div class="section" id="hitWall">
+    <p>Aie ! Vous perdez 1 point de vie...</p>
+    <p>Quelque chose tombe du plafond : une clé était cachée dans une
+        faille.</p>
 
-			<action name="hit"/>
+    <action name="hit"/>
 
-			<button go="hitDoor">Ré-essayer !</button>
-			<button go="cavern">Retourner sur vos pas</button>
-		</div>
+    <button go="exit">Utiliser la clé et ouvrir la porte</button>
+</div>
+
+<div class="section" id="test2">
+
+    un jeu de glyph sauvage apparait ! Completez-le pour continuer.
+    <action name="glyph" level="4"/>
+
+    <button go="doorLocked">Retourner sur vos pas</button>
+
+</div>
+
+<div class="section" id="test">
+
+    Vous avez trouvé un testSuper & un test2 devant vous ! Mais c'est une voie sans issue..
+    <action name="itemUpdate" item="test2" count="10"/>
+    <action name="itemUpdate" item="testSuper" count="3"/>
+    <action name="itemUpdate" item="testSuper" count="-1"/>
+
+    <button go="doorLocked">Retourner sur vos pas</button>
+
+</div>
 
 
-		<div class="section" id="exit">
-			Vous voyez la lumière du jour... Vous avez réussi à vous échapper !
-			<button go="intro">Fin</button>
-		</div>
+<div class="section" id="doorLocked">
+    Malheureusement, une porte en bois bloque le passage. Elle a l'air vraiment solide&nbsp;:
+    peu probable que vous puissiez la défoncer.
+    <button go="hitDoor">Donner un grand coup d'épaule</button>
+    <button go="cavern">Retourner sur vos pas</button>
+    <button go="test2">Glyph</button>
+    <button go="test">Inventaire test</button>
+</div>
 
 
-		<div class="section" id="death">
-			Vous êtes mort(e) ! C'est balot.
-			<button go="intro">Fin</button>
-		</div>
+<div class="section" id="hitDoor">
+    BLAM ! La porte n'a pas bougé d'un poil. Par contre, votre épaule, elle, s'est enfoncée de quelques centimètres.
+    Vous perdez 1 point de vie.
 
-	</body>
+    <action name="hit"/>
+
+    <button go="hitDoor">Ré-essayer !</button>
+    <button go="cavern">Retourner sur vos pas</button>
+</div>
+
+
+<div class="section" id="exit">
+    Vous voyez la lumière du jour... Vous avez réussi à vous échapper !
+    <button go="intro">Fin</button>
+</div>
+
+
+<div class="section" id="death">
+    Vous êtes mort(e) ! C'est balot.
+    <button go="intro">Fin</button>
+</div>
+
+</body>
 
 </html>
