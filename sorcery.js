@@ -90,9 +90,85 @@ $(document).ready(function () {
                 let count = parseInt(action.attr("count"));
                 updateItem(item, count);
                 break;
+            case "glyph":
+                // Mini jeu
+                let section = action.parent(".section");
+                action.hide();
+
+                let glyphLevel = parseInt(action.attr("level"));
+
+                // charger 4 images
+                loadImage(glyphLevel, $(section));
+                break;
             default:
                 alert("Error, define a new action for " + actionName + "!");
         }
+    }
+
+    function setRandomValues(glyphPictures, level) {
+        let takenValues = [];
+
+        glyphPictures.each(function (index, element) {
+            let randomValue = getRandomInt(getRandomInt(1, 3), getRandomInt(20, 30));
+
+            while ($.inArray(randomValue, takenValues) != -1) {
+                randomValue = getRandomInt(getRandomInt(1, 3), getRandomInt(20, 30));
+            }
+
+            $(element).attr("data-order", randomValue);
+        });
+    }
+
+    function loadImage(level, section) {
+        section.append("<div id='glyphGame'></div>");
+        let loadInto = $("#glyphGame");
+        for (let i = 1; i <= level; i++) {
+            let img = $("<img>");
+            img.attr("src", "img/" + i + ".jpg");
+            let str = "100px";
+            img.css("width", str).css("height", str);
+            img.addClass("glyphPictures");
+            img.attr("id", i);
+            loadInto.append(img);
+            loadInto.append("<br/>");
+        }
+
+        let glyphPictures = $("img.glyphPictures");
+
+        setRandomValues(glyphPictures, level);
+
+        let order = 0;
+
+        // TODO Do the demonstration of glyph and hides pictures.
+
+        glyphPictures.click(function () {
+
+            // TODO Mauvaise comparaison.
+            // Idée à l'arrache : regrouper les réponses dans un array, les sort par valeur,
+            // Et comparer que l'index [order] est égal le plus petit du tableau, et ainsi de suite.
+
+            if (parseInt($(this).attr("data-order")) >= order) {
+                order++;
+                $(this).css("border", "solid 5px green");
+            } else {
+                console.log("Bad combinaison !");
+                glyphPictures.css("border", "none");
+                $(this).css("border", "solid 5px red");
+                order = 0;
+                // TODO Handle error to restart game and clear all pictures border.
+            }
+
+            if (order == level) {
+                console.log("OK !");
+
+            }
+        });
+    }
+
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min;
     }
 
     /**
@@ -177,7 +253,8 @@ $(document).ready(function () {
         gotoSection($(this).attr("go"));
     });
 
-    // MAIN
+// MAIN
     startGame();
 
-});
+})
+;
