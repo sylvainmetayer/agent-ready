@@ -35,9 +35,13 @@ $(document).ready(function () {
      * Permet de mettre à jour la liste de l'inventaire visuellement.
      */
     function updateInventory() {
-        inventoryList.empty(); // remise à zéro de la liste
+        inventoryList.empty();
+        let li;
         $(inventory).each(function (index, element) {
-            inventoryList.append('<li>' + element["name"] + ": " + element["count"] + '</li>');
+            li = $("<li>");
+            li.data("name", element["name"]);
+            li.html(element["name"] + ": " + element["count"]);
+            inventoryList.append(li);
         });
     }
 
@@ -92,83 +96,142 @@ $(document).ready(function () {
                 break;
             case "glyph":
                 // Mini jeu
-                let section = action.parent(".section");
-                action.hide();
-
                 let glyphLevel = parseInt(action.attr("level"));
-
-                // charger 4 images
-                loadImage(glyphLevel, $(section));
+                launchGlyphGame(glyphLevel, $(action));
                 break;
             default:
                 alert("Error, define a new action for " + actionName + "!");
         }
     }
 
-    function setRandomValues(glyphPictures, level) {
-        let takenValues = [];
+    /* Creates an array of random integers between the range specified
+         @param len int
+            length of the array you want to generate
+         @param min int
+            min value you require
+         @param max int
+            max value you require
+         @param unique boolean
+            whether you want unique or not (assume 'true' for this answer)
+         @source http://stackoverflow.com/a/29613213
+    */
+    function _arrayRandom(len, min, max, unique) {
+        var len = (len) ? len : 10,
+                min = (min !== undefined) ? min : 1,
+                max = (max !== undefined) ? max : 100,
+                unique = (unique) ? unique : false,
+                toReturn = [], tempObj = {}, i = 0;
 
-        glyphPictures.each(function (index, element) {
-            let randomValue = getRandomInt(getRandomInt(1, 3), getRandomInt(20, 30));
-
-            while ($.inArray(randomValue, takenValues) != -1) {
-                randomValue = getRandomInt(getRandomInt(1, 3), getRandomInt(20, 30));
+        if(unique === true) {
+            var randomInt;
+            for(; i < len; i++) {
+                randomInt = Math.floor(Math.random() * ((max - min) + min));
+                if(tempObj['key_'+ randomInt] === undefined) {
+                    tempObj['key_'+ randomInt] = randomInt;
+                    toReturn.push(randomInt);
+                } else {
+                    i--;
+                }
             }
-
-            $(element).attr("data-order", randomValue);
-        });
-    }
-
-    function loadImage(level, section) {
-        section.append("<div id='glyphGame'></div>");
-        let loadInto = $("#glyphGame");
-        for (let i = 1; i <= level; i++) {
-            let img = $("<img>");
-            img.attr("src", "img/" + i + ".jpg");
-            let str = "100px";
-            img.css("width", str).css("height", str);
-            img.addClass("glyphPictures");
-            img.attr("id", i);
-            loadInto.append(img);
-            loadInto.append("<br/>");
+        } else {
+            for(; i < len; i++) {
+                toReturn.push(Math.floor(Math.random() * ((max - min) + min)));
+            }
         }
 
-        let glyphPictures = $("img.glyphPictures");
+        return toReturn;
+    }
 
-        setRandomValues(glyphPictures, level);
+    function createHelpNode(glyphPictures, colorArray, level) {
+      let ol = $("<ol>");
+      let li;
+
+      for (let i = 0; i < level; i++) {
+        li = $("<li>")
+        li.html(colorArray[i])
+        li.css("background-color", colorArray[i]);
+        ol.append(li);
+      }
+      glyphPictures.first().before(ol);
+    }
+
+    function createPictures(level) {
+      let loadInto = $("#glyphGame");
+      for (let i = 1; i <= level; i++) {
+          let img = $("<img>");
+          img.attr("src", "img/" + i + ".jpg");
+          let str = "100px";
+          img.css("width", str).css("height", str);
+          img.addClass("glyphPictures");
+          img.attr("id", i);
+          loadInto.append(img);
+          loadInto.append("<br/>");
+      }
+    }
+
+    /**
+    * A partir des valeurs aléatoires pour l'ordre, permet d'afficher la solutio pour une durée donnée.
+    * @param time int
+    * @param glyphPictures Collection Jquery
+    * @param randomOrder Array
+    */
+    function showSolution(time, glyphPictures, randomOrder, colorArray, section) {
+
+      let value;
+      glyphPictures.each(function(index, element) {
+        value = $(element).data("order");
+        $(element).css("border", "5px solid " + colorArray[randomOrder.indexOf(value)]);
+      });
+
+      setTimeout(function() {
+         glyphPictures.css("border", "none");
+         section.find("ol").remove();
+       }, time);
+    }
+
+    function launchGlyphGame(level, action) {
+        let section = action.parent(".section");
+        section.append("<div id='glyphGame'></div>");
+        action.hide();
+
+        // Create pictures
+        createPictures(level);
+
+        let glyphPictures = $("img.glyphPictures");
+        let colorArray = ["green", "blue", "red", "pink", "yellow"];
+
+        // Set random order to solve game
+        let randomOrder = _arrayRandom(level, 1, level, true);
+        for (let i = 0; i < level; i++) {
+          $(glyphPictures[randomOrder[i]]).data("order", randomOrder[i]);
+
+        }
+
+        // Set help node
+        createHelpNode($(glyphPictures), colorArray, level);
+        showSolution(200, $(glyphPictures), randomOrder, colorArray, $(section));
 
         let order = 0;
-
-        // TODO Do the demonstration of glyph and hides pictures.
-
         glyphPictures.click(function () {
 
-            // TODO Mauvaise comparaison.
-            // Idée à l'arrache : regrouper les réponses dans un array, les sort par valeur,
-            // Et comparer que l'index [order] est égal le plus petit du tableau, et ainsi de suite.
-
-            if (parseInt($(this).attr("data-order")) >= order) {
+            let data = parseInt($(this).data("order"));
+            if (randomOrder.indexOf(data) == order) {
                 order++;
                 $(this).css("border", "solid 5px green");
             } else {
                 console.log("Bad combinaison !");
                 glyphPictures.css("border", "none");
+                setTimeout(function(){ glyphPictures.css("border", "none"); }, 300);
                 $(this).css("border", "solid 5px red");
                 order = 0;
-                // TODO Handle error to restart game and clear all pictures border.
             }
 
             if (order == level) {
-                console.log("OK !");
-
+                glyphPictures.remove();
+                section.find("ol").remove();
+                action.show();
             }
         });
-    }
-
-    function getRandomInt(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min)) + min;
     }
 
     /**
@@ -253,8 +316,7 @@ $(document).ready(function () {
         gotoSection($(this).attr("go"));
     });
 
-// MAIN
+    // MAIN
     startGame();
 
-})
-;
+});
