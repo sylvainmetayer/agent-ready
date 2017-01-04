@@ -73,7 +73,7 @@ $(document).ready(function () {
         inventory = [];
     }
 
-    function handleSingleAction(key, action) {
+    function handleSingleAction(action) {
         let actionName = action.attr("name");
 
         if (log)
@@ -100,45 +100,73 @@ $(document).ready(function () {
                 launchGlyphGame(glyphLevel, $(action));
                 break;
             case "cssUpdate":
-              $(action.attr("element")).css(action.attr("rule"), action.attr("value"));
-              break;
+                $(action.attr("element")).css(action.attr("rule"), action.attr("value"));
+                break;
+            case "image":
+                let imageManager = $("#img-manager");
+                let img;
+                let rule = action.attr("rule");
+                if (rule == "add") {
+                    img = $("<img>");
+                    img.attr("src", "img/" + action.attr("value"));
+                    let str = "100px";
+                    img.css("width", str).css("height", str);
+                    imageManager.append(img);
+                } else if (rule == "update" || rule == "remove") {
+                    img = $("img").filter("[src='img/" + action.attr("value") + "']");
+                    if (img.size() == 0) {
+                        console.log("Image not found for " + rule + " rule in image action !");
+                        return;
+                    }
+
+                    // Update or remove ?
+                    (rule == "update") ? img.attr("src", "img/" + action.attr("new")) : img.remove();
+                }
+
+                break;
             default:
-              console.log("Action has not been defined !");
+                console.log("Action has not been defined !");
                 alert("Error, define a new action for " + actionName + "!");
         }
     }
 
     /* Creates an array of random integers between the range specified
-         @param len int
-            length of the array you want to generate
-         @param min int
-            min value you require
-         @param max int
-            max value you require
-         @param unique boolean
-            whether you want unique or not (assume 'true' for this answer)
-         @source http://stackoverflow.com/a/29613213
-    */
+     @param len int
+     length of the array you want to generate
+     @param min int
+     min value you require
+     @param max int
+     max value you require
+     @param unique boolean
+     whether you want unique or not (assume 'true' for this answer)
+     @source http://stackoverflow.com/a/29613213
+     */
     function _arrayRandom(len, min, max, unique) {
-        var len = (len) ? len : 10,
-                min = (min !== undefined) ? min : 1,
-                max = (max !== undefined) ? max : 100,
-                unique = (unique) ? unique : false,
-                toReturn = [], tempObj = {}, i = 0;
+        //noinspection JSDuplicatedDeclaration
+        var len = (len) ? len : 10;
+        //noinspection JSDuplicatedDeclaration
+        var min = (min !== undefined) ? min : 1;
+        //noinspection JSDuplicatedDeclaration
+        var max = (max !== undefined) ? max : 100;
+        //noinspection JSDuplicatedDeclaration
+        var unique = (unique) ? unique : false;
+        var toReturn = [];
+        var tempObj = {};
+        var i = 0;
 
-        if(unique === true) {
+        if (unique === true) {
             var randomInt;
-            for(; i < len; i++) {
+            for (; i < len; i++) {
                 randomInt = Math.floor(Math.random() * ((max - min) + min));
-                if(tempObj['key_'+ randomInt] === undefined) {
-                    tempObj['key_'+ randomInt] = randomInt;
+                if (tempObj['key_' + randomInt] === undefined) {
+                    tempObj['key_' + randomInt] = randomInt;
                     toReturn.push(randomInt);
                 } else {
                     i--;
                 }
             }
         } else {
-            for(; i < len; i++) {
+            for (; i < len; i++) {
                 toReturn.push(Math.floor(Math.random() * ((max - min) + min)));
             }
         }
@@ -147,59 +175,59 @@ $(document).ready(function () {
     }
 
     function createHelpNode(glyphPictures, colorArray, level) {
-      let ol = $("<ol>");
-      let li;
+        let ol = $("<ol>");
+        let li;
 
-      for (let i = 0; i < level; i++) {
-        li = $("<li>")
-        li.html(colorArray[i])
-        li.css("background-color", colorArray[i]);
-        ol.append(li);
-      }
-      glyphPictures.first().before(ol);
+        for (let i = 0; i < level; i++) {
+            li = $("<li>");
+            li.html(colorArray[i]);
+            li.css("background-color", colorArray[i]);
+            ol.append(li);
+        }
+        glyphPictures.first().before(ol);
     }
 
     function createPictures(level) {
-      let loadInto = $("#glyphGame");
-      for (let i = 1; i <= level; i++) {
-          let img = $("<img>");
-          img.attr("src", "img/" + i + ".jpg");
-          let str = "100px";
-          img.css("width", str).css("height", str);
-          img.addClass("glyphPictures");
-          img.attr("id", i);
-          loadInto.append(img);
-          loadInto.append("<br/>");
-      }
+        let loadInto = $("#glyphGame");
+        for (let i = 1; i <= level; i++) {
+            let img = $("<img>");
+            img.attr("src", "img/" + i + ".jpg");
+            let str = "100px";
+            img.css("width", str).css("height", str);
+            img.addClass("glyphPictures");
+            img.attr("id", i);
+            loadInto.append(img);
+            loadInto.append("<br/>");
+        }
     }
 
     /**
-    * A partir des valeurs aléatoires pour l'ordre, permet d'afficher la solutio pour une durée donnée.
-    * @param time int
-    * @param glyphPictures Collection Jquery
-    * @param randomOrder Array
-    */
+     * A partir des valeurs aléatoires pour l'ordre, permet d'afficher la solutio pour une durée donnée.
+     * @param time int
+     * @param glyphPictures Collection Jquery
+     * @param randomOrder Array
+     */
     function showSolution(time, glyphPictures, randomOrder, colorArray, section) {
 
-      let value;
-      glyphPictures.each(function(index, element) {
-        value = $(element).data("order");
-        $(element).css("border", "5px solid " + colorArray[randomOrder.indexOf(value)]);
-      });
+        let value;
+        glyphPictures.each(function (index, element) {
+            value = $(element).data("order");
+            $(element).css("border", "5px solid " + colorArray[randomOrder.indexOf(value)]);
+        });
 
-      setTimeout(function() {
-         glyphPictures.css("border", "none");
-         section.find("ol").remove();
-       }, time);
+        setTimeout(function () {
+            glyphPictures.css("border", "none");
+            section.find("ol").remove();
+        }, time);
     }
 
     /**
-    * Fonction qui lance le jeu de glyph.
-    * @param level int
-    *   Permet d'indiquer le nombre d'image à afficher.
-    * @param action JqueryElement
-    *   Element Jquery de l'action.
-    */
+     * Fonction qui lance le jeu de glyph.
+     * @param level int
+     *   Permet d'indiquer le nombre d'image à afficher.
+     * @param action JqueryElement
+     *   Element Jquery de l'action.
+     */
     function launchGlyphGame(level, action) {
         let section = action.parent(".section");
         section.append("<div id='glyphGame'></div>");
@@ -214,7 +242,7 @@ $(document).ready(function () {
         // Set random order to solve game
         let randomOrder = _arrayRandom(level, 1, level, true);
         for (let i = 0; i < level; i++) {
-          $(glyphPictures[randomOrder[i]]).data("order", randomOrder[i]);
+            $(glyphPictures[randomOrder[i]]).data("order", randomOrder[i]);
 
         }
 
@@ -232,7 +260,9 @@ $(document).ready(function () {
             } else {
                 console.log("Bad combinaison !");
                 glyphPictures.css("border", "none");
-                setTimeout(function(){ glyphPictures.css("border", "none"); }, 300);
+                setTimeout(function () {
+                    glyphPictures.css("border", "none");
+                }, 300);
                 $(this).css("border", "solid 5px red");
                 order = 0;
             }
@@ -257,7 +287,7 @@ $(document).ready(function () {
             return;
 
         actions.each(function (index, action) {
-            handleSingleAction(key, $(action));
+            handleSingleAction($(action));
         });
     }
 
