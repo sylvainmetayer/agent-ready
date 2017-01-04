@@ -99,7 +99,11 @@ $(document).ready(function () {
                 let glyphLevel = parseInt(action.attr("level"));
                 launchGlyphGame(glyphLevel, $(action));
                 break;
+            case "cssUpdate":
+              $(action.attr("element")).css(action.attr("rule"), action.attr("value"));
+              break;
             default:
+              console.log("Action has not been defined !");
                 alert("Error, define a new action for " + actionName + "!");
         }
     }
@@ -189,6 +193,13 @@ $(document).ready(function () {
        }, time);
     }
 
+    /**
+    * Fonction qui lance le jeu de glyph.
+    * @param level int
+    *   Permet d'indiquer le nombre d'image à afficher.
+    * @param action JqueryElement
+    *   Element Jquery de l'action.
+    */
     function launchGlyphGame(level, action) {
         let section = action.parent(".section");
         section.append("<div id='glyphGame'></div>");
@@ -209,7 +220,7 @@ $(document).ready(function () {
 
         // Set help node
         createHelpNode($(glyphPictures), colorArray, level);
-        showSolution(200, $(glyphPictures), randomOrder, colorArray, $(section));
+        showSolution(10000, $(glyphPictures), randomOrder, colorArray, $(section));
 
         let order = 0;
         glyphPictures.click(function () {
@@ -235,7 +246,7 @@ $(document).ready(function () {
     }
 
     /**
-     * Permet de gérer l'action d'une card.
+     * Permet de gérer l'action d'une section.
      * @param key string
      *  Nom de l'action.
      */
