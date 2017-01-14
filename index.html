@@ -29,53 +29,199 @@
 <div id="img-manager"></div>
 
 <div class="section" id="intro">
-    <h2>Epic dungeon of the evil necromancer</h2>
-    En voila un jeu qu'il est bien.
+    <h2>Agent Ready, an Ingress Story</h2>
+    (Basé sur le jeu mobile Ingress, développé par Niantics)
 
     <action name="reset"/>
 
-    <button go="wakeUp">Commencer l'aventure !</button>
+    <button go="intro_1">Commencer l'immersion !</button>
 </div>
 
 
-<div class="section" id="wakeUp">
-    Vous ouvez les yeux... Tout est noir autour de vous...
+<div class="section" id="intro_1">
+    <p>Il fut un temps, où l’Exotic Matter, l’XM qui nous entoure actuellement, n’étais qu’une énergie inconnue,
+        dont les hommes ne savaient pas quoi faire. Elle était là, apparue du jour au lendemain, sans que personne ne
+        sache d’où elle pouvait venir.
+    </p>
+    <p>
+        Un groupe de chercheur tenta alors de l’étudier, afin d’en connaitre ses effets et de la contrôler,
+        dans le but d’améliorer notre monde. Ils développèrent alors une application transformant leur smartphone
+        en scanner, permettant ainsi d’étudier cette étrange énergie.
+    </p>
+    <p>
+        Ils créèrent ainsi les agents, un groupe de personnes chargées de parcourir le monde afin d’étudier l’XM et
+        de découvrir ses propriétés. Avec leurs scanners, les résultats étaient directement envoyés au laboratoire
+        de Niantics, créé par les quatre personnes ayant découvert l’XM.
+    </p>
 
     <action name="start"/>
     <action name="image" rule="add" value="2.jpg"/>
 
-    <button go="cavern">Se relever</button>
+    <button go="intro_2">Suite</button>
 </div>
 
 
-<div class="section" id="cavern">
-    Vous êtes dans une caverne sombre. La seule issue semble être
-    une porte à quelques mètres de là.
+<div class="section" id="intro_2">
+    <p>
+        Peu de temps après, des entitées répondant au nom de Shapper, apparurent sur Terre, et par le biais de l’XM,
+        tentèrent de contrôler l’humanité. Les agents prirent alors la décision alors de protéger la terre de cette
+        invasion.
+    </p>
+    <p>Mais rapidement une scission apparue au sein de le groupe fondateur de Niantics, qui se répercuta sur
+        l’ensemble des agents. Deux factions émergèrent alors, avec à leur tête deux leaders voulant oeuvrer pour le
+        bien de tous : les Illuminés et la Résistance
+    </p>
+    <p>
+        Les premiers croyaient qu’un contrôle totale de l’XM et qu’une utilisation totale de ses particularités
+        *permettraient à l’humanité de s’élever et de devenir meilleure. Ils se mirent alors à aider les shappers dans
+        leurs plans. Les seconds décidèrent de s’opposer aux premiers en luttant contre le contrôle de l’humanité
+        via l’XM, s’opposant ainsi aux Shappers.
+    </p>
 
     <!--<action name="cssUpdate" element="button" rule="background-color" value="lightblue"/>-->
     <action name="image" rule="add" value="1.jpg"/>
 
-    <button go="doorLocked">Sortir</button>
-    <button go="wait">Attendre</button>
-    <button go="examine">Examiner le sol</button>
+    <button go="intro_3">Suite</button>
+</div>
+
+<div class="section" id="intro_3">
+    <p>Ces factions sont toujours là, à livrer une guerre sans répie à travers le globe. De ces batailles ont émergés
+        d’étranges comportements de la part des agents, qui se sont mis à croire en la venue d’un agent unique,
+        qui saura faire balancer le cours de cette guerre et permettre la victoire d’une des deux factions. Et selon
+        eux, vous êtes l’élu.
+    </p>
+    <p>
+        Avant de procéder au Choix, tu dois choisir ton nom d’agent, celui qui te permettra d’intégrer la résistance,
+        ou les illuminés.
+    </p>
+    <input type="text" name="nom_agent" onchange="update_val()" id="nom_agent"/>
+
+    <button go="ceremonie_choix">Bien Procéder à la cérémonie du choix</button>
+</div>
+
+<div class="section" id="ceremonie_choix">
+    <p>Bien, NomDagent, maintenant, tu dois procéder au Choix. Attention, en fonction de la faction que tu choisira,
+        le destin de l’humanité sera totalement différents. Choisis prudemment.
+    </p>
+
+    <button go="bleu_hack">La Résistance</button>
+    <button go="vert_hack">Les Illuminés</button>
 </div>
 
 
-<div class="section" id="examine">
-    Rien de plus que des petits cailloux et de la poussière...
+<div class="section" id="bleu_hack">
+    <p>Bienvenue agent NomAgent dans la Résistance. Maintenant, place à votre initiation</p>
+    <p>Devant vous se trouve un portail. Sa couleur indique qu'il est neutre pour l'instant. C'est une source
+    d'XM pure, contrôlé par aucune faction pour l'instant. Et votre devoir, en temps que nouvel agent, est de le capturer
+    pour qu'il serve la cause de la Résistance. Une fois capturé, il sera bleu, et pour pouvoir en récupérer les données, il
+    faudra le hack. Sauf que pour réussir un hack, l'épreuve des glyphes doit être passée avec succès. Mais tout d'abord,
+    votre rôle est de le capture.</p>
 
-    <button go="doorLocked">Sortir</button>
-    <button go="wait">Attendre</button>
+    <p class="info">Pour capturer le portail, utilisez les résonnateurs présent dans votre inventaire. Au début du jeu,
+    15 résonnateurs vous sont offerts pour découvrir le jeu, mais devront ensuite être gagner via le mini jeu des glyphes.
+    </p>
+
+    <p class="info">Pour utiliser les résonnateurs, cliquez sur l’inventaire et sélectionnez un résonnateur. Ensuite,
+        cliquez sur un emplacement libre pour le déployer le portail. Un seul résonateur permet de capturer un portail,
+        mais en déployer plusieurs permet d’accroitre le bonus de hack et la résistance du portail, mais aussi de gagner
+        plus d’XP à chaque fois que tu poses un résonateurs, pour monter ainsi plus rapidement de niveau
+    </p>
+    <p>Mini jeu portail</p>
+    <button go="bleu_glyphe">Hacker le portail</button>
+
+</div>
+
+<div class="section" id="vert_hack">
+    <p>Bienvenue agent NomAgent chez les Illuminés. Maintenant, place à votre initiation</p>
+    <p>Devant vous se trouve un portail. Sa couleur indique qu'il est neutre pour l'instant. C'est une source
+        d'XM pure, contrôlé par aucune faction pour l'instant. Et votre devoir, en temps que nouvel agent, est de le capturer
+        pour qu'il serve la cause des Illuminés et des Shapers. Une fois capturé, il sera vert, et pour pouvoir en récupérer les données, il
+        faudra le hack. Sauf que pour réussir un hack, l'épreuve des glyphes doit être passée avec succès. Mais tout d'abord,
+        votre rôle est de le capture.</p>
+
+    <p class="info">Pour capturer le portail, utilisez les résonnateurs présent dans votre inventaire. Au début du jeu,
+        15 résonnateurs vous sont offerts pour découvrir le jeu, mais devront ensuite être gagner via le mini jeu des glyphes.
+    </p>
+
+    <p class="info">Pour utiliser les résonnateurs, cliquez sur l’inventaire et sélectionnez un résonnateur. Ensuite,
+        cliquez sur un emplacement libre pour le déployer le portail. Un seul résonateur permet de capturer un portail,
+        mais en déployer plusieurs permet d’accroitre le bonus de hack et la résistance du portail, mais aussi de gagner
+        plus d’XP à chaque fois que tu poses un résonateurs, pour monter ainsi plus rapidement de niveau
+    </p>
+    <p>Mini jeu portail</p>
+    <button go="vert_glyphe">Hacker le portail</button>
+</div>
+
+<div class="section" id="bleu_glyphe">
+    <p>Bien, votre premier portail est enfin déployé. Maintenant, hackez le en cliquant sur le bouton hack</p>
+
+    <p class="info">Pour pouvoir hacker un portail, vous devez passer l’épreuve des glypes. L’épreuve est assez simple,
+        vous devez simplement mémoriser une série aléatoire de glyphes pour ensuite les remettre dans l’ordre avec les
+        images qui vous seront proposer. </p>
+
+    <p class="info">Un échec à cette épreuve vous permettra de gagner qu’un montant minimum d’items, d’expérience,
+        alors qu’une réussite vous permettra de gagner un nombre plus conséquents d’items et d’expériences.
+    </p>
+    <p>Mini jeu hack portail</p>
+    <button go="bleu_destination">Suite</button>
+
+</div>
+
+<div class="section" id="vert_glyphe">
+    <p>Bien, votre premier portail est enfin déployé. Maintenant, hackez le en cliquant sur le bouton hack</p>
+
+    <p class="info">Pour pouvoir hacker un portail, vous devez passer l’épreuve des glypes. L’épreuve est assez simple,
+        vous devez simplement mémoriser une série aléatoire de glyphes pour ensuite les remettre dans l’ordre avec les
+        images qui vous seront proposer. </p>
+
+    <p class="info">Un échec à cette épreuve vous permettra de gagner qu’un montant minimum d’items, d’expérience,
+        alors qu’une réussite vous permettra de gagner un nombre plus conséquents d’items et d’expériences.
+    </p>
+    <p>Mini jeu hack portail</p>
+    <button go="bleu_destination">Suite</button>
+
+</div>
+
+<div class="section" id="bleu_destination">
+
+    <p> Bien agent NomAgent, vous êtes fin prêt à arpenter le monde pour découvrir les secrets de l'XM. Mais souvenez vous,
+    faite attention à vos choix, l'humanité en dépends.</p>
+
+    <p>La première étape de votre voyage sera la France.</p>
+
+    <button go="bleu_france">Partir en France</button>
+
+</div>
+
+<div class="section" id="vert_destination">
+
+    <p> Bien agent NomAgent, vous êtes fin prêt à arpenter le monde pour découvrir les secrets de l'XM. Mais souvenez vous,
+        faite attention à vos choix, l'humanité en dépends.</p>
+
+    <p>La première étape de votre voyage sera la France.</p>
+
+    <button go="vert_france">Partir en France</button>
+
+</div>
+
+<div class="section" id="bleu_france">
+
+    <p> La France est le berceau de la Résistance depuis le début de la scission entre les agents. Ici, vous suivrez un
+    entrainement visant à faire de vous un agent hors pair, qiu permettra à l'humanité de lutter contre les Shappers.
+    Mais tout d'abord, vous devez prouver votre valeur aux membres de la Résistance en capturant 3 portails en réussissant
+    pour chacun l'épreuve des glyphes.</p>
+
+    <p class="info">Ne vous inquiétez pas, si vous ratez une épreuve, vous pourrez toujours la recommencer jusqu'à ce
+    que vous la réussiez, mais cela vous coutera de l'XM. Car oui, vous pouvez stocker de l'XM sur vous pour déployer
+des portails et lutter contre l'invasion. Vaincre le mal par le mal. Plus vous augmenterez votre niveau, plus vous
+    pourrez en stocker. Mais si jamais votre stock d'XM tombe à 0, l'aventure en tant qu'agent s'arrêtera là pour vous.</p>
+    <button go="bleu_france">Partir en France</button>
 </div>
 
 
-<div class="section" id="wait">
-    Vous attendez quelques minutes, mais rien ne se passe...
-    <button go="wait">Continuer à attendre</button>
-    <button go="hitWall">Se taper la tête contre le mur</button>
-    <button go="doorLocked">Sortir</button>
-    <button go="examine">Examiner le sol</button>
 </div>
+
+
 
 
 <div class="section" id="hitWall">

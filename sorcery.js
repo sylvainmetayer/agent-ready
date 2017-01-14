@@ -102,6 +102,9 @@ $(document).ready(function () {
             case "cssUpdate":
                 $(action.attr("element")).css(action.attr("rule"), action.attr("value"));
                 break;
+            case "nomAgent":
+                $(nomAgent).Show();
+                break;
             case "image":
                 let imageManager = $("#img-manager");
                 let img;
@@ -359,5 +362,10 @@ $(document).ready(function () {
 
     // MAIN
     startGame();
+
+    var nomAgent="";
+    function update_val(){
+        nomAgent = document.getElementById("nom_agent").value;
+    }
 
 });
