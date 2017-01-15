@@ -208,15 +208,105 @@
 
     <p> La France est le berceau de la Résistance depuis le début de la scission entre les agents. Ici, vous suivrez un
     entrainement visant à faire de vous un agent hors pair, qiu permettra à l'humanité de lutter contre les Shappers.
-    Mais tout d'abord, vous devez prouver votre valeur aux membres de la Résistance en capturant 3 portails en réussissant
+    Mais tout d'abord, vous devez prouver votre valeur aux membres de la Résistance en capturant 1 portail en réussissant
     pour chacun l'épreuve des glyphes.</p>
 
     <p class="info">Ne vous inquiétez pas, si vous ratez une épreuve, vous pourrez toujours la recommencer jusqu'à ce
     que vous la réussiez, mais cela vous coutera de l'XM. Car oui, vous pouvez stocker de l'XM sur vous pour déployer
 des portails et lutter contre l'invasion. Vaincre le mal par le mal. Plus vous augmenterez votre niveau, plus vous
     pourrez en stocker. Mais si jamais votre stock d'XM tombe à 0, l'aventure en tant qu'agent s'arrêtera là pour vous.</p>
-    <button go="bleu_france">Partir en France</button>
+    <button go="bleu_france_portal">Capturer les portails</button>
 </div>
+
+<div class="section" id="vert_france">
+
+    <p> La France est le berceau de la Résistance depuis le début de la scission entre les agents. Ici, vous suivrez un
+        entrainement visant à faire de vous un agent hors pair, qui pourra s'infiltrer et lutter contre les membres de
+        la Résistance, afin de permettre aux Shapers de se développer et d'aider l'humanité.
+        Mais tout d'abord, vous devez prouver votre valeur aux membres Illuminés en capturant 1 portail en réussissant
+        pour chacun l'épreuve des glyphes.</p>
+
+    <p class="info">Ne vous inquiétez pas, si vous ratez une épreuve, vous pourrez toujours la recommencer jusqu'à ce
+        que vous la réussiez, mais cela vous coutera de l'XM. Car oui, vous pouvez stocker de l'XM sur vous pour déployer
+        des portails et lutter contre l'invasion. Vaincre le mal par le mal. Plus vous augmenterez votre niveau, plus vous
+        pourrez en stocker. Mais si jamais votre stock d'XM tombe à 0, l'aventure en tant qu'agent s'arrêtera là pour vous.</p>
+    <button go="vert_france_portal">Capturer les portails</button>
+</div>
+
+<div class="section" id="bleu_france_portal">
+
+    <p> MINI JEU SUR LE HACK DE PORTAIL</p>
+
+    <button go="bleu_france_glyphe">Hacker le portail</button>
+</div>
+
+<div class="section" id="vert_france_portal">
+
+    <p> MINI JEU SUR LE HACK DE PORTAIL</p>
+
+    <button go="vert_france_glyphe">Hacker le portail</button>
+</div>
+
+<div class="section" id="bleu_france_glyphe">
+    <p> MINI JEU GLYPHE </p>
+    <button go="bleu_france_attack_speach">Suite</button>
+</div>
+
+<div class="section" id="vert_france_glyphe">
+    <p> MINI JEU GLYPHE </p>
+    <button go="vert_france_attack_speach">Suite</button>
+</div>
+
+<div class="section" id="bleu_france_attack_speach">
+    <p>Bien agent NomAgent, il est maintenant l'heure pour vous l'heure d'allez combattre l'ennemie sur le  terrain en
+    reprenant le contrôle de plusieurs portails contrôlé par des agent Illuminés, afin de lutter aux côtés de la Résistance
+    et de protéger l'humanité.</p>
+    <button go="bleu_france_attack"> Aller sur le terrain</button>
+</div>
+
+<div class="section" id="vert_france_attack_speach">
+    <p>Bien agent NomAgent, il est maintenant l'heure pour vous l'heure d'allez combattre l'ennemie sur le  terrain en
+        reprenant le contrôle de plusieurs portails contrôlé par des agent Illuminés, afin de lutter aux côtés de la Résistance
+        et de protéger l'humanité.</p>
+    <button go="vert_france_attack"> Aller sur le terrain</button>
+</div>
+
+<div class="section" id="bleu_france_attack">
+    <p>Alors que vous étiez en train de détruire un portail vert, contrôllé par les Illuminés, vous recevez
+        une alerte sur votre scanner, signalant l'approche de plusieurs agent Illuminés.</p>
+    <button go="bleu_france_after_attack_stay">Rester et continuer à hacker les portails des Illuminés</button>
+    <button go="bleu_france_after_attack_run">Courir (et tenter de s'enfuir)</button>
+</div>
+
+<div class="section" id="vert_france_attack">
+    <p>Alors que vous étiez en train de détruire un portail bleu, contrôllé par les membre de la Résistance, vous recevez
+        une alerte sur votre scanner, signalant l'approche de plusieurs agent de la Résistance.</p>
+    <button go="vert_france_after_attack_stay">Rester et continuer à hacker les portails de la Résistance</button>
+    <button go="vert_france_after_attack_run">Courir (et tenter de s'enfuir)</button>
+</div>
+
+<div class="section" id="bleu_france_after_attack_run">
+    <p class="info">En tentant de prendre la fuite, vous trébuchez sur une branche. Durant votre chute, votre tête percute
+        un rocher. Vous êtes du coup mort en agent sur le terrain et finissez décoré à titre postume.</p>
+    <button go="stop_game">Arreter le jeu</button>
+    <button go="intro">Recommencer depuis le début</button>
+    <button go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
+</div>
+
+<div class="section" id="bleu_france_after_attack_stay">
+    <p >Des agents Illuminés commencent à vous encercler, qui vous confisque votre scanner, vous mettant ainsi
+    hors d'état de nuire ou de rentrer en contact avec la Résistance.</p>
+    <button go="bleu_france_attack_tentative_run_away">Lutter et tenter de s'enfuir</button>
+    <button go="bleu_france_attack_be_quiet">Se rendre docilement</button>
+</div>
+
+<div class="section" id="vert_france_after_attack_stay">
+    <p>Des agents Illuminés commencent à vous encercler, qui vous confisque votre scanner, vous mettant ainsi
+        hors d'état de nuire ou de rentrer en contact avec la Résistance.</p>
+    <button go="bleu_france_attack_tentative_run_away">Lutter et tenter de s'enfuir</button>
+    <button go="bleu_france_attack_be_quiet">Se rendre docilement</button>
+</div>
+
 
 
 </div>
