@@ -1,11 +1,21 @@
 $(document).ready(function () {
-    // VARIABLES
+
+    const MAX_LIFE = 30;
+
     let buttons = $(".section button");
     let status = $("#status");
     let inventoryList = $("#inventory");
     let life = status.find(".life .value");
+    let imageManager = $("#img-manager");
+
+    // Utilisé pour le jeu
     let inventory = [];
-    let log = true; // Utilisé pour le debug
+    let agentName;
+    let randomName = ["Hector", "Bob", "Toto"]; // Noms random, au cas où le joueur ne veut pas renseigner son nom.
+    let imagesName = ["1.jpg", "2.jpg", "3.png", "4.jpg"];
+
+    // Utilisé pour le développement
+    let log = true;
 
     /**
      * Fonction pour gérer l'inventaire.
@@ -29,10 +39,12 @@ $(document).ready(function () {
 
         if (log)
             console.log("Object " + getInventory(name)["name"] + ":" + getInventory(name)["count"]);
+
+        updateInventory();
     }
 
     /**
-     * Permet de mettre à jour la liste de l'inventaire visuellement.
+     * Permet de mettre à jour visuellement la liste de l'inventaire.
      */
     function updateInventory() {
         inventoryList.empty();
@@ -57,22 +69,66 @@ $(document).ready(function () {
         });
     }
 
-    function showSection(name, withLife) {
-        if (withLife === undefined)
-            withLife = true;
+    /**
+     * Permet d'afficher une section selon son nom.
+     * @param name string
+     *  Le nom de la section à afficher
+     * @param withStatusBar bool
+     *  Si l'on doit afficher la section statut ou non.
+     */
+    function showSection(name, withStatusBar) {
+        if (withStatusBar === undefined)
+            withStatusBar = true;
         $(".section").hide();
-        if (!withLife)
+        if (!withStatusBar)
             $("#status").hide();
         else
             $("#status").show();
         $("#" + name).show();
     }
 
+    /**
+     * Initialise le jeu avec un nombre de vie par défaut, et un inventaire vide par défaut.
+     */
     function init() {
-        setLife(3);
+        setLife(MAX_LIFE);
         inventory = [];
     }
 
+    /**
+     * Permet de mettre à jour une image, ou d'en ajouter une nouvelle dans la div ImageManager.
+     * @param rule au choix : add/remove/update
+     * @param action l'action contenant les paramètres.
+     */
+    function updateImage(rule, action) {
+        let img;
+        let value = action.attr("value");
+
+        if (rule == "add") {
+            img = $("<img>");
+            img.attr("src", "img/" + value);
+            let str = "100px";
+            img.css("width", str).css("height", str);
+            imageManager.append(img);
+        } else if (rule == "update" || rule == "remove") {
+            img = $("img").filter("[src='img/" + value + "']");
+            if (img.size() == 0) {
+                if (log)
+                    console.log("Image not found for " + rule + " rule in image action !");
+                return;
+            }
+
+            // Update or remove ?
+            (rule == "update") ? img.attr("src", "img/" + action.attr("new")) : img.remove();
+        }
+    }
+
+    /**
+     * Permet de gérer une action.
+     * @param action
+     *  Le nom de l'action
+     *  @see actions.md pour des détails sur les différentes actions disponibles.
+     */
     function handleSingleAction(action) {
         let actionName = action.attr("name");
 
@@ -81,8 +137,6 @@ $(document).ready(function () {
 
         switch (actionName) {
             case "start":
-                init();
-                break;
             case "reset":
                 init();
                 break;
@@ -95,43 +149,43 @@ $(document).ready(function () {
                 updateItem(item, count);
                 break;
             case "glyph":
-                // Mini jeu
                 let glyphLevel = parseInt(action.attr("level"));
-                launchGlyphGame(glyphLevel, $(action));
+                let itemWon = action.attr("itemWon");
+                let itemCount = action.attr("itemCount");
+                let time = action.attr("time");
+                launchGlyphGame(glyphLevel, $(action), itemCount, itemWon, time);
                 break;
             case "cssUpdate":
                 $(action.attr("element")).css(action.attr("rule"), action.attr("value"));
                 break;
-            case "nomAgent":
-                $(nomAgent).Show();
+            case "setAgentName":
+                let message = action.attr("message");
+                agentName = prompt(message);
+                if (agentName == undefined || agentName.length <= 0)
+                    agentName = randomName[getRandom(0, randomName.length - 1)];
+                let showInto = action.attr("showInto");
+                $(showInto).text(agentName);
                 break;
             case "image":
-                let imageManager = $("#img-manager");
-                let img;
                 let rule = action.attr("rule");
-                if (rule == "add") {
-                    img = $("<img>");
-                    img.attr("src", "img/" + action.attr("value"));
-                    let str = "100px";
-                    img.css("width", str).css("height", str);
-                    imageManager.append(img);
-                } else if (rule == "update" || rule == "remove") {
-                    img = $("img").filter("[src='img/" + action.attr("value") + "']");
-                    if (img.size() == 0) {
-                        console.log("Image not found for " + rule + " rule in image action !");
-                        return;
-                    }
-
-                    // Update or remove ?
-                    (rule == "update") ? img.attr("src", "img/" + action.attr("new")) : img.remove();
-                }
-
+                updateImage(rule, $(action));
                 break;
             default:
-                console.log("Action has not been defined !");
+                if (log)
+                    console.log("Action has not been defined !");
                 alert("Error, define a new action for " + actionName + "!");
         }
     }
+
+    /**
+     * Retourne un nombre aléatoire compris
+     * @param min {number} le minimum
+     * @param max {number} le maximum
+     * @returns {number} compris entre min & max
+     */
+    let getRandom = function (min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    };
 
     /* Creates an array of random integers between the range specified
      @param len int
@@ -177,24 +231,15 @@ $(document).ready(function () {
         return toReturn;
     }
 
-    function createHelpNode(glyphPictures, colorArray, level) {
-        let ol = $("<ol>");
-        let li;
-
-        for (let i = 0; i < level; i++) {
-            li = $("<li>");
-            li.html(colorArray[i]);
-            li.css("background-color", colorArray[i]);
-            ol.append(li);
-        }
-        glyphPictures.first().before(ol);
-    }
-
-    function createPictures(level) {
-        let loadInto = $("#glyphGame");
+    /**
+     * Permet d'afficher les images dans un element particulier
+     * @param level Le nombre d'image à charger.
+     * @param loadInto L'object Jquery dans lequel on ajoute les images.
+     */
+    function createPictures(level, loadInto) {
         for (let i = 1; i <= level; i++) {
             let img = $("<img>");
-            img.attr("src", "img/" + i + ".jpg");
+            img.attr("src", "img/" + imagesName[getRandom(0, imagesName.length - 1)]);
             let str = "100px";
             img.css("width", str).css("height", str);
             img.addClass("glyphPictures");
@@ -205,14 +250,29 @@ $(document).ready(function () {
     }
 
     /**
-     * A partir des valeurs aléatoires pour l'ordre, permet d'afficher la solutio pour une durée donnée.
+     * A partir des valeurs aléatoires pour l'ordre, permet d'afficher la solution pour une durée donnée.
      * @param time int
+     *  Le temps durant lequel la solution sera affichée
      * @param glyphPictures Collection Jquery
+     *  Les images
      * @param randomOrder Array
+     *  L'ordre de la solution.
+     * @param colorArray
+     * @param level
      */
-    function showSolution(time, glyphPictures, randomOrder, colorArray, section) {
-
+    function showSolution(time, glyphPictures, randomOrder, colorArray, level) {
+        let ol = $("<ol>");
+        let li;
         let value;
+
+        for (let i = 0; i < level; i++) {
+            li = $("<li>");
+            li.html(colorArray[i]);
+            li.css("background-color", colorArray[i]);
+            ol.append(li);
+        }
+        glyphPictures.first().before(ol);
+
         glyphPictures.each(function (index, element) {
             value = $(element).data("order");
             $(element).css("border", "5px solid " + colorArray[randomOrder.indexOf(value)]);
@@ -220,7 +280,7 @@ $(document).ready(function () {
 
         setTimeout(function () {
             glyphPictures.css("border", "none");
-            section.find("ol").remove();
+            ol.remove();
         }, time);
     }
 
@@ -230,14 +290,20 @@ $(document).ready(function () {
      *   Permet d'indiquer le nombre d'image à afficher.
      * @param action JqueryElement
      *   Element Jquery de l'action.
+     * @param itemCount int
+     *  Le nomber de @param itemGain que l'on gagne
+     * @param itemWon
+     *  L'item que l'on gagne
+     *  @param time
+     *   Le temps ou la solution est affichée, en ms.
      */
-    function launchGlyphGame(level, action) {
+    function launchGlyphGame(level, action, itemCount, itemWon, time) {
         let section = action.parent(".section");
         section.append("<div id='glyphGame'></div>");
         action.hide();
 
         // Create pictures
-        createPictures(level);
+        createPictures(level, $("#glyphGame"));
 
         let glyphPictures = $("img.glyphPictures");
         let colorArray = ["green", "blue", "red", "pink", "yellow"];
@@ -249,11 +315,10 @@ $(document).ready(function () {
 
         }
 
-        // Set help node
-        createHelpNode($(glyphPictures), colorArray, level);
-        showSolution(10000, $(glyphPictures), randomOrder, colorArray, $(section));
+        showSolution(time, $(glyphPictures), randomOrder, colorArray, level);
 
         let order = 0;
+
         glyphPictures.click(function () {
 
             let data = parseInt($(this).data("order"));
@@ -261,7 +326,10 @@ $(document).ready(function () {
                 order++;
                 $(this).css("border", "solid 5px green");
             } else {
-                console.log("Bad combinaison !");
+                itemCount > 0 ? itemCount-- : true;
+                loseOneLife();
+                if (getLife() <= 0)
+                    endGame();
                 glyphPictures.css("border", "none");
                 setTimeout(function () {
                     glyphPictures.css("border", "none");
@@ -271,7 +339,11 @@ $(document).ready(function () {
             }
 
             if (order == level) {
+                if (log)
+                    console.log("You won " + itemCount + " " + itemWon);
                 glyphPictures.remove();
+                setLife(MAX_LIFE);
+                updateItem(itemWon, itemCount);
                 section.find("ol").remove();
                 action.show();
             }
@@ -285,7 +357,6 @@ $(document).ready(function () {
      */
     function handleAction(key) {
         let actions = $("#" + key).find("action");
-
         if (actions.size() == 0)
             return;
 
@@ -362,10 +433,4 @@ $(document).ready(function () {
 
     // MAIN
     startGame();
-
-    var nomAgent="";
-    function update_val(){
-        nomAgent = document.getElementById("nom_agent").value;
-    }
-
 });
