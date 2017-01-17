@@ -95,8 +95,22 @@ Une fois la valeur définie, elle sera affichée dans le selecteur CSS renseign�
 
 - `<action name="setAgentName" message="Entrer votre nom d'agent." showInto=".agentName"/>`
 
-## image
+## Image
 
 Permet d'ajouter, de supprimer ou de mettre à jour des images.
 
-Cette fonctionnalité n'est pas encore totalement opérationnelle.
+
+### Paramètres
+
+- rule : [add, remove, update]
+- dataName : Le nom que l'on souhaite donner à l'image pour l'identifier
+- value : La valeur de l'attribut src de l'image
+- newName : Dans le cas de l'update, le nouveau nom de l'image.
+- selector : Pour l'ajout, indique le conteneur ou l'on souhaite insérer l'image.
+
+### Exemple(s) d'utilisation
+
+- `<action name="image" rule="add" dataName="imageUne" value="1.jpg" selector="body"/>`
+- `<action name="image" rule="update" dataName="imageUne" newName="Test" value="2.jpg"/>`
+- `<action name="image" rule="remove" dataName="Test"/>`
+
