@@ -97,29 +97,42 @@ $(document).ready(function () {
 
     /**
      * Permet de mettre à jour une image, ou d'en ajouter une nouvelle dans la div ImageManager.
-     * @param rule au choix : add/remove/update
      * @param action l'action contenant les paramètres.
      */
-    function updateImage(rule, action) {
+    function updateImage(action) {
         let img;
+        let rule = action.attr("rule");
         let value = action.attr("value");
+        let imageDataName = action.attr("dataName");
 
         if (rule == "add") {
+            let selector = action.attr("selector");
             img = $("<img>");
             img.attr("src", "img/" + value);
             let str = "100px";
-            img.css("width", str).css("height", str);
-            imageManager.append(img);
+            img.css("width", str).css("height", str); // TODO Make a better CSS
+            img.data("name", imageDataName);
+            $(selector).append(img);
         } else if (rule == "update" || rule == "remove") {
-            img = $("img").filter("[src='img/" + value + "']");
+            img = $("img").filter(function() {
+                return $(this).data("name") == imageDataName;
+            });
             if (img.size() == 0) {
                 if (log)
                     console.log("Image not found for " + rule + " rule in image action !");
                 return;
             }
 
-            // Update or remove ?
-            (rule == "update") ? img.attr("src", "img/" + action.attr("new")) : img.remove();
+            if (rule == "update") {
+                // Only for update
+                let newName = action.attr("newName");
+
+                img.attr("src", "img/" + value);
+                img.data("name", newName);
+
+            } else {
+                img.remove();
+            }
         }
     }
 
@@ -167,8 +180,7 @@ $(document).ready(function () {
                 $(showInto).text(agentName);
                 break;
             case "image":
-                let rule = action.attr("rule");
-                updateImage(rule, $(action));
+                updateImage($(action));
                 break;
             default:
                 if (log)
