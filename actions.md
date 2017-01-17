@@ -56,12 +56,13 @@ L'utilisateur gagne des items en réussissant un glyph, mais perds de la vie, et
 
 - level : Le nombre d'image à inclure dans le jeu.
 - itemWon : L'item que l'on gagne une fois le jeu réussi.
+- time : Temps durant lequel la solution est affichée avant le début du jeu.
 - itemCount : Le nombre d'item que l'on gagne. 
     - Attention : Dans le cas ou l'on doit recommencer plusieurs fois le jeu de glyph, la valeur sera progressivement décrémentée. Ainsi, le gain sera moindre pour une personne recommençant de nombreuses fois le glyph.
 
 ### Exemple(s) d'utilisation
 
-- `<action name="glyph" level="4" itemWon="CeQueJeGagne" itemCount="LaQuantiteGagnee"/>`
+- `<action name="glyph" level="4" itemWon="CeQueJeGagne" itemCount="LaQuantiteGagnee" time="2500"/>`
 
 ## cssUpdate
 
