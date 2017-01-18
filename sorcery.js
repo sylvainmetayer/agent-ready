@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
     const MAX_LIFE = 30;
+    const MAX_RESONATORS = 8;
 
     let buttons = $(".section button");
     let status = $("#status");
@@ -20,12 +21,12 @@ $(document).ready(function () {
     // Utilisé pour le développement
     let log = true;
 
-    iAmENL.click(function() {
+    iAmENL.click(function () {
         isResistant = false;
     });
 
-    iAmResistant.click(function() {
-       isResistant = true;
+    iAmResistant.click(function () {
+        isResistant = true;
     });
 
     /**
@@ -41,7 +42,7 @@ $(document).ready(function () {
         if (exist == undefined)
             inventory.push({name, count});
         else
-            exist["count"] = getInventory(name)["count"] + count;
+            exist["count"] = parseInt(getInventory(name)["count"]) + parseInt(count);
 
         if (getInventory(name)["count"] <= 0) {
             // On set l'item à 0 - pour le moment, pas de suppression prévue.
@@ -95,7 +96,15 @@ $(document).ready(function () {
             $("#status").hide();
         else
             $("#status").show();
-        $("#" + name).show();
+
+        let sectionToShow = $("#" + name);
+
+        if (sectionToShow.size() <= 0) {
+            if (log)
+                console.log("ERROR : " + name + " section is not defined !");
+            alert("An error occured, please try again later.");
+        } else
+            sectionToShow.show();
     }
 
     /**
@@ -104,20 +113,26 @@ $(document).ready(function () {
     function init() {
         setLife(MAX_LIFE);
         inventory = [];
+        updateItem("resonateur", 3);
     }
 
     /**
      * Permet de mettre à jour une image, ou d'en ajouter une nouvelle dans la div ImageManager.
-     * @param action l'action contenant les paramètres.
+     *
+     * @param rule au choix : add/update/remove
+     * @param selector
+     *  Pour l'ajout, le selecteur ou ajouter l'image.
+     * @param value
+     *  La valeur du src de l'image.
+     * @param imageDataName
+     *  Le dataname de l'image
+     * @param newName
+     *  Dans le cas de l'update, le nouveau dataname de l'image.
      */
-    function updateImage(action) {
+    function updateImage(rule, selector, value, imageDataName, newName) {
         let img;
-        let rule = action.attr("rule");
-        let value = action.attr("value");
-        let imageDataName = action.attr("dataName");
 
         if (rule == "add") {
-            let selector = action.attr("selector");
             img = $("<img>");
             img.attr("src", "img/" + value);
             let str = "100px";
@@ -125,7 +140,7 @@ $(document).ready(function () {
             img.data("name", imageDataName);
             $(selector).append(img);
         } else if (rule == "update" || rule == "remove") {
-            img = $("img").filter(function() {
+            img = $("img").filter(function () {
                 return $(this).data("name") == imageDataName;
             });
             if (img.size() == 0) {
@@ -136,11 +151,8 @@ $(document).ready(function () {
 
             if (rule == "update") {
                 // Only for update
-                let newName = action.attr("newName");
-
                 img.attr("src", "img/" + value);
                 img.data("name", newName);
-
             } else {
                 img.remove();
             }
@@ -156,6 +168,7 @@ $(document).ready(function () {
     function handleSingleAction(action) {
         let actionName = action.attr("name");
         let showInto;
+        let item;
 
         if (log)
             console.log("J'effectue l'action : " + actionName);
@@ -169,7 +182,7 @@ $(document).ready(function () {
                 loseOneLife();
                 break;
             case "itemUpdate":
-                let item = action.attr("item");
+                item = action.attr("item");
                 let count = parseInt(action.attr("count"));
                 updateItem(item, count);
                 break;
@@ -192,12 +205,51 @@ $(document).ready(function () {
                 $(showInto).text(agentName);
                 break;
             case "image":
-                updateImage($(action));
+                updateImage(action.attr("rule"), action.attr("selector"), action.attr("value"), action.attr("dataName"), action.attr("newName"));
                 break;
             case "setFaction":
                 showInto = action.attr("showInto");
                 isResistant == true ? $(showInto).html("résistance") : $(showInto).html("illuminés");
-                console.log(isResistant);
+                break;
+            case "deploy":
+                item = getInventory(action.attr("item"));
+
+                let divImage = action.siblings("div.image");
+                let buttonsAction = action.siblings("button");
+                let messageSuccess = action.siblings(".success");
+                let messageNoMoreStuff = action.siblings(".warningStuff");
+
+                // On masque le bouton de sortie et le message de succès
+                messageSuccess.hide();
+                buttonsAction.show();
+                buttonsAction.last().hide();
+                messageNoMoreStuff.hide();
+
+                if (divImage.children().size() == 0) {
+                    // Le déploiement commence juste.
+                    updateImage("add", divImage, "resonators/0.jpg", "reso_0", undefined);
+                } else if (item["count"] <= 0) {
+                    messageNoMoreStuff.find(".item").html(item["name"]);
+                    messageNoMoreStuff.show();
+                    buttonsAction.first().hide();
+                } else {
+                    let name = divImage.find("img").first().data("name");
+                    let result = name.split("_");
+                    let numberOfResoDeployed = parseInt(result[1]);
+
+                    // On déploie un résonateur
+                    numberOfResoDeployed++;
+                    item["count"]--;
+                    updateImage("update", divImage, "resonators/" + numberOfResoDeployed + ".jpg", "reso_" + (numberOfResoDeployed - 1), "reso_" + numberOfResoDeployed);
+
+                    if (numberOfResoDeployed >= MAX_RESONATORS) {
+                        // Fin du jeu, on peut afficher le bouton pour partir.
+                        buttonsAction.hide();
+                        buttonsAction.last().show();
+                        messageSuccess.show();
+                        break;
+                    }
+                }
                 break;
             default:
                 if (log)
