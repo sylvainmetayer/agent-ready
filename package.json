@@ -1,0 +1,43 @@
+{
+  "name": "agent-ready",
+  "version": "1.0.0",
+  "author": "Sylvain METAYER <sylvain.metayer@etu.u-bordeaux.fr>",
+  "description": "An Ingress Story",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "ingress",
+    "story",
+    "agent",
+    "resistance",
+    "enlightened "
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sylvainmetayer/sword-sorcery.git"
+  },
+  "contributors": [
+    {
+      "name": "Tiphaine GIRARDOT",
+      "email": "tiphaine.girardot@etu.u-bordeaux.fr",
+      "url": "https://tiphainegirardot.fr"
+    },
+    {
+      "name": "Sylvain METAYER",
+      "url": "https://sylvainmetayer.fr",
+      "email": "sylvain.metayer@etu.u-bordeaux.fr"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sylvainmetayer/sword-sorcery/issues"
+  },
+  "homepage": "https://github.com/sylvainmetayer/sword-sorcery#readme",
+  "dependencies": {
+    "serve-me": "*"
+  },
+  "private": true
+}
