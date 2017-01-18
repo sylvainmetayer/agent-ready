@@ -9,4 +9,21 @@ IUT de Bordeaux - 2016-2017
 - Tiphaine GIRARDOT
 - Sylvain METAYER
 
-[Voir la version en ligne](https://sylvainmetayer.github.io/sword-sorcery/)
+## Jouer au jeu
+
+### En local
+
+Il est nécessaire de disposer d'un serveur local (wamp, le serveur de php, un serveur node, ...)
+
+Un serveur nodejs est disponible sur ce dépôt.
+
+Autres exemples (non exhaustif) :
+
+- php -S localhost:8080
+- python -m SimpleHTTPServer 8080
+- node server.js
+- ...
+
+### En ligne 
+
+Voir la version en ligne : https://sylvainmetayer.github.io/sword-sorcery/
