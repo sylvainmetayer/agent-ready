@@ -126,3 +126,25 @@ Permet de définir la faction du joueur.
 
 - `<action name="setFaction" showInto=".factionName"/>`
 
+## Deploy
+
+Permet de déployer un portail avec des items présent dans l'inventaire.
+
+Pour que cette action soit fonctionnelle, plusieurs critères sont requis :
+
+- avoir une section créé pour récupérer des items. Si jamais le joueur n'a pas assez d'items, il pourra en récupérer.
+- Créer 3 boutons (dans cet ordre) :
+    1. Un pour déployer un item supplémentaire sur le portail. Ce bouton doit pointer vers la section courante.
+    2. Un pour récupérer des items. Ce bouton doit pointer vers la section pour récupérer des items.
+    3. Un qui, une fois le portail déployé, sera affiché. Il s'agit du bouton de "victoire". 
+    
+Il est également possible d'ajouter des messages de succès et d'alerte pour le manque d'item. Pour cela, ajouter simplement un élément avec la classe "success" pour afficher en cas de succès et un avec la classe "warningStuff" pour le manque d'item. Ces éléments, si l'on souhaitent qu'ils s'affichent, **doivent** être présents dans la section contenant l'action du déploiement.
+
+### Paramètres
+
+- item : L'item que l'on décrémente pour pouvoir déployer le portail.
+
+### Exemple(s) d'utilisation
+
+- `<action name="deploy" item="resonateur"></action>`
+
