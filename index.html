@@ -48,6 +48,47 @@
     <action name="start"/>
 
     <button go="intro_2">Suite</button>
+    <button go="testDivers">Zone de test (ne pas toucher)</button>
+</div>
+
+<div class="section" id="testDivers">
+
+    <action name="deploy" item="resonateur"></action>
+
+    <div class="image"></div>
+
+    <p class="success">
+        Bravo ! Vous avez déployé avec succès un portail !
+    </p>
+
+    <p class="warningStuff">
+        Attention, vous n'avez plus assez de "<span class="item"></span>" ! <br/>
+        Faites un glyph avec le bouton ci-dessous pour en récupérer !
+    </p>
+
+    <button go="testDivers">Déployer un résonateur sur le portail</button>
+    <button go="glyphWhileDeploy">Récupérer du matos !</button>
+    <button go="LePortailEstCompletOnPasseALaSuite">Je m'affiche lorsque le portail est déployé !</button>
+</div>
+
+<div class="section" id="glyphWhileDeploy">
+
+    <p>
+        En manque d'items ? Hackez donc le portail devant vous, vous pourrez gagner jusqu'à 4 résonateurs si vous le
+        réussissez du premier coup !
+    </p>
+
+    <action name="glyph" level="4" itemWon="resonateur" itemCount="4" time="2500"/>
+
+    <button go="testDivers">
+        Bravo ! Utilisez ces résonateurs fraichement acquis et finissez de déployer le portail !
+    </button>
+</div>
+<div class="section" id="LePortailEstCompletOnPasseALaSuite">
+
+    Je suis la section qui s'affiche après avoir réussi à déployer un portail.
+
+    <button go="intro">Je ne suis qu'un test, retourne donc à l'accueil</button>
 </div>
 
 <div class="section" id="intro_2">
@@ -138,7 +179,8 @@
 
     <action name="setFaction" showInto=".factionName"/>
 
-    <p>Bienvenue agent <span class="agentName"></span> chez les <span class="factionName"></span> . Maintenant, place à votre initiation</p>
+    <p>Bienvenue agent <span class="agentName"></span> chez les <span class="factionName"></span> . Maintenant, place à
+        votre initiation</p>
     <p>Devant vous se trouve un portail. Sa couleur indique qu'il est neutre pour l'instant. C'est une source
         d'XM pure, contrôlé par aucune faction pour l'instant. Et votre devoir, en temps que nouvel agent, est de le
         capturer
