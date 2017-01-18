@@ -7,15 +7,26 @@ $(document).ready(function () {
     let inventoryList = $("#inventory");
     let life = status.find(".life .value");
     let imageManager = $("#img-manager");
+    let iAmResistant = $("#i_am_resistant");
+    let iAmENL = $("#i_am_enl");
 
     // Utilisé pour le jeu
     let inventory = [];
     let agentName;
+    let isResistant = true;
     let randomName = ["Hector", "Bob", "Toto"]; // Noms random, au cas où le joueur ne veut pas renseigner son nom.
     let imagesName = ["1.jpg", "2.jpg", "3.png", "4.jpg"];
 
     // Utilisé pour le développement
     let log = true;
+
+    iAmENL.click(function() {
+        isResistant = false;
+    });
+
+    iAmResistant.click(function() {
+       isResistant = true;
+    });
 
     /**
      * Fonction pour gérer l'inventaire.
@@ -144,6 +155,7 @@ $(document).ready(function () {
      */
     function handleSingleAction(action) {
         let actionName = action.attr("name");
+        let showInto;
 
         if (log)
             console.log("J'effectue l'action : " + actionName);
@@ -176,11 +188,16 @@ $(document).ready(function () {
                 agentName = prompt(message);
                 if (agentName == undefined || agentName.length <= 0)
                     agentName = randomName[getRandom(0, randomName.length - 1)];
-                let showInto = action.attr("showInto");
+                showInto = action.attr("showInto");
                 $(showInto).text(agentName);
                 break;
             case "image":
                 updateImage($(action));
+                break;
+            case "setFaction":
+                showInto = action.attr("showInto");
+                isResistant == true ? $(showInto).html("résistance") : $(showInto).html("illuminés");
+                console.log(isResistant);
                 break;
             default:
                 if (log)
