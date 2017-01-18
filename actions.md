@@ -114,3 +114,15 @@ Permet d'ajouter, de supprimer ou de mettre à jour des images.
 - `<action name="image" rule="update" dataName="imageUne" newName="Test" value="2.jpg"/>`
 - `<action name="image" rule="remove" dataName="Test"/>`
 
+## setFaction
+
+Permet de définir la faction du joueur.
+
+### Paramètres
+
+- showInto : Affiche la faction du joueur dans l'element indiqué
+
+### Exemple(s) d'utilisation
+
+- `<action name="setFaction" showInto=".factionName"/>`
+
