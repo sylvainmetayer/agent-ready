@@ -7,7 +7,6 @@ $(document).ready(function () {
     let status = $("#status");
     let inventoryList = $("#inventory");
     let life = status.find(".life .value");
-    let imageManager = $("#img-manager");
     let iAmResistant = $("#i_am_resistant");
     let iAmENL = $("#i_am_enl");
 
@@ -15,8 +14,10 @@ $(document).ready(function () {
     let inventory = [];
     let agentName;
     let isResistant = true;
-    let randomName = ["Hector", "Bob", "Toto"]; // Noms random, au cas où le joueur ne veut pas renseigner son nom.
-    let imagesName = ["1.jpg", "2.jpg", "3.png", "4.jpg"];
+
+    let imagesName;
+    let colorArray;
+    let randomName;
 
     // Utilisé pour le développement
     let log = true;
@@ -28,6 +29,43 @@ $(document).ready(function () {
     iAmResistant.click(function () {
         isResistant = true;
     });
+
+    function loadJSONValue(filename) {
+        let settings = {
+            method: "GET",
+            url: "resources/" + filename + ".json",
+            dataType: "json"
+        };
+        let request = $.ajax(settings);
+        request.done(function (json) {
+            let array = $.map(json, function (el) {
+                return el;
+            });
+            console.log(array);
+            switch (filename) {
+                case "imagesName":
+                    imagesName = array;
+                    break;
+                case "colorArray":
+                    colorArray = array;
+                    break;
+                case "randomName":
+                    randomName = array;
+                    break;
+                default:
+                    alert("Error");
+            }
+        });
+    }
+
+    /**
+     * Initialise le jeu avec un nombre de vie par défaut, et un inventaire vide par défaut.
+     */
+    function init() {
+        setLife(MAX_LIFE);
+        inventory = [];
+        updateItem("resonateur", 3);
+    }
 
     /**
      * Fonction pour gérer l'inventaire.
@@ -105,15 +143,6 @@ $(document).ready(function () {
             alert("An error occured, please try again later.");
         } else
             sectionToShow.show();
-    }
-
-    /**
-     * Initialise le jeu avec un nombre de vie par défaut, et un inventaire vide par défaut.
-     */
-    function init() {
-        setLife(MAX_LIFE);
-        inventory = [];
-        updateItem("resonateur", 3);
     }
 
     /**
@@ -247,7 +276,6 @@ $(document).ready(function () {
                         buttonsAction.hide();
                         buttonsAction.last().show();
                         messageSuccess.show();
-                        break;
                     }
                 }
                 break;
@@ -278,15 +306,12 @@ $(document).ready(function () {
      @param unique boolean
      whether you want unique or not (assume 'true' for this answer)
      @source http://stackoverflow.com/a/29613213
+     @noinspection
      */
     function _arrayRandom(len, min, max, unique) {
-        //noinspection JSDuplicatedDeclaration
         var len = (len) ? len : 10;
-        //noinspection JSDuplicatedDeclaration
         var min = (min !== undefined) ? min : 1;
-        //noinspection JSDuplicatedDeclaration
         var max = (max !== undefined) ? max : 100;
-        //noinspection JSDuplicatedDeclaration
         var unique = (unique) ? unique : false;
         var toReturn = [];
         var tempObj = {};
@@ -318,10 +343,13 @@ $(document).ready(function () {
      * @param loadInto L'object Jquery dans lequel on ajoute les images.
      */
     function createPictures(level, loadInto) {
+
+        console.log(imagesName);
+
         for (let i = 1; i <= level; i++) {
             let img = $("<img>");
             img.attr("src", "img/" + imagesName[getRandom(0, imagesName.length - 1)]);
-            let str = "100px";
+            let str = "100px"; // TODO Better CSS
             img.css("width", str).css("height", str);
             img.addClass("glyphPictures");
             img.attr("id", i);
@@ -338,10 +366,10 @@ $(document).ready(function () {
      *  Les images
      * @param randomOrder Array
      *  L'ordre de la solution.
-     * @param colorArray
      * @param level
      */
-    function showSolution(time, glyphPictures, randomOrder, colorArray, level) {
+    function showSolution(time, glyphPictures, randomOrder, level) {
+
         let ol = $("<ol>");
         let li;
         let value;
@@ -387,21 +415,23 @@ $(document).ready(function () {
         createPictures(level, $("#glyphGame"));
 
         let glyphPictures = $("img.glyphPictures");
-        let colorArray = ["green", "blue", "red", "pink", "yellow"];
 
         // Set random order to solve game
         let randomOrder = _arrayRandom(level, 1, level, true);
         for (let i = 0; i < level; i++) {
             $(glyphPictures[randomOrder[i]]).data("order", randomOrder[i]);
-
         }
 
-        showSolution(time, $(glyphPictures), randomOrder, colorArray, level);
+        showSolution(time, $(glyphPictures), randomOrder, level);
 
         let order = 0;
 
+        /**
+         * Lors d'un clic sur une images, on vérifie qu'elle est bien cliquée
+         * dans l'ordre. Si oui, on affiche un cadre vert, sinon, un cadre rouge.
+         * Si jamais le jeu est terminé, on enlève les images et on affiche le bouton de sortie.
+         */
         glyphPictures.click(function () {
-
             let data = parseInt($(this).data("order"));
             if (randomOrder.indexOf(data) == order) {
                 order++;
@@ -432,9 +462,9 @@ $(document).ready(function () {
     }
 
     /**
-     * Permet de gérer l'action d'une section.
+     * Permet de gérer les actions d'une section.
      * @param key string
-     *  Nom de l'action.
+     *  Le nom de la section
      */
     function handleAction(key) {
         let actions = $("#" + key).find("action");
@@ -508,10 +538,15 @@ $(document).ready(function () {
         gotoSection("death", false);
     }
 
+    /**
+     * Permet de se déplacer dans les différentes section au clic sur un bouton
+     */
     buttons.click(function () {
         gotoSection($(this).attr("go"));
     });
 
-    // MAIN
     startGame();
+    loadJSONValue("imagesName");
+    loadJSONValue("colorArray");
+    loadJSONValue("randomName");
 });
