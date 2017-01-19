@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     const MAX_LIFE = 30;
     const MAX_RESONATORS = 8;
+    const ALPHABET='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     let buttons = $(".section button");
     let status = $("#status");
@@ -141,8 +142,51 @@ $(document).ready(function () {
             if (log)
                 console.log("ERROR : " + name + " section is not defined !");
             alert("An error occured, please try again later.");
-        } else
+        } else {
             sectionToShow.show();
+            bindKeyEvent($(sectionToShow));
+        }
+    }
+
+    /**
+     * Permet de binder les différents boutons d'une section sur les touches du clavier, selon le modèle de
+     * la variable ALPHABET
+     * @param section
+     */
+    function bindKeyEvent(section) {
+        let callback = function() {
+          showSection($(this).attr("name"));
+        };
+
+        // Unbind all others event
+        $(document).unbind("keydown");
+        let buttons = section.find("button");
+
+        // Set value to item
+        buttons.each(function(index) {
+            let char = ALPHABET.charAt(index);
+            $(this).data("char", char);
+            if ($(this).html().indexOf(char + "-") == -1)
+            {
+                let oldHTML = $(this).html();
+                $(this).html(char + "-" + oldHTML);
+            }
+        });
+
+        // Enable key navigation
+        $(document).keydown(function (e) {
+            let keyCode = e.keyCode;
+            let keyPressed = String.fromCharCode(keyCode);
+            if (log == true)
+                console.log("On vient de cliquer sur " + keyPressed + " ! ");
+            // Get active button inside current section.
+            $(".section:visible button:visible").each(function() {
+                if ($(this).data("char") == keyPressed) {
+                    gotoSection($(this).attr("go"));
+                }
+            })
+        });
+
     }
 
     /**
