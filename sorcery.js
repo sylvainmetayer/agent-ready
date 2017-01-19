@@ -64,7 +64,7 @@ $(document).ready(function () {
     function init() {
         setLife(MAX_LIFE);
         inventory = [];
-        updateItem("resonateur", 3);
+        updateItem("resonateur", 6); // TODO Pour la zone de test seulement, à retirer après.
     }
 
     /**
@@ -256,7 +256,7 @@ $(document).ready(function () {
 
                 if (divImage.children().size() == 0) {
                     // Le déploiement commence juste.
-                    updateImage("add", divImage, "resonators/0.jpg", "reso_0", undefined);
+                    updateImage("add", divImage, item["name"] + "/0.png", item["name"] + "_0", undefined);
                 } else if (item["count"] <= 0) {
                     messageNoMoreStuff.find(".item").html(item["name"]);
                     messageNoMoreStuff.show();
@@ -269,7 +269,7 @@ $(document).ready(function () {
                     // On déploie un résonateur
                     numberOfResoDeployed++;
                     item["count"]--;
-                    updateImage("update", divImage, "resonators/" + numberOfResoDeployed + ".jpg", "reso_" + (numberOfResoDeployed - 1), "reso_" + numberOfResoDeployed);
+                    updateImage("update", divImage, item["name"] + "/" + numberOfResoDeployed + ".png", item["name"] + "_" + (numberOfResoDeployed - 1), item["name"] + "_" + numberOfResoDeployed);
 
                     if (numberOfResoDeployed >= MAX_RESONATORS) {
                         // Fin du jeu, on peut afficher le bouton pour partir.
