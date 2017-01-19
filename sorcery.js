@@ -1,15 +1,17 @@
 $(document).ready(function () {
 
+    // TODO Clean / improve comments
+
     const MAX_LIFE = 30;
     const MAX_RESONATORS = 8;
-    const ALPHABET='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     let buttons = $(".section button");
-    let status = $("#status");
-    let inventoryList = $("#inventory");
-    let life = status.find(".life .value");
-    let iAmResistant = $("#i_am_resistant");
-    let iAmENL = $("#i_am_enl");
+    let div_status = $("#status");
+    let ul_inventoryList = $("#inventory");
+    let span_life = div_status.find(".life .value");
+    let b_iAmResistant = $("#i_am_resistant");
+    let b_iAmENL = $("#i_am_enl");
 
     // Utilisé pour le jeu
     let inventory = [];
@@ -23,14 +25,15 @@ $(document).ready(function () {
     // Utilisé pour le développement
     let log = true;
 
-    iAmENL.click(function () {
-        isResistant = false;
-    });
+    ///////////////////////////////
+    // FUNCTIONS
+    //////////////////////////////
 
-    iAmResistant.click(function () {
-        isResistant = true;
-    });
-
+    /**
+     * Permet d'affecter à la variable filename
+     * la valeur du tableau JSON présent sur le serveur.
+     * @param filename
+     */
     function loadJSONValue(filename) {
         let settings = {
             method: "GET",
@@ -42,7 +45,6 @@ $(document).ready(function () {
             let array = $.map(json, function (el) {
                 return el;
             });
-            console.log(array);
             switch (filename) {
                 case "imagesName":
                     imagesName = array;
@@ -98,13 +100,13 @@ $(document).ready(function () {
      * Permet de mettre à jour visuellement la liste de l'inventaire.
      */
     function updateInventory() {
-        inventoryList.empty();
+        ul_inventoryList.empty();
         let li;
         $(inventory).each(function (index, element) {
             li = $("<li>");
             li.data("name", element["name"]);
             li.html(element["name"] + ": " + element["count"]);
-            inventoryList.append(li);
+            ul_inventoryList.append(li);
         });
     }
 
@@ -154,39 +156,17 @@ $(document).ready(function () {
      * @param section
      */
     function bindKeyEvent(section) {
-        let callback = function() {
-          showSection($(this).attr("name"));
-        };
-
-        // Unbind all others event
-        $(document).unbind("keydown");
-        let buttons = section.find("button");
-
-        // Set value to item
-        buttons.each(function(index) {
+        // Set value to each button
+        section.find("button").each(function (index) {
             let char = ALPHABET.charAt(index);
             $(this).data("char", char);
-            if ($(this).html().indexOf(char + "-") == -1)
-            {
+
+            // Does HTML has been already set ?
+            if ($(this).html().indexOf(char + "-") == -1) {
                 let oldHTML = $(this).html();
                 $(this).html(char + "-" + oldHTML);
             }
         });
-
-        // Enable key navigation
-        $(document).keydown(function (e) {
-            let keyCode = e.keyCode;
-            let keyPressed = String.fromCharCode(keyCode);
-            if (log == true)
-                console.log("On vient de cliquer sur " + keyPressed + " ! ");
-            // Get active button inside current section.
-            $(".section:visible button:visible").each(function() {
-                if ($(this).data("char") == keyPressed) {
-                    gotoSection($(this).attr("go"));
-                }
-            })
-        });
-
     }
 
     /**
@@ -550,7 +530,7 @@ $(document).ready(function () {
      * @returns int
      */
     function getLife() {
-        return parseInt(life.text());
+        return parseInt(span_life.text());
     }
 
     /**
@@ -558,7 +538,7 @@ $(document).ready(function () {
      * @param v
      */
     function setLife(v) {
-        life.html(v);
+        span_life.html(v);
     }
 
     /**
@@ -582,12 +562,40 @@ $(document).ready(function () {
         gotoSection("death", false);
     }
 
+    //////////////////////////////////////
+    // EVENT DECLARATION
+    //////////////////////////////////////
+
     /**
      * Permet de se déplacer dans les différentes section au clic sur un bouton
      */
     buttons.click(function () {
         gotoSection($(this).attr("go"));
     });
+
+    b_iAmENL.click(function () {
+        isResistant = false;
+    });
+
+    b_iAmResistant.click(function () {
+        isResistant = true;
+    });
+
+    // Enable key navigation
+    $(document).keydown(function (e) {
+        let keyCode = e.keyCode;
+        let keyPressed = String.fromCharCode(keyCode);
+        if (log == true)
+            console.log("On vient de cliquer sur '" + keyPressed + "' ! ");
+        // Get active button inside current section.
+        $(".section:visible button:visible").each(function () {
+            if ($(this).data("char") == keyPressed) {
+                gotoSection($(this).attr("go"));
+            }
+        })
+    });
+
+    // MAIN
 
     startGame();
     loadJSONValue("imagesName");
