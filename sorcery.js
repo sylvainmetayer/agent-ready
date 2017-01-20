@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     const MAX_LIFE = 30;
     const MAX_RESONATORS = 8;
-    const BAN_TIME = 5000;
+    const BAN_TIME = 1000;
     const KEYBOARD_NAVIGATION = "ABCDEF";
     const KEYS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890$€?!/*-+";
     const MAX_CHEAT = 3;
@@ -20,6 +20,16 @@ $(document).ready(function () {
     let colorArray;
     let randomName;
     let cheatImage;
+
+    // Cheat
+    let goSomewhere = [73, 78, 71, 82, 69, 83, 83];
+    let cptGoSomewhere = 0;
+
+    let cheatCode = [68, 69, 86]; // TODO Find a complex keyword
+    let cptCheatCode = 0;
+
+    let noCheat = 0;
+    let nbFail = 0;
 
     // Utilisé pour le développement
     let log = true;
@@ -576,14 +586,6 @@ $(document).ready(function () {
         gotoSection($(this).attr("go"));
     });
 
-    let goSomewhere = [73, 78, 71, 82, 69, 83, 83];
-    let cptGoSomewhere = 0;
-
-    let cheatCode = [68, 69, 86]; // TODO Find a complex keyword
-    let cptCheatCode = 0;
-
-    let noCheat = 0;
-
     // Enable key navigation & some others features.
     $(document).keyup(function (e) {
         let keyCode = e.keyCode;
@@ -638,12 +640,15 @@ $(document).ready(function () {
             let activeSection = $(".section:visible");
             activeSection.hide();
             div_status.hide();
+            if (nbFail == 0)
+                alert("Be careful, each time you will fail to find a cheat code, ban time will be doubled");
+            nbFail++;
             $("body").css("background-image", "url(img/cheats/" + randomImage + ")");
             setTimeout(function () {
                 $("body").css("background-image", "none");
                 activeSection.show();
                 div_status.show();
-            }, BAN_TIME);
+            }, BAN_TIME * nbFail);
         }
     });
 
