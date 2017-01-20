@@ -1,11 +1,11 @@
 $(document).ready(function () {
 
-    // TODO Clean / improve comments
-
     const MAX_LIFE = 30;
     const MAX_RESONATORS = 8;
+    const BAN_TIME = 5000;
     const KEYBOARD_NAVIGATION = "ABCDEF";
     const KEYS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890$€?!/*-+";
+    const MAX_CHEAT = 3;
 
     let buttons = $(".section button");
     let div_status = $("#status");
@@ -22,6 +22,7 @@ $(document).ready(function () {
     let imagesName;
     let colorArray;
     let randomName;
+    let cheatImage;
 
     // Utilisé pour le développement
     let log = true;
@@ -56,8 +57,11 @@ $(document).ready(function () {
                 case "randomName":
                     randomName = array;
                     break;
+                case "cheatImage":
+                    cheatImage = array;
+                    break;
                 default:
-                    alert("Error");
+                    alert("Error, no array found in loadJSONValue function");
             }
         });
     }
@@ -583,8 +587,10 @@ $(document).ready(function () {
     let goSomewhere = [73, 78, 71, 82, 69, 83, 83];
     let cptGoSomewhere = 0;
 
-    let cheatCode = [68, 69, 86];
+    let cheatCode = [68, 69, 86]; // TODO Find a complex keyword
     let cptCheatCode = 0;
+
+    let noCheat = 0;
 
     // Enable key navigation & some others features.
     $(document).keyup(function (e) {
@@ -623,11 +629,24 @@ $(document).ready(function () {
                     gotoSection(goto, true);
             }
 
+        } else if (KEYBOARD_NAVIGATION.indexOf(keyPressed) == -1) {
+            log == true && console.log("Someone is trying to cheat !");
+            // La touche pressée n'est pas dans les choix proposés, et les cheat code ne se sont pas déclenchés.
+            noCheat++;
         } else {
             log == true && console.log("classic keyboard navigation detected");
             // Une touche autorisé a été presséé
             cptGoSomewhere = 0;
             cptCheatCode = 0;
+        }
+
+        if (noCheat == MAX_CHEAT) {
+            let randomImage = cheatImage[getRandom(0, cheatImage.length - 1)];
+            noCheat = 0;
+            $("body").css("background-image", "url(img/cheats/" + randomImage + ")");
+            setTimeout(function () {
+                $("body").css("background-image", "none");
+            }, BAN_TIME);
         }
     });
 
@@ -636,4 +655,5 @@ $(document).ready(function () {
     loadJSONValue("imagesName");
     loadJSONValue("colorArray");
     loadJSONValue("randomName");
+    loadJSONValue("cheatImage");
 });
