@@ -4,7 +4,8 @@ $(document).ready(function () {
 
     const MAX_LIFE = 30;
     const MAX_RESONATORS = 8;
-    const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const KEYBOARD_NAVIGATION = "ABCDEF";
+    const KEYS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890$€?!/*-+";
 
     let buttons = $(".section button");
     let div_status = $("#status");
@@ -158,7 +159,7 @@ $(document).ready(function () {
     function bindKeyEvent(section) {
         // Set value to each button
         section.find("button").each(function (index) {
-            let char = ALPHABET.charAt(index);
+            let char = KEYBOARD_NAVIGATION.charAt(index);
             $(this).data("char", char);
 
             // Does HTML has been already set ?
@@ -367,8 +368,6 @@ $(document).ready(function () {
      * @param loadInto L'object Jquery dans lequel on ajoute les images.
      */
     function createPictures(level, loadInto) {
-
-        console.log(imagesName);
 
         for (let i = 1; i <= level; i++) {
             let img = $("<img>");
@@ -581,22 +580,58 @@ $(document).ready(function () {
         isResistant = true;
     });
 
-    // Enable key navigation
-    $(document).keydown(function (e) {
+    let goSomewhere = [73, 78, 71, 82, 69, 83, 83];
+    let cptGoSomewhere = 0;
+
+    let cheatCode = [68, 69, 86];
+    let cptCheatCode = 0;
+
+    // Enable key navigation & some others features.
+    $(document).keyup(function (e) {
         let keyCode = e.keyCode;
         let keyPressed = String.fromCharCode(keyCode);
+
+        // Eviter les faux positifs en cliquant sur ALT, ALTGR, ...
+        if (KEYS.indexOf(keyPressed) == -1)
+            return;
+
         if (log == true)
             console.log("On vient de cliquer sur '" + keyPressed + "' ! ");
+
         // Get active button inside current section.
         $(".section:visible button:visible").each(function () {
             if ($(this).data("char") == keyPressed) {
                 gotoSection($(this).attr("go"));
             }
-        })
+        });
+
+        if (keyCode == goSomewhere[cptGoSomewhere]) {
+            log == true && console.log("goSomeWhere triggered");
+            cptGoSomewhere++;
+            if (cptGoSomewhere == goSomewhere.length) {
+                alert("You're ready, agent. Go out, and fight for your faction.");
+                location.href = "https://goo.gl/ADym2f";
+            }
+
+        } else if (keyCode == cheatCode[cptCheatCode]) {
+            log == true && console.log("cheatcode triggered");
+            cptCheatCode++;
+            if (cptCheatCode == cheatCode.length) {
+                let goto = prompt("You found a cheat code ! Enter the id of the section you wanna go to");
+                cptCheatCode = 0;
+                if (goto != undefined && goto.length > 0)
+                    gotoSection(goto, true);
+            }
+
+        } else {
+            log == true && console.log("classic keyboard navigation detected");
+            // Une touche autorisé a été presséé
+            cptGoSomewhere = 0;
+            cptCheatCode = 0;
+        }
     });
 
     // MAIN
-
     startGame();
     loadJSONValue("imagesName");
     loadJSONValue("colorArray");
