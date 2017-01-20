@@ -121,10 +121,11 @@ Permet de définir la faction du joueur.
 ### Paramètres
 
 - showInto : Affiche la faction du joueur dans l'element indiqué
+- resistant : true ou false, selon que le joueur est résistant ou illuminé
 
 ### Exemple(s) d'utilisation
 
-- `<action name="setFaction" showInto=".factionName"/>`
+- `<action name="setFaction" showInto=".factionName" resistant="true"/>`
 
 ## Deploy
 

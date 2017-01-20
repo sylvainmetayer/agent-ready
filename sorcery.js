@@ -11,13 +11,10 @@ $(document).ready(function () {
     let div_status = $("#status");
     let ul_inventoryList = $("#inventory");
     let span_life = div_status.find(".life .value");
-    let b_iAmResistant = $("#i_am_resistant");
-    let b_iAmENL = $("#i_am_enl");
 
     // Utilisé pour le jeu
     let inventory = [];
     let agentName;
-    let isResistant = true;
 
     let imagesName;
     let colorArray;
@@ -162,6 +159,7 @@ $(document).ready(function () {
      */
     function bindKeyEvent(section) {
         // Set value to each button
+
         section.find("button").each(function (index) {
             let char = KEYBOARD_NAVIGATION.charAt(index);
             $(this).data("char", char);
@@ -267,7 +265,9 @@ $(document).ready(function () {
                 break;
             case "setFaction":
                 showInto = action.attr("showInto");
-                isResistant == true ? $(showInto).html("résistance") : $(showInto).html("illuminés");
+                let isResistant = action.attr("resistant");
+                isResistant == "true" && $(showInto).html("résistance");
+                isResistant == "false" && $(showInto).html("illuminés");
                 break;
             case "deploy":
                 item = getInventory(action.attr("item"));
@@ -576,14 +576,6 @@ $(document).ready(function () {
         gotoSection($(this).attr("go"));
     });
 
-    b_iAmENL.click(function () {
-        isResistant = false;
-    });
-
-    b_iAmResistant.click(function () {
-        isResistant = true;
-    });
-
     let goSomewhere = [73, 78, 71, 82, 69, 83, 83];
     let cptGoSomewhere = 0;
 
@@ -643,9 +635,14 @@ $(document).ready(function () {
         if (noCheat == MAX_CHEAT) {
             let randomImage = cheatImage[getRandom(0, cheatImage.length - 1)];
             noCheat = 0;
+            let activeSection = $(".section:visible");
+            activeSection.hide();
+            div_status.hide();
             $("body").css("background-image", "url(img/cheats/" + randomImage + ")");
             setTimeout(function () {
                 $("body").css("background-image", "none");
+                activeSection.show();
+                div_status.show();
             }, BAN_TIME);
         }
     });
