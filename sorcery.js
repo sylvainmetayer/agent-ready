@@ -23,15 +23,6 @@ $(document).ready(function () {
     let glyph;
 
     // Cheat
-    let goSomewhere = [73, 78, 71, 82, 69, 83, 83];
-    let cptGoSomewhere = 0;
-
-    let cheatCode = [68, 69, 86]; // TODO Find a complex keyword
-    let cptCheatCode = 0;
-
-    let xmCheatCode = [88, 77, 88, 77, 88, 77];
-    let cptXMCheat = 0;
-
     let noCheat = 0;
     let nbFail = 0;
 
@@ -177,7 +168,6 @@ $(document).ready(function () {
      */
     function bindKeyEvent(section) {
         // Set value to each button
-
         section.find("button").each(function (index) {
             let char = KEYBOARD_NAVIGATION.charAt(index);
             $(this).data("char", char);
@@ -415,7 +405,6 @@ $(document).ready(function () {
             });
 
             ol.children().eq(i - 1).html(item.data("name"));
-
         }
 
         setTimeout(function () {
