@@ -1,0 +1,65 @@
+{
+  "sequence_4_2": {
+    "level": 4,
+    "order": {
+      "1": {
+        "order": "1",
+        "name": "past.png"
+      },
+      "2": {
+        "order": "2",
+        "name": "again.png"
+      },
+      "3": {
+        "order": "3",
+        "name": "now.png"
+      },
+      "4": {
+        "order": "4",
+        "name": "again.png"
+      }
+    }
+  },
+  "sequence_4_1": {
+    "level": 4,
+    "order": {
+      "1": {
+        "order": "1",
+        "name": "gain.png"
+      },
+      "2": {
+        "order": "2",
+        "name": "portal.png"
+      },
+      "3": {
+        "order": "3",
+        "name": "attack.png"
+      },
+      "4": {
+        "order": "4",
+        "name": "weak.png"
+      }
+    }
+  },
+  "sequence_4_3": {
+    "level": 4,
+    "order": {
+      "1": {
+        "order": "1",
+        "name": "destroy.png"
+      },
+      "2": {
+        "order": "2",
+        "name": "destiny.png"
+      },
+      "3": {
+        "order": "3",
+        "name": "human.png"
+      },
+      "4": {
+        "order": "4",
+        "name": "lie.png"
+      }
+    }
+  }
+}

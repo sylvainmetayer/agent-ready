@@ -20,6 +20,7 @@ $(document).ready(function () {
     let colorArray;
     let randomName;
     let cheatImage;
+    let glyph;
 
     // Cheat
     let goSomewhere = [73, 78, 71, 82, 69, 83, 83];
@@ -54,6 +55,7 @@ $(document).ready(function () {
             let array = $.map(json, function (el) {
                 return el;
             });
+
             switch (filename) {
                 case "imagesName":
                     imagesName = array;
@@ -66,6 +68,9 @@ $(document).ready(function () {
                     break;
                 case "cheatImage":
                     cheatImage = array;
+                    break;
+                case "glyph":
+                    glyph = array;
                     break;
                 default:
                     alert("Error, no array found in loadJSONValue function");
@@ -335,97 +340,83 @@ $(document).ready(function () {
         return Math.floor(Math.random() * (max - min + 1) + min);
     };
 
-    /* Creates an array of random integers between the range specified
-     @param len int
-     length of the array you want to generate
-     @param min int
-     min value you require
-     @param max int
-     max value you require
-     @param unique boolean
-     whether you want unique or not (assume 'true' for this answer)
-     @source http://stackoverflow.com/a/29613213
-     @noinspection
+    /**
+     * Randomize array element order in-place.
+     * Using Durstenfeld shuffle algorithm.
      */
-    function _arrayRandom(len, min, max, unique) {
-        var len = (len) ? len : 10;
-        var min = (min !== undefined) ? min : 1;
-        var max = (max !== undefined) ? max : 100;
-        var unique = (unique) ? unique : false;
-        var toReturn = [];
-        var tempObj = {};
-        var i = 0;
-
-        if (unique === true) {
-            var randomInt;
-            for (; i < len; i++) {
-                randomInt = Math.floor(Math.random() * ((max - min) + min));
-                if (tempObj['key_' + randomInt] === undefined) {
-                    tempObj['key_' + randomInt] = randomInt;
-                    toReturn.push(randomInt);
-                } else {
-                    i--;
-                }
-            }
-        } else {
-            for (; i < len; i++) {
-                toReturn.push(Math.floor(Math.random() * ((max - min) + min)));
-            }
+    function shuffleArray(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
         }
-
-        return toReturn;
+        return array;
     }
 
     /**
-     * Permet d'afficher les images dans un element particulier
-     * @param level Le nombre d'image à charger.
+     * Permet d'afficher les images dans un element particulier, en incluant la solution.
+     * @param glyphSequence
      * @param loadInto L'object Jquery dans lequel on ajoute les images.
      */
-    function createPictures(level, loadInto) {
+    function createPictures(glyphSequence, loadInto) {
 
-        for (let i = 1; i <= level; i++) {
+        let array = $.map(glyphSequence, function (el) {
+            return el;
+        });
+
+        array = shuffleArray(array);
+
+        $.each(array, function () {
             let img = $("<img>");
-            img.attr("src", "img/" + imagesName[getRandom(0, imagesName.length - 1)]);
+            img.attr("src", "img/glyph/" + this.name);
             let str = "100px"; // TODO Better CSS
             img.css("width", str).css("height", str);
             img.addClass("glyphPictures");
-            img.attr("id", i);
+            img.data("order", this.order);
+            img.append(this.order);
             loadInto.append(img);
             loadInto.append("<br/>");
-        }
+        });
     }
 
     /**
-     * A partir des valeurs aléatoires pour l'ordre, permet d'afficher la solution pour une durée donnée.
+     * Permet d'afficher la solution pour une durée donnée.
      * @param time int
      *  Le temps durant lequel la solution sera affichée
      * @param glyphPictures Collection Jquery
      *  Les images
-     * @param randomOrder Array
-     *  L'ordre de la solution.
      * @param level
+     *  La complexité du glyph
      */
-    function showSolution(time, glyphPictures, randomOrder, level) {
+    function showSolution(time, glyphPictures, level) {
 
         let ol = $("<ol>");
         let li;
         let value;
 
+        // TODO Fade in and out element one after the others and remove that ugly ol
         for (let i = 0; i < level; i++) {
             li = $("<li>");
             li.html(colorArray[i]);
             li.css("background-color", colorArray[i]);
             ol.append(li);
         }
+
         glyphPictures.first().before(ol);
 
-        glyphPictures.each(function (index, element) {
-            value = $(element).data("order");
-            $(element).css("border", "5px solid " + colorArray[randomOrder.indexOf(value)]);
-        });
+        for (let i = 1; i <= level; i++) {
+            let item = glyphPictures.filter(function () {
+                return $(this).data("order") == i;
+            });
+
+            item.css("border", "5px solid " + colorArray[i - 1]);
+            setTimeout(function () {
+                item.css("border", "none");
+            }, time);
+        }
 
         setTimeout(function () {
-            glyphPictures.css("border", "none");
             ol.remove();
         }, time);
     }
@@ -437,7 +428,7 @@ $(document).ready(function () {
      * @param action JqueryElement
      *   Element Jquery de l'action.
      * @param itemCount int
-     *  Le nomber de @param itemGain que l'on gagne
+     *  Le nombre de @param itemGain que l'on gagne
      * @param itemWon
      *  L'item que l'on gagne
      *  @param time
@@ -448,20 +439,22 @@ $(document).ready(function () {
         section.append("<div id='glyphGame'></div>");
         action.hide();
 
-        // Create pictures
-        createPictures(level, $("#glyphGame"));
+        // Get glyph of level x
+        let glyphsFilterLevel = $(glyph).filter(function () {
+            return this.level = level;
+        });
 
+        // Select one random glyph from those available.
+        let randomNumber = getRandom(0, glyphsFilterLevel.size() - 1);
+        let glyphSelected = glyphsFilterLevel.get(randomNumber).order;
+
+        // Create pictures and affect order
+        createPictures(glyphSelected, $("#glyphGame"));
         let glyphPictures = $("img.glyphPictures");
+        showSolution(time, $(glyphPictures), level);
 
-        // Set random order to solve game
-        let randomOrder = _arrayRandom(level, 1, level, true);
-        for (let i = 0; i < level; i++) {
-            $(glyphPictures[randomOrder[i]]).data("order", randomOrder[i]);
-        }
 
-        showSolution(time, $(glyphPictures), randomOrder, level);
-
-        let order = 0;
+        let order = 1;
 
         /**
          * Lors d'un clic sur une images, on vérifie qu'elle est bien cliquée
@@ -470,11 +463,12 @@ $(document).ready(function () {
          */
         glyphPictures.click(function () {
             let data = parseInt($(this).data("order"));
-            if (randomOrder.indexOf(data) == order) {
+
+            if (data == order) {
                 order++;
                 $(this).css("border", "solid 5px green");
             } else {
-                itemCount > 0 ? itemCount-- : true;
+                itemCount > 0 ? itemCount-- : false;
                 loseOneLife();
                 if (getLife() <= 0)
                     endGame();
@@ -483,10 +477,10 @@ $(document).ready(function () {
                     glyphPictures.css("border", "none");
                 }, 300);
                 $(this).css("border", "solid 5px red");
-                order = 0;
+                order = 1;
             }
 
-            if (order == level) {
+            if (order == level + 1) {
                 if (log)
                     console.log("You won " + itemCount + " " + itemWon);
                 glyphPictures.remove();
@@ -658,4 +652,5 @@ $(document).ready(function () {
     loadJSONValue("colorArray");
     loadJSONValue("randomName");
     loadJSONValue("cheatImage");
+    loadJSONValue("glyph");
 });
