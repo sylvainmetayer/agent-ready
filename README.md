@@ -27,3 +27,19 @@ Autres exemples (non exhaustif) :
 ### En ligne 
 
 Voir la version en ligne : https://sylvainmetayer.github.io/sword-sorcery/
+
+## Sources
+
+Toutes les images appartiennent à leurs auteurs respectifs.
+ 
+### Images des glyphes
+
+http://ingress.wikia.com/wiki/Glyphs
+
+### Images cheats
+
+https://imgflip.com/memegenerator
+
+### Images des résonateurs
+
+Capture d'écran du jeu [Ingress](https://ingress.com)
