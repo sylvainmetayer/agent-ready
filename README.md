@@ -1,4 +1,4 @@
-# Sword Sorcery
+# Agent Ready, an Ingress Story
 
 TP de JQuery ([Fichiers de départ](http://deepnight.net/iut/))
 
@@ -11,20 +11,20 @@ IUT de Bordeaux - 2016-2017
 
 ## Jouer au jeu
 
-### En local
+- ### En local
 
-Il est nécessaire de disposer d'un serveur local (wamp, le serveur de php, un serveur node, ...)
+Il est nécessaire de disposer d'un serveur local.
 
-Un serveur nodejs est disponible sur ce dépôt.
+Un exemple en NodeJS est disponible sur ce dépôt. (cf. `server.js`)
 
 Autres exemples (non exhaustif) :
 
-- php -S localhost:8080
-- python -m SimpleHTTPServer 8080
-- node server.js
-- ...
+    - php -S localhost:8080
+    - python -m SimpleHTTPServer 8080
+    - node server.js
+    - ...
 
-### En ligne 
+- ### En ligne 
 
 Voir la version en ligne : https://sylvainmetayer.github.io/sword-sorcery/
 
@@ -32,14 +32,8 @@ Voir la version en ligne : https://sylvainmetayer.github.io/sword-sorcery/
 
 Toutes les images appartiennent à leurs auteurs respectifs.
  
-### Images des glyphes
+- [Images des glyphs](http://ingress.wikia.com/wiki/Glyphs)
 
-http://ingress.wikia.com/wiki/Glyphs
+- [Images des bans pour les "tricheurs"](https://imgflip.com/memegenerator)
 
-### Images cheats
-
-https://imgflip.com/memegenerator
-
-### Images des résonateurs
-
-Capture d'écran du jeu [Ingress](https://ingress.com)
+- Capture d'écran du jeu [Ingress](https://ingress.com)

@@ -343,6 +343,7 @@ $(document).ready(function () {
     /**
      * Randomize array element order in-place.
      * Using Durstenfeld shuffle algorithm.
+     * @author http://stackoverflow.com/a/12646864
      */
     function shuffleArray(array) {
         for (var i = array.length - 1; i > 0; i--) {
@@ -368,15 +369,18 @@ $(document).ready(function () {
         array = shuffleArray(array);
 
         $.each(array, function () {
+            let p = $("<p>");
+            p.html(this.name + "<br/>");
             let img = $("<img>");
-            img.attr("src", "img/glyph/" + this.name);
+            img.attr("src", "img/glyph/" + this.src);
             let str = "100px"; // TODO Better CSS
             img.css("width", str).css("height", str);
             img.addClass("glyphPictures");
             img.data("order", this.order);
-            img.append(this.order);
-            loadInto.append(img);
-            loadInto.append("<br/>");
+            img.data("name", this.name);
+            img.after();
+            p.append(img);
+            loadInto.prepend(p);
         });
     }
 
@@ -395,25 +399,20 @@ $(document).ready(function () {
         let li;
         let value;
 
-        // TODO Fade in and out element one after the others and remove that ugly ol
         for (let i = 0; i < level; i++) {
             li = $("<li>");
-            li.html(colorArray[i]);
-            li.css("background-color", colorArray[i]);
             ol.append(li);
         }
 
-        glyphPictures.first().before(ol);
+        $("#glyphGame").prepend(ol);
 
         for (let i = 1; i <= level; i++) {
             let item = glyphPictures.filter(function () {
                 return $(this).data("order") == i;
             });
 
-            item.css("border", "5px solid " + colorArray[i - 1]);
-            setTimeout(function () {
-                item.css("border", "none");
-            }, time);
+            ol.children().eq(i - 1).html(item.data("name"));
+
         }
 
         setTimeout(function () {
@@ -453,7 +452,6 @@ $(document).ready(function () {
         let glyphPictures = $("img.glyphPictures");
         showSolution(time, $(glyphPictures), level);
 
-
         let order = 1;
 
         /**
@@ -483,7 +481,7 @@ $(document).ready(function () {
             if (order == level + 1) {
                 if (log)
                     console.log("You won " + itemCount + " " + itemWon);
-                glyphPictures.remove();
+                glyphPictures.parents("p").remove();
                 setLife(MAX_LIFE);
                 updateItem(itemWon, itemCount);
                 section.find("ol").remove();

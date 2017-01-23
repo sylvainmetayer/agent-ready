@@ -1,43 +1,51 @@
 {
-  "sequence_4_2": {
-    "level": 4,
-    "order": {
-      "1": {
-        "order": "1",
-        "name": "past.png"
-      },
-      "2": {
-        "order": "2",
-        "name": "again.png"
-      },
-      "3": {
-        "order": "3",
-        "name": "now.png"
-      },
-      "4": {
-        "order": "4",
-        "name": "again.png"
-      }
-    }
-  },
   "sequence_4_1": {
     "level": 4,
     "order": {
       "1": {
         "order": "1",
-        "name": "gain.png"
+        "src": "gain.png",
+        "name": "Gain"
       },
       "2": {
         "order": "2",
-        "name": "portal.png"
+        "src": "portal.png",
+        "name": "Portal"
       },
       "3": {
         "order": "3",
-        "name": "attack.png"
+        "src": "attack.png",
+        "name": "Attack"
       },
       "4": {
         "order": "4",
-        "name": "weak.png"
+        "src": "weak.png",
+        "name": "Weak"
+      }
+    }
+  },
+  "sequence_4_2": {
+    "level": 4,
+    "order": {
+      "1": {
+        "order": "1",
+        "src": "past.png",
+        "name": "Past"
+      },
+      "2": {
+        "order": "2",
+        "src": "again.png",
+        "name": "Again"
+      },
+      "3": {
+        "order": "3",
+        "src": "now.png",
+        "name": "Now"
+      },
+      "4": {
+        "order": "4",
+        "src": "again.png",
+        "name": "Again (1)"
       }
     }
   },
@@ -46,19 +54,23 @@
     "order": {
       "1": {
         "order": "1",
-        "name": "destroy.png"
+        "src": "destroy.png",
+        "name": "Destroy"
       },
       "2": {
         "order": "2",
-        "name": "destiny.png"
+        "src": "destiny.png",
+        "name": "Destiny"
       },
       "3": {
         "order": "3",
-        "name": "human.png"
+        "src": "human.png",
+        "name": "Human"
       },
       "4": {
         "order": "4",
-        "name": "lie.png"
+        "src": "lie.png",
+        "name": "Lie"
       }
     }
   }
