@@ -375,18 +375,89 @@
 </div>
 
 <div class="section" id="bleu_france_after_attack_stay">
-    <p>Des agents Illuminés commencent à vous encercler, qui vous confisque votre scanner, vous mettant ainsi
+    <p>Des agents Illuminés commencent à vous encercler, vous confisque votre scanner, vous mettant ainsi
         hors d'état de nuire ou de rentrer en contact avec la Résistance.</p>
-    <button go="bleu_france_attack_tentative_run_away">Lutter et tenter de s'enfuir</button>
-    <button go="bleu_france_attack_be_quiet">Se rendre docilement</button>
+    <button go="bleu_lutte">Lutter et tenter de s'enfuir</button>
+    <button go="bleu_calme">Se rendre docilement</button>
 </div>
 
 <div class="section" id="vert_france_after_attack_stay">
-    <p>Des agents Illuminés commencent à vous encercler, qui vous confisque votre scanner, vous mettant ainsi
+    <p>Des agents  de la Résistance commencent à vous encercler, vous confisque votre scanner, vous mettant ainsi
         hors d'état de nuire ou de rentrer en contact avec la Résistance.</p>
-    <button go="bleu_france_attack_tentative_run_away">Lutter et tenter de s'enfuir</button>
-    <button go="bleu_france_attack_be_quiet">Se rendre docilement</button>
+    <button go="vert_lutte">Lutter et tenter de s'enfuir</button>
+    <button go="vert_calme">Se rendre docilement</button>
 </div>
+
+<div class="section" id="bleu_lutte">
+    <p>Votre lutte et votre tentaive de vous enfuir sont un véritable échec ! Les agents illuminés vous ratrappent
+        et vous  assoment. <br>
+    Vous réveillez alors dans une pièce sombre. Dans le contre jour, vous pouvez observez un garde Illuminés qui
+        semble sur le point de s'endormir</p>
+    <button go="bleu_lutte_run">Attendre et voir ce qu'il peux bien se passer</button>
+    <button go="bleu_lutte_wait">Attendre et tenter de s'évader une fois le garde endormis</button>
+</div>
+
+<div class="section" id="vert_lutte">
+    <p>Votre lutte et votre tentaive de vous enfuir sont un véritable échec ! Les agents de la résistance vous ratrappent
+        et vous  assoment. <br>
+        Vous réveillez alors dans une pièce sombre. Dans le contre jour, vous pouvez observez un garde R&sistant qui
+        semble sur le point de s'endormir</p>
+    <button go="vert_lutte_run">Attendre et voir ce qu'il peux bien se passer</button>
+    <button go="vert_lutte_wait">Attendre et tenter de s'évader une fois le garde endormis</button>
+</div>
+
+<div class="section" id="bleu_lutte_run">
+    <p> Une fois le garde endormis et grâce à de nombreuses gesticulations, vous êtes libre ! En arpentant les couloirs
+    du quartier des Illuminés, vous vous retrouvez nez à nez avec un agent portant les couleurs des Illuminés.</p>
+    <button go="bleu_lutte_neutraliser"> Tenter le tout pour le tout et neutraliser l'agent</button>
+    <button go="bleu_lutte_rien"> Baisser la tête et avancer prudemment</button>
+    <button go="bleu_lutte_rien"> Ne rien faire et laisser l'agent passer</button>
+</div>
+
+<div class="section" id="vert_lutte_run">
+    <p> Une fois le garde endormis et grâce à de nombreuses gesticulations, vous êtes libre ! En arpentant les couloirs
+        du quartier des Illuminés, vous vous retrouvez nez à nez avec un agent portant les couleurs de la Résistance.</p>
+    <button go="vert_lutte_neutraliser"> Tenter le tout pour le tout et neutraliser l'agent</button>
+    <button go="vert_lutte_rien"> Baisser la tête et avancer prudemment</button>
+    <button go="vert_lutte_rien"> Ne rien faire et laisser l'agent passer</button>
+</div>
+
+<div class="section" id="bleu_lutte_neutraliser">
+    <p class="info">Après avoir neutraliser l'agent, vous remarquer sur sa nuque un discret symbole de la Résistance qu'il avait dissimulé.
+    <br>
+    Vous venez de tuer votre seule chance et vous vous retrouver seul dans un dédale remplis de vert. Les membres de la Résistance
+    ne viendront jamais vous sauver en apprenant que vous avez neutraliser un des votre, et les Illuminés ne vous accepteront
+    jamais comme un des leurs.</p>
+    <button go="stop_game">Arreter le jeu</button>
+    <button go="intro">Recommencer depuis le début</button>
+    <button go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
+</div>
+
+<div class="section" id="vert_lutte_neutraliser">
+    <p class="info">Après avoir neutraliser l'agent, vous remarquer sur sa nuque un discret symbole des Illuminés qu'il avait dissimulé.
+        <br>
+        Vous venez de tuer votre seule chance et vous vous retrouver seul dans un dédale remplis de bleus. Les Illuminés
+        ne viendront jamais vous sauver en apprenant que vous avez neutraliser un des votre, et les Résistant ne vous accepteront
+        jamais comme un des leurs.</p>
+    <button go="stop_game">Arreter le jeu</button>
+    <button go="intro">Recommencer depuis le début</button>
+    <button go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
+</div>
+
+<p class="info">En tentant de prendre la fuite, vous trébuchez sur une branche. Durant votre chute, votre tête
+    percute
+    un rocher. Vous êtes du coup mort en agent sur le terrain et finissez décoré à titre postume.</p>
+<button go="stop_game">Arreter le jeu</button>
+<button go="intro">Recommencer depuis le début</button>
+<button go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
+
+
+<div class="section" id="">
+    <p> Blabla</p>
+    <button go=""> Bla</button>
+    <button go=""> Bla</button>
+</div>
+
 
 <div class="section" id="exit">
     Vous voyez la lumière du jour... Vous avez réussi à vous échapper !
