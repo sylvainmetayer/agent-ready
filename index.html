@@ -397,10 +397,42 @@
     <button go="bleu_lutte_wait">Attendre et tenter de s'évader une fois le garde endormis</button>
 </div>
 
+<div class="section" id="bleu_lutte_wait">
+    <p> Des agents Illuminés finissent par revenir et vous torturent, afin de vous faire parler et de connaître les plans de la Résistance.
+        <br>
+        Mais, alors que vous alliez vous évanouir, un agent arrive et commence à neutraliser les agents Illuminés présent. Devant vos yeux ahuris,
+        il vous dévoile une marque que vous reconaissez comme une marque de la Résistance ! Un agent infiltré est venu à votre secour.
+    </p>
+    <button go="bleu_lutte_rien_rien"> Retourner à la surface pour rejoindre la Résistance </button>
+    <button go="bleu_lutte_rien_parler"> Demander à l'agent la raison de sa venue</button>
+</div>
+
+<div class="section" id="vert_lutte_wait">
+    <p> Des agents Résistant finissent par revenir et vous torturent, afin de vous faire parler et de connaître les plans des Illuminés.
+        <br>
+        Mais, alors que vous alliez vous évanouir, un agent arrive et commence à neutraliser les agents de la Résistance présent. Devant vos yeux ahuris,
+        il vous dévoile une marque que vous reconaissez comme une marque des agents Illuminés ! Un agent infiltré est venu à votre secour !
+    </p>
+    <button go="vert_lutte_rien_rien"> Retourner à la surface pour rejoindre les Illuminés </button>
+    <button go="vert_lutte_rien_parler"> Demander à l'agent la raison de sa venue</button>
+</div>
+
+<div class="section" id="bleu_lutte_rien_parler">
+    <p> L'agent vous révèle alors qu'il est venu dérober les plans des futurs raids des Illuminés</p>
+    <button go="bleu_lutte_rien_rien"> Ne rien faire et retourner à la surface</button>
+    <button go="bleu_lutte_rien_aider"> Aider l'agent dans sa mission</button>
+</div>
+
+<div class="section" id="vert_lutte_rien_parler">
+    <p> L'agent vous révèle alors qu'il est venu dérober les plans des futurs raids des Illuminés</p>
+    <button go="vert_lutte_rien_rien"> Ne rien faire et retourner à la surface</button>
+    <button go="vert_lutte_rien_aider"> Aider l'agent dans sa mission</button>
+</div>
+
 <div class="section" id="vert_lutte">
-    <p>Votre lutte et votre tentaive de vous enfuir sont un véritable échec ! Les agents de la résistance vous ratrappent
+    <p>Votre lutte et votre tentaive de vous enfuir sont un véritabl e échec ! Les agents de la résistance vous ratrappent
         et vous  assoment. <br>
-        Vous réveillez alors dans une pièce sombre. Dans le contre jour, vous pouvez observez un garde R&sistant qui
+        Vous réveillez alors dans une pièce sombre. Dans le contre jour, vous pouvez observez un garde Résistant qui
         semble sur le point de s'endormir</p>
     <button go="vert_lutte_run">Attendre et voir ce qu'il peux bien se passer</button>
     <button go="vert_lutte_wait">Attendre et tenter de s'évader une fois le garde endormis</button>
@@ -458,6 +490,28 @@
     <button go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
+<div class="section" id="bleu_lutte_rien_aider">
+    <p> En accompagnant l'agent Résistant infiltré, vous parvenez à mettre la main sur les futurs plan de raid des Illuminés et les rapportez
+        au quartier général français de la Résistance. Grâce à vos action et à votre chance inouie, le cours de la guerre inter faction change
+        radicalement, amenant la victoire de la Résistance face aux Shapers et aux Illuminés.
+        <br>
+        Cette fois, faites attention à vos choix, vous connaissez maintenant que même la plus petite des actions peut avoir de grosses conséquences.</p>
+    <button go="stop_game">Arreter le jeu</button>
+    <button go="intro">Recommencer depuis le début</button>
+    <button go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
+</div>
+
+<div class="section" id="vert_lutte_rien_aider">
+    <p> En accompagnant l'agent Illuminés infiltré, vous parvenez à mettre la main sur les futurs plan de raid de la Résistance et les rapportez
+        au quartier général français des Illuminés. Grâce à vos action et à votre chance inouie, le cours de la guerre inter faction change
+        radicalement, amenant la victoire des Illuminés et des Shapers face à la Résistance.
+        <br>
+        Cette fois, faites attention à vos choix, vous connaissez maintenant que même la plus petite des actions peut avoir de grosses conséquences.</p>
+    <button go="stop_game">Arreter le jeu</button>
+    <button go="intro">Recommencer depuis le début</button>
+    <button go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
+</div>
+
 <div class="section" id="bleu_lutte_neutraliser">
     <p class="info">Après avoir neutraliser l'agent, vous remarquer sur sa nuque un discret symbole de la Résistance qu'il avait dissimulé.
     <br>
@@ -475,6 +529,38 @@
         Vous venez de tuer votre seule chance et vous vous retrouver seul dans un dédale remplis de bleus. Les Illuminés
         ne viendront jamais vous sauver en apprenant que vous avez neutraliser un des votre, et les Résistant ne vous accepteront
         jamais comme un des leurs.</p>
+    <button go="stop_game">Arreter le jeu</button>
+    <button go="intro">Recommencer depuis le début</button>
+    <button go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
+</div>
+
+<div class="section" id="bleu_calme">
+    <p> Ne sachant pas à quoi vous attendre face aux agents Illuminés, vous jouez la carte de la prudence et vous restez calme.
+    <br>
+    Les Illuminés entament alors un dialogue avec vous, vous proposant alors trois solutions. Choissisez avec attention :</p>
+    <button go="bleu_calme_change_false"> Changer de faction (mais rester fidèle à la Résistance et devenir un agent infiltré</button>
+    <button go="bleu_calme_end"> Refuser de cooptérer et de changer de faction</button>
+    <button go="bleu_calme_change_true"> Changer de faction (et devenir un Illuminé )</button>
+</div>
+
+<div class="section" id="vert_calme">
+    <p> Ne sachant pas à quoi vous attendre face aux agents de la Résistance, vous jouez la carte de la prudence et vous restez calme.
+        <br>
+        Les Résistants entament alors un dialogue avec vous, vous proposant alors trois solutions. Choissisez avec attention :</p>
+    <button go="vert_calme_change_false"> Changer de faction (mais rester fidèle aux Illuminés et devenir un agent infiltré</button>
+    <button go="vert_calme_end"> Refuser de cooptérer et de changer de faction</button>
+    <button go="vert_calme_change_true"> Changer de faction (et devenir un Résistant )</button>
+</div>
+
+<div class="section" id="bleu_calme_end">
+    <p> Voyant votre refus d'intégrer les rangs des Illuminés, les verts préfèrent vous éliminez.</p>
+    <button go="stop_game">Arreter le jeu</button>
+    <button go="intro">Recommencer depuis le début</button>
+    <button go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
+</div>
+
+<div class="section" id="vert_calme_end">
+    <p> Voyant votre refus d'intégrer les rangs de la Résistance, les bleus préfèrent vous éliminez.</p>
     <button go="stop_game">Arreter le jeu</button>
     <button go="intro">Recommencer depuis le début</button>
     <button go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
