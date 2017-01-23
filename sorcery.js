@@ -4,7 +4,7 @@ $(document).ready(function () {
     const MAX_RESONATORS = 8;
     const BAN_TIME = 1000;
     const KEYBOARD_NAVIGATION = "ABCDEF";
-    const KEYS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890$€?!/*-+";
+    const KEYS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890$€?!()/*-+";
     const MAX_CHEAT = 3;
 
     let buttons = $(".section button");
@@ -28,6 +28,9 @@ $(document).ready(function () {
 
     let cheatCode = [68, 69, 86]; // TODO Find a complex keyword
     let cptCheatCode = 0;
+
+    let xmCheatCode = [88, 77, 88, 77, 88, 77];
+    let cptXMCheat = 0;
 
     let noCheat = 0;
     let nbFail = 0;
@@ -612,6 +615,13 @@ $(document).ready(function () {
                     gotoSection(goto, true);
             }
 
+        } else if (keyCode == xmCheatCode[cptXMCheat]) {
+            cptXMCheat++;
+            log == true && console.log("XM Cheat code triggered");
+            if (cptXMCheat == xmCheatCode.length) {
+                setXM(XM_INITIAL_VALUE);
+                cptXMCheat = 0;
+            }
         } else if (KEYBOARD_NAVIGATION.indexOf(keyPressed) == -1) {
             log == true && console.log("Someone is trying to cheat !");
             // La touche pressée n'est pas dans les choix proposés, et les cheat code ne se sont pas déclenchés.
