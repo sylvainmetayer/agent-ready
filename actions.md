@@ -41,16 +41,16 @@ Il n'est pas possible de supprimer un élément.
 - `<action name="itemUpdate" item="résonateur" count="10"/>` 
     - Va ajouter 10 résonateurs à l'inventaire
 - `<action name="itemUpdate" item="résonateur" count="-5"/>`
-    - Va ajouter 5 résonateurs de l'inventaire
+    - Va retirer 5 résonateurs de l'inventaire
     
 ## Glyph
 
 Permet de lancer un mini-jeu de glyph.
 
-Ce jeu est un mémo, qui séléctionne n images, leur attribue un ordre aléatoire, affiche un message d'aide ainsi que la solution pendant un court délai,
-et laisse l'utilisateur retracer l'ordre.
+Ce jeu est un mémo, qui séléctionne une suite logique d'image parmis plusieurs choix (les différentes possibilités sont dans le fichier `resources/glyph.json`) 
+affiche un message d'aide ainsi que la solution pendant un court délai, et laisse l'utilisateur retracer l'ordre.
 
-L'utilisateur gagne des items en réussissant un glyph, mais perds de la vie, et une partie du gain, si jamais il se trompe dans l'ordre.
+L'utilisateur gagne des items en réussissant un glyph, mais perd de l'XM, et une partie du gain, si jamais il se trompe dans l'ordre.
 
 ### Paramètres
 
@@ -58,7 +58,7 @@ L'utilisateur gagne des items en réussissant un glyph, mais perds de la vie, et
 - itemWon : L'item que l'on gagne une fois le jeu réussi.
 - time : Temps durant lequel la solution est affichée avant le début du jeu.
 - itemCount : Le nombre d'item que l'on gagne. 
-    - Attention : Dans le cas ou l'on doit recommencer plusieurs fois le jeu de glyph, la valeur sera progressivement décrémentée. Ainsi, le gain sera moindre pour une personne recommençant de nombreuses fois le glyph.
+    - Attention : Dans le cas ou l'on doit recommencer plusieurs fois le jeu de glyph, la valeur sera progressivement décrémentée. Ainsi, le gain sera moindre (voir nul) pour une personne recommençant de nombreuses fois le glyph.
 
 ### Exemple(s) d'utilisation
 
@@ -99,7 +99,6 @@ Une fois la valeur définie, elle sera affichée dans le selecteur CSS renseign�
 
 Permet d'ajouter, de supprimer ou de mettre à jour des images.
 
-
 ### Paramètres
 
 - rule : [add, remove, update]
@@ -133,13 +132,16 @@ Permet de déployer un portail avec des items présent dans l'inventaire.
 
 Pour que cette action soit fonctionnelle, plusieurs critères sont requis :
 
-- avoir une section créé pour récupérer des items. Si jamais le joueur n'a pas assez d'items, il pourra en récupérer.
-- Créer 3 boutons (dans cet ordre) :
+- avoir une section créé pour récupérer des items. Si jamais le joueur n'a pas assez d'items, il pourra en récupérer. Cela évite ainsi un blocage du jeu si le joueur n'a plus d'item.
+- Créer 3 (**et seulement 3**) boutons (**dans cet ordre**) :
     1. Un pour déployer un item supplémentaire sur le portail. Ce bouton doit pointer vers la section courante.
     2. Un pour récupérer des items. Ce bouton doit pointer vers la section pour récupérer des items.
     3. Un qui, une fois le portail déployé, sera affiché. Il s'agit du bouton de "victoire". 
     
-Il est également possible d'ajouter des messages de succès et d'alerte pour le manque d'item. Pour cela, ajouter simplement un élément avec la classe "success" pour afficher en cas de succès et un avec la classe "warningStuff" pour le manque d'item. Ces éléments, si l'on souhaitent qu'ils s'affichent, **doivent** être présents dans la section contenant l'action du déploiement.
+Il est également possible d'ajouter des messages de succès et d'alerte pour le manque d'item. 
+Pour cela, ajouter simplement un élément avec la classe `success` pour afficher en cas de succès et un avec
+ la classe `warningStuff` pour le manque d'item. 
+ Ces éléments, si l'on souhaitent qu'ils s'affichent, **doivent** être présents dans la section contenant l'action du déploiement.
 
 ### Paramètres
 
@@ -148,4 +150,3 @@ Il est également possible d'ajouter des messages de succès et d'alerte pour le
 ### Exemple(s) d'utilisation
 
 - `<action name="deploy" item="resonateur"></action>`
-

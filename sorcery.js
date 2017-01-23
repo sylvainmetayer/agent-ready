@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    const MAX_LIFE = 30;
+    const XM_INITIAL_VALUE = 30;
     const MAX_RESONATORS = 8;
     const BAN_TIME = 1000;
     const KEYBOARD_NAVIGATION = "ABCDEF";
@@ -10,7 +10,7 @@ $(document).ready(function () {
     let buttons = $(".section button");
     let div_status = $("#status");
     let ul_inventoryList = $("#inventory");
-    let span_life = div_status.find(".life .value");
+    let span_xm = div_status.find(".xm .value");
 
     // Utilisé pour le jeu
     let inventory = [];
@@ -82,7 +82,7 @@ $(document).ready(function () {
      * Initialise le jeu avec un nombre de vie par défaut, et un inventaire vide par défaut.
      */
     function init() {
-        setLife(MAX_LIFE);
+        setXM(XM_INITIAL_VALUE);
         inventory = [];
         updateItem("resonateur", 6); // TODO Pour la zone de test seulement, à retirer après.
     }
@@ -250,7 +250,7 @@ $(document).ready(function () {
                 init();
                 break;
             case "hit":
-                loseOneLife();
+                looseXM();
                 break;
             case "itemUpdate":
                 item = action.attr("item");
@@ -467,8 +467,8 @@ $(document).ready(function () {
                 $(this).css("border", "solid 5px green");
             } else {
                 itemCount > 0 ? itemCount-- : false;
-                loseOneLife();
-                if (getLife() <= 0)
+                looseXM();
+                if (getXM() <= 0)
                     endGame();
                 glyphPictures.css("border", "none");
                 setTimeout(function () {
@@ -482,7 +482,7 @@ $(document).ready(function () {
                 if (log)
                     console.log("You won " + itemCount + " " + itemWon);
                 glyphPictures.parents("p").remove();
-                setLife(MAX_LIFE);
+                setXM(XM_INITIAL_VALUE);
                 updateItem(itemWon, itemCount);
                 section.find("ol").remove();
                 action.show();
@@ -518,7 +518,7 @@ $(document).ready(function () {
             withLife = true;
 
         handleAction(key);
-        setLife(getLife());
+        setXM(getXM());
         updateInventory();
 
         if (log)
@@ -526,7 +526,7 @@ $(document).ready(function () {
 
         showSection(key, withLife);
 
-        if (getLife() <= 0 && key != "death")
+        if (getXM() <= 0 && key != "death")
             endGame();
     }
 
@@ -534,23 +534,23 @@ $(document).ready(function () {
      * Retourne la vie du joueur.
      * @returns int
      */
-    function getLife() {
-        return parseInt(span_life.text());
+    function getXM() {
+        return parseInt(span_xm.text());
     }
 
     /**
-     * Permet de définir la vie du joueur.
+     * Permet de définir l'XM du joueur.
      * @param v
      */
-    function setLife(v) {
-        span_life.html(v);
+    function setXM(v) {
+        span_xm.html(v);
     }
 
     /**
-     * Permet de faire perdre une vie au joueur.
+     * Permet de faire perdre de l'XM à un joueur..
      */
-    function loseOneLife() {
-        setLife(getLife() - 1);
+    function looseXM() {
+        setXM(getXM() - 1);
     }
 
     /**
@@ -571,9 +571,6 @@ $(document).ready(function () {
     // EVENT DECLARATION
     //////////////////////////////////////
 
-    /**
-     * Permet de se déplacer dans les différentes section au clic sur un bouton
-     */
     buttons.click(function () {
         gotoSection($(this).attr("go"));
     });
@@ -626,6 +623,7 @@ $(document).ready(function () {
             cptCheatCode = 0;
         }
 
+        // Funny little thing :)
         if (noCheat == MAX_CHEAT) {
             let randomImage = cheatImage[getRandom(0, cheatImage.length - 1)];
             noCheat = 0;
