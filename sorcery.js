@@ -578,6 +578,37 @@ $(document).ready(function () {
         gotoSection($(this).attr("go"));
     });
 
+    // Can't store function in JSON file, we have to set it here.
+    let cheatsCodes = [
+        {
+            "name": "goSomewhere",
+            "keys": [73, 78, 71, 82, 69, 83, 83],
+            "cpt": 0,
+            "success": function () {
+                alert("You're ready, agent. Go out, and fight for your faction.");
+                location.href = "https://goo.gl/ADym2f";
+            }
+        },
+        {
+            "name": "cheatCode",
+            "keys": [68, 69, 86],
+            "cpt": 0,
+            "success": function () {
+                let goto = prompt("You found a cheat code ! Enter the id of the section you wanna go to");
+                if (goto != undefined && goto.length > 0)
+                    gotoSection(goto, true);
+            }
+        },
+        {
+            "name": "XMCheat",
+            "keys": [88, 77, 88, 77, 88, 77],
+            "cpt": 0,
+            "success": function () {
+                setXM(XM_INITIAL_VALUE);
+            }
+        }
+    ];
+
     // Enable key navigation & some others features.
     $(document).keyup(function (e) {
         let keyCode = e.keyCode;
@@ -587,8 +618,7 @@ $(document).ready(function () {
         if (KEYS.indexOf(keyPressed) == -1)
             return;
 
-        if (log == true)
-            console.log("On vient de cliquer sur '" + keyPressed + "' ! ");
+        log == true && console.log("On vient de cliquer sur '" + keyPressed + "' ! ");
 
         // Get active button inside current section.
         $(".section:visible button:visible").each(function () {
@@ -597,40 +627,32 @@ $(document).ready(function () {
             }
         });
 
-        if (keyCode == goSomewhere[cptGoSomewhere]) {
-            log == true && console.log("goSomeWhere triggered");
-            cptGoSomewhere++;
-            if (cptGoSomewhere == goSomewhere.length) {
-                alert("You're ready, agent. Go out, and fight for your faction.");
-                location.href = "https://goo.gl/ADym2f";
-            }
+        let somethingHappened = false;
 
-        } else if (keyCode == cheatCode[cptCheatCode]) {
-            log == true && console.log("cheatcode triggered");
-            cptCheatCode++;
-            if (cptCheatCode == cheatCode.length) {
-                let goto = prompt("You found a cheat code ! Enter the id of the section you wanna go to");
-                cptCheatCode = 0;
-                if (goto != undefined && goto.length > 0)
-                    gotoSection(goto, true);
+        $(cheatsCodes).each(function () {
+            if (keyCode == this.keys[this.cpt]) {
+                somethingHappened = true;
+                log == true && console.log(this.name + " triggered via ");
+                this.cpt++;
+                if (this.cpt == this.keys.length) {
+                    this.success();
+                    this.cpt = 0;
+                }
             }
+        });
 
-        } else if (keyCode == xmCheatCode[cptXMCheat]) {
-            cptXMCheat++;
-            log == true && console.log("XM Cheat code triggered");
-            if (cptXMCheat == xmCheatCode.length) {
-                setXM(XM_INITIAL_VALUE);
-                cptXMCheat = 0;
-            }
+        if (somethingHappened == true) {
+            log == true && console.log("A cheat code was triggered and handled");
         } else if (KEYBOARD_NAVIGATION.indexOf(keyPressed) == -1) {
-            log == true && console.log("Someone is trying to cheat !");
             // La touche pressée n'est pas dans les choix proposés, et les cheat code ne se sont pas déclenchés.
+            log == true && console.log("Someone is trying to cheat !");
             noCheat++;
         } else {
-            log == true && console.log("classic keyboard navigation detected");
             // Une touche autorisé a été presséé
-            cptGoSomewhere = 0;
-            cptCheatCode = 0;
+            log == true && console.log("Classic keyboard navigation detected");
+            $(cheatsCodes).each(function () {
+                this.cpt = 0;
+            });
         }
 
         // Funny little thing :)
