@@ -73,5 +73,80 @@
         "name": "Lie"
       }
     }
+  },
+  "sequence_4_4": {
+    "level": 4,
+    "order": {
+      "1": {
+        "order": "1",
+        "src": "destroy.png",
+        "name": "Destroy"
+      },
+      "2": {
+        "order": "2",
+        "src": "complex.png",
+        "name": "Complex"
+      },
+      "3": {
+        "order": "3",
+        "src": "shapers.png",
+        "name": "Shapers"
+      },
+      "4": {
+        "order": "4",
+        "src": "lie.png",
+        "name": "Lie"
+      }
+    }
+  },
+  "sequence_4_5": {
+    "level": 4,
+    "order": {
+      "1": {
+        "order": "1",
+        "src": "restraint.png",
+        "name": "Restraint"
+      },
+      "2": {
+        "order": "2",
+        "src": "path.png",
+        "name": "Path"
+      },
+      "3": {
+        "order": "3",
+        "src": "gain.png",
+        "name": "Gain"
+      },
+      "4": {
+        "order": "4",
+        "src": "harmony.png",
+        "name": "Harmony"
+      }
+    }
+  },
+  "sequence_4_6": {
+    "level": 4,
+    "order": {
+      "1": {
+        "order": "1",
+        "src": "restraint.png",
+        "name": "Restraint"
+      },
+      "2": {
+        "order": "2",
+        "src": "fear.png",
+        "name": "Fear"
+      },
+      "3": {
+        "order": "3",
+        "src": "avoid.png",
+        "name": "Avoid"
+      },
+      "4": {
+        "order": "4",
+        "src": "danger.png",
+        "name": "Danger"
+      }
+    }
   }
 }
