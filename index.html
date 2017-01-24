@@ -37,7 +37,7 @@
         </i>
     </p>
 
-    <action name="reset"/>
+    <action name="reset"></action>
 
     <button data-go="intro_1">Commencer l'immersion !</button>
 </div>
@@ -58,7 +58,7 @@
         de Niantics, créé par les quatre personnes ayant découvert l’XM.
     </p>
 
-    <action name="start"/>
+    <action name="start"></action>
 
     <button data-go="intro_2">Suite</button>
     <button data-go="testDivers">Zone de test (ne pas toucher)</button>
@@ -91,7 +91,7 @@
         réussissez du premier coup !
     </p>
 
-    <action name="glyph" level="4" itemWon="resonateur" itemCount="4" time="2500"/>
+    <action name="glyph" level="4" itemWon="resonateur" itemCount="4" time="2500"></action>
 
     <button data-go="testDivers">
         Bravo ! Utilisez ces résonateurs fraichement acquis et finissez de déployer le portail !
@@ -142,7 +142,7 @@
 
     <action name="setAgentName"
             message="Choisissez avec précaution, il n'est pas possible de changer votre nom d'agent."
-            showInto=".agentName"/>
+            showInto=".agentName"></action>
 
     <p>Bien, <span class="agentName"></span>, maintenant, tu dois procéder au Choix. Attention, en fonction de la
         faction que tu choisira,
@@ -156,7 +156,7 @@
 
 <div class="section" id="bleu_hack">
 
-    <action name="setFaction" resistant="true" showInto=".factionName"/>
+    <action name="setFaction" resistant="true" showInto=".factionName"></action>
 
     <b>TODO Refactor cette partie, tuto blabla puis initiation avec les mini-jeux & co. Regrouper habk bleu et vert dans
         une meme section (action js pour les paramètres.</b>
@@ -190,7 +190,7 @@
 
 <div class="section" id="vert_hack">
 
-    <action name="setFaction" resistant="false" showInto=".factionName"/>
+    <action name="setFaction" resistant="false" showInto=".factionName"></action>
 
     <p>Bienvenue agent <span class="agentName"></span> chez les Illuminés . Maintenant, place à
         votre initiation</p>

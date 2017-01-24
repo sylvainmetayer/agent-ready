@@ -1,3 +1,9 @@
+/**
+ * Agent Ready, an Ingress Story
+ * @author Tiphaine GIRARDOT - Sylvain METAYER
+ * @version 1.0
+ * @see https://github.com/sylvainmetayer/agent-ready
+ */
 $(document).ready(function () {
 
     const XM_INITIAL_VALUE = 30;
@@ -13,7 +19,6 @@ $(document).ready(function () {
     let span_xm = div_status.find(".xm .value");
     let span_xm_max = div_status.find(".xm .max");
 
-    // Utilisé pour le jeu
     let inventory = [];
     let agentName;
 
@@ -23,21 +28,14 @@ $(document).ready(function () {
     let cheatImage;
     let glyph;
 
-    // Cheat
-    let noCheat = 0;
-    let nbFail = 0;
-
-    // Utilisé pour le développement
+    let cheatAttemptCounter = 0;
+    let numberOfCheatAttempFailed = 0;
     let log = true;
 
-    ///////////////////////////////
-    // FUNCTIONS
-    //////////////////////////////
-
     /**
-     * Permet d'affecter à la variable filename
-     * la valeur du tableau JSON présent sur le serveur.
-     * @param filename
+     * This function load a JSON file stored in the /resources folder of the server
+     * into an array.
+     * @param filename name of the JSON file
      */
     function loadJSONValue(filename) {
         let settings = {
@@ -45,12 +43,15 @@ $(document).ready(function () {
             url: "resources/" + filename + ".json",
             dataType: "json"
         };
+
         let request = $.ajax(settings);
+
         request.done(function (json) {
             let array = $.map(json, function (el) {
                 return el;
             });
 
+            // TODO Refactor this ?
             switch (filename) {
                 case "imagesName":
                     imagesName = array;
@@ -74,21 +75,24 @@ $(document).ready(function () {
     }
 
     /**
-     * Initialise le jeu avec un nombre de vie par défaut, et un inventaire vide par défaut.
+     * This function initialize the game.
+     * - set default XM
+     * - set empty inventory
      */
     function init() {
         setXM(XM_INITIAL_VALUE);
         span_xm_max.html(XM_INITIAL_VALUE);
         inventory = [];
-        updateItem("resonateur", 6); // TODO Pour la zone de test seulement, à retirer après.
+        updateItem("resonateur", 6); // TODO Remove me, test only.
     }
 
     /**
-     * Fonction pour gérer l'inventaire.
-     * @param name : string
-     *  Nom de l'item
-     * @param count : int
-     *  Nombre d'item présent à ajouter/supprimer. Si le total est <=0, l'item sera mis à 0.
+     * This function is used to handle the inventory stock.
+     * @param name string
+     *  Name of the item to add
+     * @param count int
+     *  Number of item to add / remove. If the total number of the item is <0, it will be set to 0.
+     *  You can specify positive integer to add, and negative to remove.
      */
     function updateItem(name, count) {
         let exist = getInventory(name);
@@ -103,14 +107,13 @@ $(document).ready(function () {
             getInventory(name)["count"] = 0;
         }
 
-        if (log)
-            console.log("Object " + getInventory(name)["name"] + ":" + getInventory(name)["count"]);
+        log == true && console.log("Object " + getInventory(name)["name"] + ":" + getInventory(name)["count"]);
 
         updateInventory();
     }
 
     /**
-     * Permet de mettre à jour visuellement la liste de l'inventaire.
+     * This function is used to graphically update the inventory.
      */
     function updateInventory() {
         ul_inventoryList.empty();
@@ -124,9 +127,9 @@ $(document).ready(function () {
     }
 
     /**
-     * Retourne un item si existant
+     * This function return an item, if existing.
      * @param name string
-     *  Le nom de l'item recherché
+     *  Name of the seeked item
      * @returns Object{name, count} || undefined
      */
     function getInventory(name) {
@@ -136,11 +139,11 @@ $(document).ready(function () {
     }
 
     /**
-     * Permet d'afficher une section selon son nom.
+     * This function display a section.
      * @param name string
-     *  Le nom de la section à afficher
+     *  Name of the section to display
      * @param withStatusBar bool
-     *  Si l'on doit afficher la section statut ou non.
+     *  Should we show the status section or not ? Default true.
      */
     function showSection(name, withStatusBar) {
         if (withStatusBar === undefined)
@@ -154,8 +157,7 @@ $(document).ready(function () {
         let sectionToShow = $("#" + name);
 
         if (sectionToShow.size() <= 0) {
-            if (log)
-                console.log("ERROR : " + name + " section is not defined !");
+            log && console.log("[FATAL ERROR] " + name + " section is not defined !");
             alert("An error occured, please try again later.");
         } else {
             sectionToShow.show();
@@ -164,12 +166,11 @@ $(document).ready(function () {
     }
 
     /**
-     * Permet de binder les différents boutons d'une section sur les touches du clavier, selon le modèle de
-     * la variable ALPHABET
+     * Bind keys to section button.
      * @param section
+     *  Section, to find button to bind keys to.
      */
     function bindKeyEvent(section) {
-        // Set value to each button
         section.find("button").each(function (index) {
             let char = KEYBOARD_NAVIGATION.charAt(index);
             $(this).data("char", char);
@@ -183,17 +184,16 @@ $(document).ready(function () {
     }
 
     /**
-     * Permet de mettre à jour une image, ou d'en ajouter une nouvelle dans la div ImageManager.
-     *
-     * @param rule au choix : add/update/remove
+     * This function update, add, or remove an image.
+     * @param rule choice : add, remove, update
      * @param selector
-     *  Pour l'ajout, le selecteur ou ajouter l'image.
-     * @param value
-     *  La valeur du src de l'image.
-     * @param imageDataName
-     *  Le dataname de l'image
-     * @param newName
-     *  Dans le cas de l'update, le nouveau dataname de l'image.
+     *  CSS Selector where to add the image.
+     * @param value string
+     *  src attribute of the image.
+     * @param imageDataName string
+     *  Name to identify the image among the others.
+     * @param newName string
+     *  In update case, specify the new name of the new image.
      */
     function updateImage(rule, selector, value, imageDataName, newName) {
         let img;
@@ -210,13 +210,12 @@ $(document).ready(function () {
                 return $(this).data("name") == imageDataName;
             });
             if (img.size() == 0) {
-                if (log)
-                    console.log("Image not found for " + rule + " rule in image action !");
+                log && console.log("Image not found for " + rule + " rule in image action !");
+                alert("Oups. An image is missing. Sorry about that.");
                 return;
             }
 
             if (rule == "update") {
-                // Only for update
                 img.attr("src", "img/" + value);
                 img.data("name", newName);
             } else {
@@ -226,33 +225,36 @@ $(document).ready(function () {
     }
 
     /**
-     * Permet de gérer une action.
+     * Handle a single action
      * @param action
-     *  Le nom de l'action
-     *  @see actions.md pour des détails sur les différentes actions disponibles.
+     *  Action element.
+     * @see actions.md for details about availables actions.
      */
     function handleSingleAction(action) {
         let actionName = action.attr("name");
         let showInto;
         let item;
 
-        if (log)
-            console.log("J'effectue l'action : " + actionName);
+        log && console.log("Action received : " + actionName);
 
         switch (actionName) {
             case "start":
             case "reset":
+
                 init();
                 break;
             case "hit":
+
                 looseXM();
                 break;
             case "itemUpdate":
+
                 item = action.attr("item");
                 let count = parseInt(action.attr("count"));
                 updateItem(item, count);
                 break;
             case "glyph":
+
                 let glyphLevel = parseInt(action.attr("level"));
                 let itemWon = action.attr("itemWon");
                 let itemCount = action.attr("itemCount");
@@ -260,9 +262,11 @@ $(document).ready(function () {
                 launchGlyphGame(glyphLevel, $(action), itemCount, itemWon, time);
                 break;
             case "cssUpdate":
+
                 $(action.attr("element")).css(action.attr("rule"), action.attr("value"));
                 break;
             case "setAgentName":
+
                 let message = action.attr("message");
                 agentName = prompt(message);
                 if (agentName == undefined || agentName.length <= 0)
@@ -271,15 +275,18 @@ $(document).ready(function () {
                 $(showInto).text(agentName);
                 break;
             case "image":
+
                 updateImage(action.attr("rule"), action.attr("selector"), action.attr("value"), action.attr("dataName"), action.attr("newName"));
                 break;
             case "setFaction":
+
                 showInto = action.attr("showInto");
                 let isResistant = action.attr("resistant");
                 isResistant == "true" && $(showInto).html("résistance");
                 isResistant == "false" && $(showInto).html("illuminés");
                 break;
             case "deploy":
+
                 item = getInventory(action.attr("item"));
                 let looseXMPerDeploy = parseInt(action.attr("looseXMPerDeploy"));
 
@@ -288,14 +295,14 @@ $(document).ready(function () {
                 let messageSuccess = action.siblings(".success");
                 let messageNoMoreStuff = action.siblings(".warningStuff");
 
-                // On masque le bouton de sortie et le message de succès
+                // Hide exit and success button
                 messageSuccess.hide();
                 buttonsAction.show();
                 buttonsAction.last().hide();
                 messageNoMoreStuff.hide();
 
                 if (divImage.children().size() == 0) {
-                    // Le déploiement commence juste.
+                    // Starting deploy
                     updateImage("add", divImage, item["name"] + "/0.png", item["name"] + "_0", undefined);
                 } else if (item["count"] <= 0) {
                     messageNoMoreStuff.find(".item").html(item["name"]);
@@ -306,14 +313,14 @@ $(document).ready(function () {
                     let result = name.split("_");
                     let numberOfResoDeployed = parseInt(result[1]);
 
-                    // On déploie un résonateur
+                    // Deploy one item
                     numberOfResoDeployed++;
                     item["count"]--;
                     looseXM(looseXMPerDeploy);
                     updateImage("update", divImage, item["name"] + "/" + numberOfResoDeployed + ".png", item["name"] + "_" + (numberOfResoDeployed - 1), item["name"] + "_" + numberOfResoDeployed);
 
                     if (numberOfResoDeployed >= MAX_RESONATORS) {
-                        // Fin du jeu, on peut afficher le bouton pour partir.
+                        // End, show exit button and success message
                         buttonsAction.hide();
                         buttonsAction.last().show();
                         messageSuccess.show();
@@ -325,17 +332,18 @@ $(document).ready(function () {
                 }
                 break;
             default:
-                if (log)
-                    console.log("Action has not been defined !");
-                alert("Error, define a new action for " + actionName + "!");
+
+                log && console.log("[FATAL ERROR] " + actionName + " has not been defined in handleSingleAction !");
+                alert("Oups. Something went wrong. Sorry about that.");
         }
     }
 
     /**
-     * Retourne un nombre aléatoire compris
-     * @param min {number} le minimum
-     * @param max {number} le maximum
-     * @returns {number} compris entre min & max
+     * Return a random number between min & max.
+     * @param min
+     * @param max
+     * @returns int
+     * @author http://stackoverflow.com/a/7228322
      */
     let getRandom = function (min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
@@ -357,9 +365,11 @@ $(document).ready(function () {
     }
 
     /**
-     * Permet d'afficher les images dans un element particulier, en incluant la solution.
+     * Display images in a element.
      * @param glyphSequence
-     * @param loadInto L'object Jquery dans lequel on ajoute les images.
+     *  Object that contain images src, name and order
+     * @param loadInto
+     *  Element where images will be added
      */
     function createPictures(glyphSequence, loadInto) {
 
@@ -386,19 +396,17 @@ $(document).ready(function () {
     }
 
     /**
-     * Permet d'afficher la solution pour une durée donnée.
-     * @param time int
-     *  Le temps durant lequel la solution sera affichée
-     * @param glyphPictures Collection Jquery
-     *  Les images
+     * Display solution of a glyph, for a given time.
+     * @param time
+     * @param glyphPictures
+     *  Jquery Collection, containing images.
      * @param level
-     *  La complexité du glyph
+     *  Complexity of the glyph
      */
     function showSolution(time, glyphPictures, level) {
 
         let ol = $("<ol>");
         let li;
-        let value;
 
         for (let i = 0; i < level; i++) {
             li = $("<li>");
@@ -421,22 +429,23 @@ $(document).ready(function () {
     }
 
     /**
-     * Fonction qui lance le jeu de glyph.
-     * @param level int
-     *   Permet d'indiquer le nombre d'image à afficher.
-     * @param action JqueryElement
-     *   Element Jquery de l'action.
-     * @param itemCount int
-     *  Le nombre de @param itemGain que l'on gagne
+     * Launch glyph game.
+     * @param level
+     *  Complexity of the glyph
+     * @param action
+     *  Action element, containing button
+     * @param itemCount
+     *  number of item that will be won.
      * @param itemWon
-     *  L'item que l'on gagne
-     *  @param time
-     *   Le temps ou la solution est affichée, en ms.
+     *  Item that will be won
+     * @param time
+     * How long the solution will be shown ?
      */
     function launchGlyphGame(level, action, itemCount, itemWon, time) {
         let section = action.parent(".section");
+        let buttons = action.siblings("button");
         section.append("<div id='glyphGame'></div>");
-        action.hide();
+        buttons.hide();
 
         // Get glyph of level x
         let glyphsFilterLevel = $(glyph).filter(function () {
@@ -454,11 +463,6 @@ $(document).ready(function () {
 
         let order = 1;
 
-        /**
-         * Lors d'un clic sur une images, on vérifie qu'elle est bien cliquée
-         * dans l'ordre. Si oui, on affiche un cadre vert, sinon, un cadre rouge.
-         * Si jamais le jeu est terminé, on enlève les images et on affiche le bouton de sortie.
-         */
         glyphPictures.click(function () {
             let data = parseInt($(this).data("order"));
 
@@ -485,17 +489,17 @@ $(document).ready(function () {
                 setXM(XM_INITIAL_VALUE);
                 updateItem(itemWon, itemCount);
                 section.find("ol").remove();
-                action.show();
+                buttons.show();
             }
         });
     }
 
     /**
-     * Permet de gérer les actions d'une section.
-     * @param key string
-     *  Le nom de la section
+     * Handle multiple actions, one after the others.
+     * @param key
+     *  Section id
      */
-    function handleAction(key) {
+    function handleActions(key) {
         let actions = $("#" + key).find("action");
         if (actions.size() == 0)
             return;
@@ -506,24 +510,22 @@ $(document).ready(function () {
     }
 
     /**
-     * Permet de changer de section, afin de progresser dans l'histoire.
-     * @param key string
-     *  Nom de la carte sur laquelle on souhaite se rendre.
-     * @param withLife bool
-     *  Permet de savoir si l'on doit afficher ou non le panel de vie / inventaire.
+     * Used to change setion, to progress in the story.
+     * @param key
+     *  Section id
+     * @param withLife
+     *  Should we display status div ? Default true.
      */
     function gotoSection(key, withLife) {
 
         if (withLife === undefined)
             withLife = true;
 
-        handleAction(key);
+        handleActions(key);
         setXM(getXM());
         updateInventory();
 
-        if (log)
-            console.log("Je montre la section : " + key);
-
+        log && console.log("Display section : " + key);
         showSection(key, withLife);
 
         if (getXM() <= 0 && key != "death")
@@ -531,23 +533,24 @@ $(document).ready(function () {
     }
 
     /**
-     * Retourne la vie du joueur.
-     * @returns int
+     * Return XM left.
+     * @returns {Number}
      */
     function getXM() {
         return parseInt(span_xm.text());
     }
 
     /**
-     * Permet de définir l'XM du joueur.
-     * @param v
+     * Set XM of the player
+     * @param v integer
      */
     function setXM(v) {
         span_xm.html(v);
     }
 
     /**
-     * Permet de faire perdre de l'XM à un joueur..
+     * Loose "value" XM. Default one.
+     * @param value int
      */
     function looseXM(value) {
         if (value == undefined)
@@ -557,23 +560,22 @@ $(document).ready(function () {
     }
 
     /**
-     * Démarre le jeu
+     * Start game.
      */
     function startGame() {
         gotoSection("intro", false);
     }
 
     /**
-     * Termine le jeu.
+     * End game.
      */
     function endGame() {
         gotoSection("death", false);
     }
 
-    //////////////////////////////////////
-    // EVENT DECLARATION
-    //////////////////////////////////////
-
+    /**
+     * Click on button
+     */
     buttons.click(function () {
         gotoSection($(this).data("go"));
     });
@@ -614,11 +616,11 @@ $(document).ready(function () {
         let keyCode = e.keyCode;
         let keyPressed = String.fromCharCode(keyCode);
 
-        // Eviter les faux positifs en cliquant sur ALT, ALTGR, ...
+        // Avoid false positive, such as ALTGR, CTRL, ...
         if (KEYS.indexOf(keyPressed) == -1)
             return;
 
-        log == true && console.log("On vient de cliquer sur '" + keyPressed + "' ! ");
+        log == true && console.log("Someone clicked on '" + keyPressed + "' !");
 
         // Get active button inside current section.
         $(".section:visible button:visible").each(function () {
@@ -629,10 +631,13 @@ $(document).ready(function () {
 
         let somethingHappened = false;
 
+        /**
+         * Handle cheat codes.
+         */
         $(cheatsCodes).each(function () {
             if (keyCode == this.keys[this.cpt]) {
                 somethingHappened = true;
-                log == true && console.log(this.name + " triggered via ");
+                log == true && console.log(this.name + " triggered");
                 this.cpt++;
                 if (this.cpt == this.keys.length) {
                     this.success();
@@ -644,11 +649,9 @@ $(document).ready(function () {
         if (somethingHappened == true) {
             log == true && console.log("A cheat code was triggered and handled");
         } else if (KEYBOARD_NAVIGATION.indexOf(keyPressed) == -1) {
-            // La touche pressée n'est pas dans les choix proposés, et les cheat code ne se sont pas déclenchés.
             log == true && console.log("Someone is trying to cheat !");
-            noCheat++;
+            cheatAttemptCounter++;
         } else {
-            // Une touche autorisé a été presséé
             log == true && console.log("Classic keyboard navigation detected");
             $(cheatsCodes).each(function () {
                 this.cpt = 0;
@@ -656,25 +659,24 @@ $(document).ready(function () {
         }
 
         // Funny little thing :)
-        if (noCheat == MAX_CHEAT) {
+        if (cheatAttemptCounter == MAX_CHEAT) {
             let randomImage = cheatImage[getRandom(0, cheatImage.length - 1)];
-            noCheat = 0;
+            cheatAttemptCounter = 0;
             let activeSection = $(".section:visible");
             activeSection.hide();
             div_status.hide();
-            if (nbFail == 0)
+            if (numberOfCheatAttempFailed == 0)
                 alert("Be careful, each time you will fail to find a cheat code, ban time will be doubled");
-            nbFail++;
+            numberOfCheatAttempFailed++;
             $("body").css("background-image", "url(img/cheats/" + randomImage + ")");
             setTimeout(function () {
                 $("body").css("background-image", "none");
                 activeSection.show();
                 div_status.show();
-            }, BAN_TIME * nbFail);
+            }, BAN_TIME * numberOfCheatAttempFailed);
         }
     });
 
-    // MAIN
     startGame();
     loadJSONValue("imagesName");
     loadJSONValue("colorArray");
