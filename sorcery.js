@@ -279,6 +279,7 @@ $(document).ready(function () {
                 break;
             case "deploy":
                 item = getInventory(action.attr("item"));
+                let looseXMPerDeploy = parseInt(action.attr("looseXMPerDeploy"));
 
                 let divImage = action.siblings("div.image");
                 let buttonsAction = action.siblings("button");
@@ -306,6 +307,7 @@ $(document).ready(function () {
                     // On déploie un résonateur
                     numberOfResoDeployed++;
                     item["count"]--;
+                    looseXM(looseXMPerDeploy);
                     updateImage("update", divImage, item["name"] + "/" + numberOfResoDeployed + ".png", item["name"] + "_" + (numberOfResoDeployed - 1), item["name"] + "_" + numberOfResoDeployed);
 
                     if (numberOfResoDeployed >= MAX_RESONATORS) {
@@ -313,6 +315,10 @@ $(document).ready(function () {
                         buttonsAction.hide();
                         buttonsAction.last().show();
                         messageSuccess.show();
+                    }
+
+                    if (getXM() <= 0) {
+                        endGame();
                     }
                 }
                 break;
@@ -541,8 +547,11 @@ $(document).ready(function () {
     /**
      * Permet de faire perdre de l'XM à un joueur..
      */
-    function looseXM() {
-        setXM(getXM() - 1);
+    function looseXM(value) {
+        if (value == undefined)
+            value = 1;
+
+        setXM(getXM() - value);
     }
 
     /**

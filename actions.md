@@ -149,4 +149,4 @@ Pour cela, ajouter simplement un élément avec la classe `success` pour affiche
 
 ### Exemple(s) d'utilisation
 
-- `<action name="deploy" item="resonateur"></action>`
+- `<action name="deploy" item="resonateur" looseXMPerDeploy="4"></action>`
