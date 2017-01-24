@@ -11,6 +11,7 @@ $(document).ready(function () {
     let div_status = $("#status");
     let ul_inventoryList = $("#inventory");
     let span_xm = div_status.find(".xm .value");
+    let span_xm_max = div_status.find(".xm .max");
 
     // Utilisé pour le jeu
     let inventory = [];
@@ -77,6 +78,7 @@ $(document).ready(function () {
      */
     function init() {
         setXM(XM_INITIAL_VALUE);
+        span_xm_max.html(XM_INITIAL_VALUE);
         inventory = [];
         updateItem("resonateur", 6); // TODO Pour la zone de test seulement, à retirer après.
     }
