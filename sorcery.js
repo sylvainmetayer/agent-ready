@@ -70,6 +70,7 @@ $(document).ready(function () {
                     break;
                 default:
                     alert("Error, no array found in loadJSONValue function");
+                    location.reload();
             }
         });
     }
@@ -159,6 +160,7 @@ $(document).ready(function () {
         if (sectionToShow.size() <= 0) {
             log && console.log("[FATAL ERROR] " + name + " section is not defined !");
             alert("An error occured, please try again later.");
+            location.reload();
         } else {
             sectionToShow.show();
             bindKeyEvent($(sectionToShow));
@@ -334,7 +336,8 @@ $(document).ready(function () {
             default:
 
                 log && console.log("[FATAL ERROR] " + actionName + " has not been defined in handleSingleAction !");
-                alert("Oups. Something went wrong. Sorry about that.");
+                alert("Oups. Something went wrong. Sorry about that :(");
+                location.reload();
         }
     }
 
