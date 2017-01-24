@@ -39,7 +39,7 @@
 
     <action name="reset"/>
 
-    <button go="intro_1">Commencer l'immersion !</button>
+    <button data-go="intro_1">Commencer l'immersion !</button>
 </div>
 
 <div class="section" id="intro_1">
@@ -60,8 +60,8 @@
 
     <action name="start"/>
 
-    <button go="intro_2">Suite</button>
-    <button go="testDivers">Zone de test (ne pas toucher)</button>
+    <button data-go="intro_2">Suite</button>
+    <button data-go="testDivers">Zone de test (ne pas toucher)</button>
 </div>
 
 <div class="section" id="testDivers">
@@ -79,9 +79,9 @@
         Faites un glyph avec le bouton ci-dessous pour en récupérer !
     </p>
 
-    <button go="testDivers">Déployer un résonateur sur le portail</button>
-    <button go="glyphWhileDeploy">Récupérer du matos !</button>
-    <button go="LePortailEstCompletOnPasseALaSuite">Je m'affiche lorsque le portail est déployé !</button>
+    <button data-go="testDivers">Déployer un résonateur sur le portail</button>
+    <button data-go="glyphWhileDeploy">Récupérer du matos !</button>
+    <button data-go="LePortailEstCompletOnPasseALaSuite">Je m'affiche lorsque le portail est déployé !</button>
 </div>
 
 <div class="section" id="glyphWhileDeploy">
@@ -93,7 +93,7 @@
 
     <action name="glyph" level="4" itemWon="resonateur" itemCount="4" time="2500"/>
 
-    <button go="testDivers">
+    <button data-go="testDivers">
         Bravo ! Utilisez ces résonateurs fraichement acquis et finissez de déployer le portail !
     </button>
 </div>
@@ -101,7 +101,7 @@
 
     Je suis la section qui s'affiche après avoir réussi à déployer un portail.
 
-    <button go="intro">Je ne suis qu'un test, retourne donc à l'accueil</button>
+    <button data-go="intro">Je ne suis qu'un test, retourne donc à l'accueil</button>
 </div>
 
 <div class="section" id="intro_2">
@@ -121,7 +121,7 @@
         via l’XM, s’opposant ainsi aux Shappers.
     </p>
 
-    <button go="intro_3">Suite</button>
+    <button data-go="intro_3">Suite</button>
 </div>
 
 <div class="section" id="intro_3">
@@ -135,7 +135,7 @@
         ou les illuminés.
     </p>
 
-    <button go="ceremonie_choix">Choisir mon nom d'agent, ainsi que ma destinée.</button>
+    <button data-go="ceremonie_choix">Choisir mon nom d'agent, ainsi que ma destinée.</button>
 </div>
 
 <div class="section" id="ceremonie_choix">
@@ -149,8 +149,8 @@
         le destin de l’humanité sera totalement différents. Choisis prudemment.
     </p>
 
-    <button go="bleu_hack" id="i_am_resistant">La Résistance</button>
-    <button go="vert_hack" id="i_am_enl">Les Illuminés</button>
+    <button data-go="bleu_hack" id="i_am_resistant">La Résistance</button>
+    <button data-go="vert_hack" id="i_am_enl">Les Illuminés</button>
 </div>
 
 
@@ -184,7 +184,7 @@
         plus d’XP à chaque fois que tu poses un résonateurs, pour monter ainsi plus rapidement de niveau
     </p>
 
-    <button go="bleu_glyphe">Hacker le portail</button>
+    <button data-go="bleu_glyphe">Hacker le portail</button>
 
 </div>
 
@@ -214,7 +214,7 @@
         plus d’XP à chaque fois que tu poses un résonateurs, pour monter ainsi plus rapidement de niveau
     </p>
     <p>Mini jeu portail</p>
-    <button go="vert_glyphe">Hacker le portail</button>
+    <button data-go="vert_glyphe">Hacker le portail</button>
 </div>
 
 <div class="section" id="bleu_glyphe">
@@ -228,7 +228,7 @@
         alors qu’une réussite vous permettra de gagner un nombre plus conséquents d’items et d’expériences.
     </p>
     <p>Mini jeu hack portail</p>
-    <button go="bleu_destination">Suite</button>
+    <button data-go="bleu_destination">Suite</button>
 
 </div>
 
@@ -243,7 +243,7 @@
         alors qu’une réussite vous permettra de gagner un nombre plus conséquents d’items et d’expériences.
     </p>
     <p>Mini jeu hack portail</p>
-    <button go="bleu_destination">Suite</button>
+    <button data-go="bleu_destination">Suite</button>
 
 </div>
 
@@ -255,7 +255,7 @@
 
     <p>La première étape de votre voyage sera la France.</p>
 
-    <button go="bleu_france">Partir en France</button>
+    <button data-go="bleu_france">Partir en France</button>
 
 </div>
 
@@ -267,7 +267,7 @@
 
     <p>La première étape de votre voyage sera la France.</p>
 
-    <button go="vert_france">Partir en France</button>
+    <button data-go="vert_france">Partir en France</button>
 
 </div>
 
@@ -276,9 +276,8 @@
     <p> La France est le berceau de la Résistance depuis le début de la scission entre les agents. Ici, vous suivrez un
         entrainement visant à faire de vous un agent hors pair, qiu permettra à l'humanité de lutter contre les
         Shappers.
-        Mais tout d'abord, vous devez prouver votre valeur aux membres de la Résistance en capturant 1 portail en
-        réussissant
-        pour chacun l'épreuve des glyphes.</p>
+        Mais tout d'abord, vous devez prouver votre valeur aux membres de la Résistance en capturant capturant un
+        portail et en hackant ce dernier.</p>
 
     <p class="info">Ne vous inquiétez pas, si vous ratez une épreuve, vous pourrez toujours la recommencer jusqu'à ce
         que vous la réussiez, mais cela vous coutera de l'XM. Car oui, vous pouvez stocker de l'XM sur vous pour
@@ -287,7 +286,7 @@
         vous
         pourrez en stocker. Mais si jamais votre stock d'XM tombe à 0, l'aventure en tant qu'agent s'arrêtera là pour
         vous.</p>
-    <button go="bleu_france_portal">Capturer les portails</button>
+    <button data-go="bleu_france_portal">Capturer les portails</button>
 </div>
 
 <div class="section" id="vert_france">
@@ -295,8 +294,8 @@
     <p> La France est le berceau de la Résistance depuis le début de la scission entre les agents. Ici, vous suivrez un
         entrainement visant à faire de vous un agent hors pair, qui pourra s'infiltrer et lutter contre les membres de
         la Résistance, afin de permettre aux Shapers de se développer et d'aider l'humanité.
-        Mais tout d'abord, vous devez prouver votre valeur aux membres Illuminés en capturant 1 portail en réussissant
-        pour chacun l'épreuve des glyphes.</p>
+        Mais tout d'abord, vous devez prouver votre valeur aux membres Illuminés en capturant un portail et en hackant
+        ce dernier.</p>
 
     <p class="info">Ne vous inquiétez pas, si vous ratez une épreuve, vous pourrez toujours la recommencer jusqu'à ce
         que vous la réussiez, mais cela vous coutera de l'XM. Car oui, vous pouvez stocker de l'XM sur vous pour
@@ -305,31 +304,31 @@
         vous
         pourrez en stocker. Mais si jamais votre stock d'XM tombe à 0, l'aventure en tant qu'agent s'arrêtera là pour
         vous.</p>
-    <button go="vert_france_portal">Capturer les portails</button>
+    <button data-go="vert_france_portal">Capturer les portails</button>
 </div>
 
 <div class="section" id="bleu_france_portal">
 
     <p> MINI JEU SUR LE HACK DE PORTAIL</p>
 
-    <button go="bleu_france_glyphe">Hacker le portail</button>
+    <button data-go="bleu_france_glyphe">Hacker le portail</button>
 </div>
 
 <div class="section" id="vert_france_portal">
 
     <p> MINI JEU SUR LE HACK DE PORTAIL</p>
 
-    <button go="vert_france_glyphe">Hacker le portail</button>
+    <button data-go="vert_france_glyphe">Hacker le portail</button>
 </div>
 
 <div class="section" id="bleu_france_glyphe">
     <p> MINI JEU GLYPHE </p>
-    <button go="bleu_france_attack_speach">Suite</button>
+    <button data-go="bleu_france_attack_speach">Suite</button>
 </div>
 
 <div class="section" id="vert_france_glyphe">
     <p> MINI JEU GLYPHE </p>
-    <button go="vert_france_attack_speach">Suite</button>
+    <button data-go="vert_france_attack_speach">Suite</button>
 </div>
 
 <div class="section" id="bleu_france_attack_speach">
@@ -338,7 +337,7 @@
         reprenant le contrôle de plusieurs portails contrôlé par des agent Illuminés, afin de lutter aux côtés de la
         Résistance
         et de protéger l'humanité.</p>
-    <button go="bleu_france_attack"> Aller sur le terrain</button>
+    <button data-go="bleu_france_attack"> Aller sur le terrain</button>
 </div>
 
 <div class="section" id="vert_france_attack_speach">
@@ -347,242 +346,277 @@
         reprenant le contrôle de plusieurs portails contrôlé par des agent Illuminés, afin de lutter aux côtés de la
         Résistance
         et de protéger l'humanité.</p>
-    <button go="vert_france_attack"> Aller sur le terrain</button>
+    <button data-go="vert_france_attack"> Aller sur le terrain</button>
 </div>
 
 <div class="section" id="bleu_france_attack">
     <p>Alors que vous étiez en train de détruire un portail vert, contrôllé par les Illuminés, vous recevez
         une alerte sur votre scanner, signalant l'approche de plusieurs agent Illuminés.</p>
-    <button go="bleu_france_after_attack_stay">Rester et continuer à hacker les portails des Illuminés</button>
-    <button go="bleu_france_after_attack_run">Courir (et tenter de s'enfuir)</button>
+    <button data-go="bleu_france_after_attack_stay">Rester et continuer à hacker les portails des Illuminés</button>
+    <button data-go="bleu_france_after_attack_run">Courir (et tenter de s'enfuir)</button>
 </div>
 
 <div class="section" id="vert_france_attack">
     <p>Alors que vous étiez en train de détruire un portail bleu, contrôllé par les membre de la Résistance, vous
         recevez
         une alerte sur votre scanner, signalant l'approche de plusieurs agent de la Résistance.</p>
-    <button go="vert_france_after_attack_stay">Rester et continuer à hacker les portails de la Résistance</button>
-    <button go="vert_france_after_attack_run">Courir (et tenter de s'enfuir)</button>
+    <button data-go="vert_france_after_attack_stay">Rester et continuer à hacker les portails de la Résistance</button>
+    <button data-go="vert_france_after_attack_run">Courir (et tenter de s'enfuir)</button>
 </div>
 
 <div class="section" id="bleu_france_after_attack_run">
     <p class="info">En tentant de prendre la fuite, vous trébuchez sur une branche. Durant votre chute, votre tête
         percute
         un rocher. Vous êtes du coup mort en agent sur le terrain et finissez décoré à titre postume.</p>
-    <button go="stop_game">Arreter le jeu</button>
-    <button go="intro">Recommencer depuis le début</button>
-    <button go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
+    <button data-go="stop_game">Arreter le jeu</button>
+    <button data-go="intro">Recommencer depuis le début</button>
+    <button data-go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="bleu_france_after_attack_stay">
     <p>Des agents Illuminés commencent à vous encercler, vous confisque votre scanner, vous mettant ainsi
         hors d'état de nuire ou de rentrer en contact avec la Résistance.</p>
-    <button go="bleu_lutte">Lutter et tenter de s'enfuir</button>
-    <button go="bleu_calme">Se rendre docilement</button>
+    <button data-go="bleu_lutte">Lutter et tenter de s'enfuir</button>
+    <button data-go="bleu_calme">Se rendre docilement</button>
 </div>
 
 <div class="section" id="vert_france_after_attack_stay">
-    <p>Des agents  de la Résistance commencent à vous encercler, vous confisque votre scanner, vous mettant ainsi
+    <p>Des agents de la Résistance commencent à vous encercler, vous confisque votre scanner, vous mettant ainsi
         hors d'état de nuire ou de rentrer en contact avec la Résistance.</p>
-    <button go="vert_lutte">Lutter et tenter de s'enfuir</button>
-    <button go="vert_calme">Se rendre docilement</button>
+    <button data-go="vert_lutte">Lutter et tenter de s'enfuir</button>
+    <button data-go="vert_calme">Se rendre docilement</button>
 </div>
 
 <div class="section" id="bleu_lutte">
     <p>Votre lutte et votre tentaive de vous enfuir sont un véritable échec ! Les agents illuminés vous ratrappent
-        et vous  assoment. <br>
-    Vous réveillez alors dans une pièce sombre. Dans le contre jour, vous pouvez observez un garde Illuminés qui
+        et vous assoment. <br>
+        Vous réveillez alors dans une pièce sombre. Dans le contre jour, vous pouvez observez un garde Illuminés qui
         semble sur le point de s'endormir</p>
-    <button go="bleu_lutte_run">Attendre et voir ce qu'il peux bien se passer</button>
-    <button go="bleu_lutte_wait">Attendre et tenter de s'évader une fois le garde endormis</button>
+    <button data-go="bleu_lutte_run">Attendre et voir ce qu'il peux bien se passer</button>
+    <button data-go="bleu_lutte_wait">Attendre et tenter de s'évader une fois le garde endormis</button>
 </div>
 
 <div class="section" id="bleu_lutte_wait">
-    <p> Des agents Illuminés finissent par revenir et vous torturent, afin de vous faire parler et de connaître les plans de la Résistance.
+    <p> Des agents Illuminés finissent par revenir et vous torturent, afin de vous faire parler et de connaître les
+        plans de la Résistance.
         <br>
-        Mais, alors que vous alliez vous évanouir, un agent arrive et commence à neutraliser les agents Illuminés présent. Devant vos yeux ahuris,
-        il vous dévoile une marque que vous reconaissez comme une marque de la Résistance ! Un agent infiltré est venu à votre secour.
+        Mais, alors que vous alliez vous évanouir, un agent arrive et commence à neutraliser les agents Illuminés
+        présent. Devant vos yeux ahuris,
+        il vous dévoile une marque que vous reconaissez comme une marque de la Résistance ! Un agent infiltré est venu à
+        votre secour.
     </p>
-    <button go="bleu_lutte_rien_rien"> Retourner à la surface pour rejoindre la Résistance </button>
-    <button go="bleu_lutte_rien_parler"> Demander à l'agent la raison de sa venue</button>
+    <button data-go="bleu_lutte_rien_rien"> Retourner à la surface pour rejoindre la Résistance</button>
+    <button data-go="bleu_lutte_rien_parler"> Demander à l'agent la raison de sa venue</button>
 </div>
 
 <div class="section" id="vert_lutte_wait">
-    <p> Des agents Résistant finissent par revenir et vous torturent, afin de vous faire parler et de connaître les plans des Illuminés.
+    <p> Des agents Résistant finissent par revenir et vous torturent, afin de vous faire parler et de connaître les
+        plans des Illuminés.
         <br>
-        Mais, alors que vous alliez vous évanouir, un agent arrive et commence à neutraliser les agents de la Résistance présent. Devant vos yeux ahuris,
-        il vous dévoile une marque que vous reconaissez comme une marque des agents Illuminés ! Un agent infiltré est venu à votre secour !
+        Mais, alors que vous alliez vous évanouir, un agent arrive et commence à neutraliser les agents de la Résistance
+        présent. Devant vos yeux ahuris,
+        il vous dévoile une marque que vous reconaissez comme une marque des agents Illuminés ! Un agent infiltré est
+        venu à votre secour !
     </p>
-    <button go="vert_lutte_rien_rien"> Retourner à la surface pour rejoindre les Illuminés </button>
-    <button go="vert_lutte_rien_parler"> Demander à l'agent la raison de sa venue</button>
+    <button data-go="vert_lutte_rien_rien"> Retourner à la surface pour rejoindre les Illuminés</button>
+    <button data-go="vert_lutte_rien_parler"> Demander à l'agent la raison de sa venue</button>
 </div>
 
 <div class="section" id="bleu_lutte_rien_parler">
     <p> L'agent vous révèle alors qu'il est venu dérober les plans des futurs raids des Illuminés</p>
-    <button go="bleu_lutte_rien_rien"> Ne rien faire et retourner à la surface</button>
-    <button go="bleu_lutte_rien_aider"> Aider l'agent dans sa mission</button>
+    <button data-go="bleu_lutte_rien_rien"> Ne rien faire et retourner à la surface</button>
+    <button data-go="bleu_lutte_rien_aider"> Aider l'agent dans sa mission</button>
 </div>
 
 <div class="section" id="vert_lutte_rien_parler">
     <p> L'agent vous révèle alors qu'il est venu dérober les plans des futurs raids des Illuminés</p>
-    <button go="vert_lutte_rien_rien"> Ne rien faire et retourner à la surface</button>
-    <button go="vert_lutte_rien_aider"> Aider l'agent dans sa mission</button>
+    <button data-go="vert_lutte_rien_rien"> Ne rien faire et retourner à la surface</button>
+    <button data-go="vert_lutte_rien_aider"> Aider l'agent dans sa mission</button>
 </div>
 
 <div class="section" id="vert_lutte">
-    <p>Votre lutte et votre tentaive de vous enfuir sont un véritabl e échec ! Les agents de la résistance vous ratrappent
-        et vous  assoment. <br>
+    <p>Votre lutte et votre tentaive de vous enfuir sont un véritabl e échec ! Les agents de la résistance vous
+        ratrappent
+        et vous assoment. <br>
         Vous réveillez alors dans une pièce sombre. Dans le contre jour, vous pouvez observez un garde Résistant qui
         semble sur le point de s'endormir</p>
-    <button go="vert_lutte_run">Attendre et voir ce qu'il peux bien se passer</button>
-    <button go="vert_lutte_wait">Attendre et tenter de s'évader une fois le garde endormis</button>
+    <button data-go="vert_lutte_run">Attendre et voir ce qu'il peux bien se passer</button>
+    <button data-go="vert_lutte_wait">Attendre et tenter de s'évader une fois le garde endormis</button>
 </div>
 
 <div class="section" id="bleu_lutte_run">
     <p> Une fois le garde endormis et grâce à de nombreuses gesticulations, vous êtes libre ! En arpentant les couloirs
-    du quartier des Illuminés, vous vous retrouvez nez à nez avec un agent portant les couleurs des Illuminés.</p>
-    <button go="bleu_lutte_neutraliser"> Tenter le tout pour le tout et neutraliser l'agent</button>
-    <button go="bleu_lutte_rien"> Baisser la tête et avancer prudemment</button>
-    <button go="bleu_lutte_rien"> Ne rien faire et laisser l'agent passer</button>
+        du quartier des Illuminés, vous vous retrouvez nez à nez avec un agent portant les couleurs des Illuminés.</p>
+    <button data-go="bleu_lutte_neutraliser"> Tenter le tout pour le tout et neutraliser l'agent</button>
+    <button data-go="bleu_lutte_rien"> Baisser la tête et avancer prudemment</button>
+    <button data-go="bleu_lutte_rien"> Ne rien faire et laisser l'agent passer</button>
 </div>
 
 <div class="section" id="vert_lutte_run">
     <p> Une fois le garde endormis et grâce à de nombreuses gesticulations, vous êtes libre ! En arpentant les couloirs
-        du quartier des Illuminés, vous vous retrouvez nez à nez avec un agent portant les couleurs de la Résistance.</p>
-    <button go="vert_lutte_neutraliser"> Tenter le tout pour le tout et neutraliser l'agent</button>
-    <button go="vert_lutte_rien"> Baisser la tête et avancer prudemment</button>
-    <button go="vert_lutte_rien"> Ne rien faire et laisser l'agent passer</button>
+        du quartier des Illuminés, vous vous retrouvez nez à nez avec un agent portant les couleurs de la
+        Résistance.</p>
+    <button data-go="vert_lutte_neutraliser"> Tenter le tout pour le tout et neutraliser l'agent</button>
+    <button data-go="vert_lutte_rien"> Baisser la tête et avancer prudemment</button>
+    <button data-go="vert_lutte_rien"> Ne rien faire et laisser l'agent passer</button>
 </div>
 
 <div class="section" id="bleu_lutte_rien">
-    <p> L'agent qui se tiens devant vous vous fait un clin d'oeil avant de vous dévoller une marque cachée montrant qu'il est de la Résistance.</p>
+    <p> L'agent qui se tiens devant vous vous fait un clin d'oeil avant de vous dévoller une marque cachée montrant
+        qu'il est de la Résistance.</p>
     <br>
-    Il vous révèle alors qu'il est en mission en tant qu'agent infiltré pour récupérer les plans d'attaque des futurs raid des Illuminés, et vous propose
+    Il vous révèle alors qu'il est en mission en tant qu'agent infiltré pour récupérer les plans d'attaque des futurs
+    raid des Illuminés, et vous propose
     de l'accompagner dans sa mission
-    <button go="bleu_lutte_rien_rien"> Refuser et retourner à la surface pour rejoindre la Résistance </button>
-    <button go="bleu_lutte_rien_aider"> Suivre l'agent et l'aider dans sa mission</button>
+    <button data-go="bleu_lutte_rien_rien"> Refuser et retourner à la surface pour rejoindre la Résistance</button>
+    <button data-go="bleu_lutte_rien_aider"> Suivre l'agent et l'aider dans sa mission</button>
 </div>
 
 <div class="section" id="vert_lutte_rien">
-    <p> L'agent qui se tiens devant vous vous fait un clin d'oeil avant de vous dévoller une marque cachée montrant qu'il est des Illuminés.</p>
+    <p> L'agent qui se tiens devant vous vous fait un clin d'oeil avant de vous dévoller une marque cachée montrant
+        qu'il est des Illuminés.</p>
     <br>
-    Il vous révèle alors qu'il est en mission en tant qu'agent infiltré pour récupérer les plans d'attaque des futurs raid des Illuminés, et vous propose
+    Il vous révèle alors qu'il est en mission en tant qu'agent infiltré pour récupérer les plans d'attaque des futurs
+    raid des Illuminés, et vous propose
     de l'accompagner dans sa mission
-    <button go="vert_lutte_rien_rien"> Refuser et retourner à la surface pour rejoindre les Illuminés</button>
-    <button go="vert_lutte_rien_aider"> Suivre l'agent et l'aider dans sa mission</button>
+    <button data-go="vert_lutte_rien_rien"> Refuser et retourner à la surface pour rejoindre les Illuminés</button>
+    <button data-go="vert_lutte_rien_aider"> Suivre l'agent et l'aider dans sa mission</button>
 </div>
 
 <div class="section" id="bleu_lutte_rien_rien">
-    <p> Vous retournez sain et sauf à la surface et rejoignez les membres de la Résistance. De nouvelles s'aventures s'offrent à vous.
-    <br>
-    Cette fois, faites attention à vos choix, vous connaissez maintenant que même la plus petite des actions peut avoir de grosses conséquences.</p>
-    <button go="stop_game">Arreter le jeu</button>
-    <button go="intro">Recommencer depuis le début</button>
-    <button go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
+    <p> Vous retournez sain et sauf à la surface et rejoignez les membres de la Résistance. De nouvelles s'aventures
+        s'offrent à vous.
+        <br>
+        Cette fois, faites attention à vos choix, vous connaissez maintenant que même la plus petite des actions peut
+        avoir de grosses conséquences.</p>
+    <button data-go="stop_game">Arreter le jeu</button>
+    <button data-go="intro">Recommencer depuis le début</button>
+    <button data-go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="vert_lutte_rien_rien">
-    <p> Vous retournez sain et sauf à la surface et rejoignez les membres de la Résistance. De nouvelles s'aventures s'offrent à vous.
+    <p> Vous retournez sain et sauf à la surface et rejoignez les membres de la Résistance. De nouvelles s'aventures
+        s'offrent à vous.
         <br>
-        Cette fois, faites attention à vos choix, vous connaissez maintenant que même la plus petite des actions peut avoir de grosses conséquences.</p>
-    <button go="stop_game">Arreter le jeu</button>
-    <button go="intro">Recommencer depuis le début</button>
-    <button go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
+        Cette fois, faites attention à vos choix, vous connaissez maintenant que même la plus petite des actions peut
+        avoir de grosses conséquences.</p>
+    <button data-go="stop_game">Arreter le jeu</button>
+    <button data-go="intro">Recommencer depuis le début</button>
+    <button data-go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="bleu_lutte_rien_aider">
-    <p> En accompagnant l'agent Résistant infiltré, vous parvenez à mettre la main sur les futurs plan de raid des Illuminés et les rapportez
-        au quartier général français de la Résistance. Grâce à vos action et à votre chance inouie, le cours de la guerre inter faction change
+    <p> En accompagnant l'agent Résistant infiltré, vous parvenez à mettre la main sur les futurs plan de raid des
+        Illuminés et les rapportez
+        au quartier général français de la Résistance. Grâce à vos action et à votre chance inouie, le cours de la
+        guerre inter faction change
         radicalement, amenant la victoire de la Résistance face aux Shapers et aux Illuminés.
         <br>
-        Cette fois, faites attention à vos choix, vous connaissez maintenant que même la plus petite des actions peut avoir de grosses conséquences.</p>
-    <button go="stop_game">Arreter le jeu</button>
-    <button go="intro">Recommencer depuis le début</button>
-    <button go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
+        Cette fois, faites attention à vos choix, vous connaissez maintenant que même la plus petite des actions peut
+        avoir de grosses conséquences.</p>
+    <button data-go="stop_game">Arreter le jeu</button>
+    <button data-go="intro">Recommencer depuis le début</button>
+    <button data-go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="vert_lutte_rien_aider">
-    <p> En accompagnant l'agent Illuminés infiltré, vous parvenez à mettre la main sur les futurs plan de raid de la Résistance et les rapportez
-        au quartier général français des Illuminés. Grâce à vos action et à votre chance inouie, le cours de la guerre inter faction change
+    <p> En accompagnant l'agent Illuminés infiltré, vous parvenez à mettre la main sur les futurs plan de raid de la
+        Résistance et les rapportez
+        au quartier général français des Illuminés. Grâce à vos action et à votre chance inouie, le cours de la guerre
+        inter faction change
         radicalement, amenant la victoire des Illuminés et des Shapers face à la Résistance.
         <br>
-        Cette fois, faites attention à vos choix, vous connaissez maintenant que même la plus petite des actions peut avoir de grosses conséquences.</p>
-    <button go="stop_game">Arreter le jeu</button>
-    <button go="intro">Recommencer depuis le début</button>
-    <button go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
+        Cette fois, faites attention à vos choix, vous connaissez maintenant que même la plus petite des actions peut
+        avoir de grosses conséquences.</p>
+    <button data-go="stop_game">Arreter le jeu</button>
+    <button data-go="intro">Recommencer depuis le début</button>
+    <button data-go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="bleu_lutte_neutraliser">
-    <p class="info">Après avoir neutraliser l'agent, vous remarquer sur sa nuque un discret symbole de la Résistance qu'il avait dissimulé.
-    <br>
-    Vous venez de tuer votre seule chance et vous vous retrouver seul dans un dédale remplis de vert. Les membres de la Résistance
-    ne viendront jamais vous sauver en apprenant que vous avez neutraliser un des votre, et les Illuminés ne vous accepteront
-    jamais comme un des leurs.</p>
-    <button go="stop_game">Arreter le jeu</button>
-    <button go="intro">Recommencer depuis le début</button>
-    <button go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
+    <p class="info">Après avoir neutraliser l'agent, vous remarquer sur sa nuque un discret symbole de la Résistance
+        qu'il avait dissimulé.
+        <br>
+        Vous venez de tuer votre seule chance et vous vous retrouver seul dans un dédale remplis de vert. Les membres de
+        la Résistance
+        ne viendront jamais vous sauver en apprenant que vous avez neutraliser un des votre, et les Illuminés ne vous
+        accepteront
+        jamais comme un des leurs.</p>
+    <button data-go="stop_game">Arreter le jeu</button>
+    <button data-go="intro">Recommencer depuis le début</button>
+    <button data-go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="vert_lutte_neutraliser">
-    <p class="info">Après avoir neutraliser l'agent, vous remarquer sur sa nuque un discret symbole des Illuminés qu'il avait dissimulé.
+    <p class="info">Après avoir neutraliser l'agent, vous remarquer sur sa nuque un discret symbole des Illuminés qu'il
+        avait dissimulé.
         <br>
         Vous venez de tuer votre seule chance et vous vous retrouver seul dans un dédale remplis de bleus. Les Illuminés
-        ne viendront jamais vous sauver en apprenant que vous avez neutraliser un des votre, et les Résistant ne vous accepteront
+        ne viendront jamais vous sauver en apprenant que vous avez neutraliser un des votre, et les Résistant ne vous
+        accepteront
         jamais comme un des leurs.</p>
-    <button go="stop_game">Arreter le jeu</button>
-    <button go="intro">Recommencer depuis le début</button>
-    <button go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
+    <button data-go="stop_game">Arreter le jeu</button>
+    <button data-go="intro">Recommencer depuis le début</button>
+    <button data-go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="bleu_calme">
-    <p> Ne sachant pas à quoi vous attendre face aux agents Illuminés, vous jouez la carte de la prudence et vous restez calme.
-    <br>
-    Les Illuminés entament alors un dialogue avec vous, vous proposant alors trois solutions. Choissisez avec attention :</p>
-    <button go="bleu_calme_change_false"> Changer de faction (mais rester fidèle à la Résistance et devenir un agent infiltré</button>
-    <button go="bleu_calme_end"> Refuser de cooptérer et de changer de faction</button>
-    <button go="bleu_calme_change_true"> Changer de faction (et devenir un Illuminé )</button>
+    <p> Ne sachant pas à quoi vous attendre face aux agents Illuminés, vous jouez la carte de la prudence et vous restez
+        calme.
+        <br>
+        Les Illuminés entament alors un dialogue avec vous, vous proposant alors trois solutions. Choissisez avec
+        attention :</p>
+    <button data-go="bleu_calme_change_false"> Changer de faction (mais rester fidèle à la Résistance et devenir un agent
+        infiltré
+    </button>
+    <button data-go="bleu_calme_end"> Refuser de cooptérer et de changer de faction</button>
+    <button data-go="bleu_calme_change_true"> Changer de faction (et devenir un Illuminé )</button>
 </div>
 
 <div class="section" id="vert_calme">
-    <p> Ne sachant pas à quoi vous attendre face aux agents de la Résistance, vous jouez la carte de la prudence et vous restez calme.
+    <p> Ne sachant pas à quoi vous attendre face aux agents de la Résistance, vous jouez la carte de la prudence et vous
+        restez calme.
         <br>
-        Les Résistants entament alors un dialogue avec vous, vous proposant alors trois solutions. Choissisez avec attention :</p>
-    <button go="vert_calme_change_false"> Changer de faction (mais rester fidèle aux Illuminés et devenir un agent infiltré</button>
-    <button go="vert_calme_end"> Refuser de cooptérer et de changer de faction</button>
-    <button go="vert_calme_change_true"> Changer de faction (et devenir un Résistant )</button>
+        Les Résistants entament alors un dialogue avec vous, vous proposant alors trois solutions. Choissisez avec
+        attention :</p>
+    <button data-go="vert_calme_change_false"> Changer de faction (mais rester fidèle aux Illuminés et devenir un agent
+        infiltré
+    </button>
+    <button data-go="vert_calme_end"> Refuser de cooptérer et de changer de faction</button>
+    <button data-go="vert_calme_change_true"> Changer de faction (et devenir un Résistant )</button>
 </div>
 
 <div class="section" id="bleu_calme_end">
     <p> Voyant votre refus d'intégrer les rangs des Illuminés, les verts préfèrent vous éliminez.</p>
-    <button go="stop_game">Arreter le jeu</button>
-    <button go="intro">Recommencer depuis le début</button>
-    <button go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
+    <button data-go="stop_game">Arreter le jeu</button>
+    <button data-go="intro">Recommencer depuis le début</button>
+    <button data-go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="vert_calme_end">
     <p> Voyant votre refus d'intégrer les rangs de la Résistance, les bleus préfèrent vous éliminez.</p>
-    <button go="stop_game">Arreter le jeu</button>
-    <button go="intro">Recommencer depuis le début</button>
-    <button go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
+    <button data-go="stop_game">Arreter le jeu</button>
+    <button data-go="intro">Recommencer depuis le début</button>
+    <button data-go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 
 <div class="section" id="">
     <p> Blabla</p>
-    <button go=""> Bla</button>
-    <button go=""> Bla</button>
+    <button data-go=""> Bla</button>
+    <button data-go=""> Bla</button>
 </div>
 
 
 <div class="section" id="exit">
     Vous voyez la lumière du jour... Vous avez réussi à vous échapper !
-    <button go="intro">Fin</button>
+    <button data-go="intro">Fin</button>
 </div>
 
 
 <div class="section" id="death">
     Vous êtes mort(e) ! C'est balot.
-    <button go="intro">Fin</button>
+    <button data-go="intro">Fin</button>
 </div>
 
 </body>

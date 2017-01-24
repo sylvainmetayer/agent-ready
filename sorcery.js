@@ -573,7 +573,7 @@ $(document).ready(function () {
     //////////////////////////////////////
 
     buttons.click(function () {
-        gotoSection($(this).attr("go"));
+        gotoSection($(this).data("go"));
     });
 
     // Can't store function in JSON file, we have to set it here.
@@ -621,7 +621,7 @@ $(document).ready(function () {
         // Get active button inside current section.
         $(".section:visible button:visible").each(function () {
             if ($(this).data("char") == keyPressed) {
-                gotoSection($(this).attr("go"));
+                gotoSection($(this).data("go"));
             }
         });
 
