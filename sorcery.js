@@ -22,7 +22,6 @@ $(document).ready(function () {
     let inventory = [];
     let agentName;
 
-    let imagesName;
     let colorArray;
     let randomName;
     let cheatImage;
@@ -53,9 +52,6 @@ $(document).ready(function () {
 
             // TODO Refactor this ?
             switch (filename) {
-                case "imagesName":
-                    imagesName = array;
-                    break;
                 case "colorArray":
                     colorArray = array;
                     break;
@@ -681,7 +677,6 @@ $(document).ready(function () {
     });
 
     startGame();
-    loadJSONValue("imagesName");
     loadJSONValue("colorArray");
     loadJSONValue("randomName");
     loadJSONValue("cheatImage");
