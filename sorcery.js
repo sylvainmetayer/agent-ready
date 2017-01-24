@@ -104,8 +104,6 @@ $(document).ready(function () {
             getInventory(name)["count"] = 0;
         }
 
-        log == true && console.log("Object " + getInventory(name)["name"] + ":" + getInventory(name)["count"]);
-
         updateInventory();
     }
 
@@ -482,8 +480,7 @@ $(document).ready(function () {
             }
 
             if (order == level + 1) {
-                if (log)
-                    console.log("You won " + itemCount + " " + itemWon);
+                log && console.log("You won " + itemCount + " " + itemWon);
                 glyphPictures.parents("p").remove();
                 setXM(XM_INITIAL_VALUE);
                 updateItem(itemWon, itemCount);
@@ -619,8 +616,6 @@ $(document).ready(function () {
         if (KEYS.indexOf(keyPressed) == -1)
             return;
 
-        log == true && console.log("Someone clicked on '" + keyPressed + "' !");
-
         // Get active button inside current section.
         $(".section:visible button:visible").each(function () {
             if ($(this).data("char") == keyPressed) {
@@ -651,7 +646,7 @@ $(document).ready(function () {
             log == true && console.log("Someone is trying to cheat !");
             cheatAttemptCounter++;
         } else {
-            log == true && console.log("Classic keyboard navigation detected");
+            // Classic keyboard navigation
             $(cheatsCodes).each(function () {
                 this.cpt = 0;
             });
