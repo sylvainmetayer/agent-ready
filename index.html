@@ -734,6 +734,165 @@
     <button data-go="intro_3">Recommencer depuis le début (mais en passant l'introduction)</button>
 </div>
 
+<div class="section" id="bleu_calme_change_false">
+    <p>
+        Vous êtes officiellement devenus un Illuminés même si vous continuez de vous battre pour la Résistance. Au détour d'un couloir,
+        vous reconnaissez un agent Illuminé comme étant un membre de la Résistance.
+    </p>
+
+    <button data-go="bleu_calme_change_talk"> Parler avec l'agent</button>
+    <button data-go="bleu_calme_away"> Ne rien faire</button>
+</div>
+
+<div class="section" id="vert_calme_change_false">
+    <p>
+        Vous êtes officiellement devenus un membre de la Résistance même si vous continuez de vous battre pour les Illuminés. Au détour d'un couloir,
+        vous reconnaissez un agent Résistant comme étant un Illuminés.
+    </p>
+
+    <button data-go="vert_calme_change_talk"> Parler avec l'agent</button>
+    <button data-go="vert_calme_away"> Ne rien faire</button>
+</div>
+
+<div class="section" id="bleu_calme_change_talk">
+    <p>
+        Vous vous retrouvez face à l'agent, qui vous as aussi reconnus.
+    </p>
+
+    <button data-go="bleu_calme_change_ask"> Demander la raison de sa venue</button>
+    <button data-go="bleu_calme_change_reveal"> Lui révéler votre infiltration</button>
+</div>
+
+<div class="section" id="vert_calme_change_talk">
+    <p>
+        Vous vous retrouvez face à l'agent, qui vous as aussi reconnus.
+    </p>
+
+    <button data-go="vert_calme_change_ask"> Demander la raison de sa venue</button>
+    <button data-go="vert_calme_change_reveal"> Lui révéler votre infiltration</button>
+</div>
+
+<div class="section" id="bleu_calme_change_ask">
+    <p>
+        L'agent vous révèle alors qu'il est en mission en tant qu'agent infiltré pour récupérer les plans d'attaque des
+        futurs raid des Illuminés, et vous propose de l'accompagner dans sa mission
+    </p>
+
+    <button data-go="bleu_calme_reunion"> Refuser et passer votre chemin</button>
+    <button data-go="bleu_lutte_rien_aider"> Suivre l'agent et l'aider dans sa mission</button>
+</div>
+
+<div class="section" id="vert_calme_change_ask">
+    <p>
+        L'agent vous révèle alors qu'il est en mission en tant qu'agent infiltré pour récupérer les plans d'attaque des
+        futurs raid des Illuminés, et vous propose de l'accompagner dans sa mission
+    </p>
+
+    <button data-go="vert_calme_reunion"> Refuser et passer votre chemin</button>
+    <button data-go="vert_lutte_rien_aider"> Suivre l'agent et l'aider dans sa mission</button>
+</div>
+
+<div class="section" id="bleu_calme_change_reveal">
+    <p>
+        Vous revelez à l'agent que vous êtes devenu un agent infiltré suite à une menace des Illuminés, vous forçant à devenir un agent Illuminés.
+    </p>
+
+    <button data-go="bleu_calme_change_ask"> Demander la raison de sa venue</button>
+    <button data-go="bleu_calme_away"> Passer sa route</button>
+</div>
+
+<div class="section" id="vert_calme_change_reveal">
+    <p>
+        Vous revelez à l'agent que vous êtes devenu un agent Résistant suite à une menace de la Résistance, vous forçant à devenir un des leurs.
+    </p>
+
+    <button data-go="vert_calme_change_ask"> Demander la raison de sa venue</button>
+    <button data-go="vert_calme_away"> Passer sa route</button>
+</div>
+
+<div class="section" id="bleu_calme_away">
+    <p>
+        Vous passez discrètement votre route en espérant qu'aucun Illuminé n'a entendu vos propos. Vos pas finissent par vous
+        conduire dans une grande salle de réunion où tous les leaders Illuminés se trouvent, parlant de leurs futurs plans d'action.
+    </p>
+    <p>
+        Une fois la réunion, deux choix s'offrent à vous :
+    </p>
+
+    <button data-go="bleu_calme_find"> Partir à la recherche de l'agent infiltré pour lui transmettre les informations que vous venez d'apprendre</button>
+    <button data-go="bleu_calme_escape"> Quitter vite les lieux et partir à la recherche de la Résistance</button>
+</div>
+
+<div class="section" id="vert_calme_away">
+    <p>
+        Vous passez discrètement votre route en espérant qu'aucun Illuminé n'a entendu vos propos. Vos pas finissent par vous
+        conduire dans une grande salle de réunion où tous les leaders Illuminés se trouvent, parlant de leurs futurs plans d'action.
+    </p>
+    <p>
+        Une fois la réunion, deux choix s'offrent à vous :
+    </p>
+
+    <button data-go="vert_calme_find"> Partir à la recherche de l'agent infiltré pour lui transmettre les informations que vous venez d'apprendre</button>
+    <button data-go="vert_calme_escape"> Quitter vite les lieux et partir à la recherche de la Résistance</button>
+</div>
+
+<div class="section" id="bleu_calme_find">
+    <p>
+        Après avoir transmis les informations que vous venez d'apprendre à l'agent infiltré, ce dernier réussis à s'enfuir,
+        vous laissant entourer d'agents Illuminés qui découvrent alors votre traitrise.
+    </p>
+    <p>
+        Vous êtes condamné à mort par les Illuminés, tout en sachant que vous avez servis la Résistance et participé à sa victoire.
+    </p>
+    <p>
+        Lors de l'hannilation des Illuminés par la Résistance, vous êtes décoré à titre postume.
+    </p>
+
+    <button data-go="stop_game">Arreter le jeu</button>
+    <button data-go="intro">Recommencer depuis le début</button>
+    <button data-go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
+</div>
+
+<div class="section" id="vert_calme_find">
+    <p>
+        Après avoir transmis les informations que vous venez d'apprendre à l'agent infiltré, ce dernier réussis à s'enfuir,
+        vous laissant entourer d'agents Résistant qui découvrent alors votre traitrise.
+    </p>
+    <p>
+        Vous êtes condamné à mort par la Résistance, tout en sachant que vous avez servis les Illuminés et participé à leur victoire.
+    </p>
+    <p>
+        Lors de l'hannilation de la Résistance par les Illuminés, vous êtes décoré à titre postume.
+    </p>
+
+    <button data-go="stop_game">Arreter le jeu</button>
+    <button data-go="intro">Recommencer depuis le début</button>
+    <button data-go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
+</div>
+
+<div class="section" id="bleu_calme_escape">
+    <p>
+        Les informations que vous venez de transmettre à la Résistance a permi de renverser le cours de la guerre, et de vaincre les Shappers et
+        les Illuminés. Grâce à vous, le monde est de nouveau en paix.
+    </p>
+
+    <button data-go="stop_game">Arreter le jeu</button>
+    <button data-go="intro">Recommencer depuis le début</button>
+    <button data-go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
+</div>
+
+<div class="section" id="vert_calme_escape">
+    <p>
+        Les informations que vous venez de transmettre aux Illuminés a permi de renverser le cours de la guerre, et de vaincre la Résistance
+        . Grâce à vous, le monde est de nouveau en paix.
+    </p>
+
+    <button data-go="stop_game">Arreter le jeu</button>
+    <button data-go="intro">Recommencer depuis le début</button>
+    <button data-go="intro_3">Recommencer depuis le début(mais en passant l'introduction)</button>
+</div>
+
+
 
 <div class="section" id="">
     <p>
