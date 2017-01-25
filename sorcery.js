@@ -105,7 +105,7 @@ $(document).ready(function () {
         let exist = getInventory(name);
 
         if (exist == undefined)
-            inventory.push({name, count});
+            inventory.push({"name": name, "count": count});
         else
             exist["count"] = parseInt(getInventory(name)["count"]) + parseInt(count);
 
@@ -138,6 +138,8 @@ $(document).ready(function () {
      * @returns Object{name, count} || undefined
      */
     function getInventory(name) {
+        // FIXME Doesn't work on IE.
+        // TODO Test on Edge. If working, go on.
         return inventory.find(function (element) {
             return element.name == name;
         });
