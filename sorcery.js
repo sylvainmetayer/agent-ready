@@ -9,8 +9,7 @@ $(document).ready(function () {
     const XM_INITIAL_VALUE = 30;
     const MAX_RESONATORS = 8;
     const BAN_TIME = 1000;
-    const KEYBOARD_NAVIGATION = "ABCDEF";
-    const KEYS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890$€?!()/*-+";
+    const KEYBOARD_NAVIGATION = [65, 66, 67, 68, 69, 70];
     const MAX_CHEAT = 3;
 
     let buttons = $(".section button");
@@ -26,6 +25,7 @@ $(document).ready(function () {
     let randomName;
     let cheatImage;
     let glyph;
+    let allowed_keys;
 
     let cheatAttemptCounter = 0;
     let numberOfCheatAttempFailed = 0;
@@ -63,6 +63,9 @@ $(document).ready(function () {
                     break;
                 case "glyph":
                     glyph = array;
+                    break;
+                case "allowed_keys":
+                    allowed_keys = array;
                     break;
                 default:
                     alert("Error, no array found in loadJSONValue function");
@@ -168,8 +171,8 @@ $(document).ready(function () {
      */
     function bindKeyEvent(section) {
         section.find("button").each(function (index) {
-            let char = KEYBOARD_NAVIGATION.charAt(index);
-            $(this).data("char", char);
+            let char = String.fromCharCode(KEYBOARD_NAVIGATION[index]);
+            $(this).data("charCode", KEYBOARD_NAVIGATION[index]);
 
             // Does HTML has been already set ?
             if ($(this).html().indexOf(char + "-") == -1) {
@@ -580,16 +583,16 @@ $(document).ready(function () {
     let cheatsCodes = [
         {
             "name": "goSomewhere",
-            "keys": [73, 78, 71, 82, 69, 83, 83],
+            "keys": [73, 78, 71, 82, 69, 83, 83, 13],
             "cpt": 0,
             "success": function () {
-                alert("You're ready, agent. Go out, and fight for your faction.");
+                alert("You're ready, agent. Go out, and fight for your faction.. Which will obviously be the Resistance :) !");
                 location.href = "https://goo.gl/ADym2f";
             }
         },
         {
             "name": "cheatCode",
-            "keys": [68, 69, 86],
+            "keys": [32, 68, 69, 86, 32, 13],
             "cpt": 0,
             "success": function () {
                 let goto = prompt("You found a cheat code ! Enter the id of the section you wanna go to");
@@ -599,7 +602,7 @@ $(document).ready(function () {
         },
         {
             "name": "XMCheat",
-            "keys": [88, 77, 88, 77, 88, 77],
+            "keys": [88, 77, 88, 77, 88, 77, 13],
             "cpt": 0,
             "success": function () {
                 setXM(XM_INITIAL_VALUE);
@@ -610,15 +613,17 @@ $(document).ready(function () {
     // Enable key navigation & some others features.
     $(document).keyup(function (e) {
         let keyCode = e.keyCode;
-        let keyPressed = String.fromCharCode(keyCode);
+        let keyPressed = e.key;
+
+        log && console.log("|" + keyPressed + "|", keyCode);
 
         // Avoid false positive, such as ALTGR, CTRL, ...
-        if (KEYS.indexOf(keyPressed) == -1)
+        if (allowed_keys != undefined && allowed_keys.indexOf(keyCode) == -1)
             return;
 
         // Get active button inside current section.
         $(".section:visible button:visible").each(function () {
-            if ($(this).data("char") == keyPressed) {
+            if ($(this).data("charCode") == keyCode) {
                 gotoSection($(this).data("go"));
             }
         });
@@ -641,8 +646,8 @@ $(document).ready(function () {
         });
 
         if (somethingHappened == true) {
-            log == true && console.log("A cheat code was triggered and handled");
-        } else if (KEYBOARD_NAVIGATION.indexOf(keyPressed) == -1) {
+            // Cheat code handled
+        } else if (KEYBOARD_NAVIGATION.indexOf(keyCode) == -1) {
             log == true && console.log("Someone is trying to cheat !");
             cheatAttemptCounter++;
         } else {
@@ -672,7 +677,8 @@ $(document).ready(function () {
     });
 
     startGame();
-    loadJSONValue("colorArray");
+    loadJSONValue("allowed_keys");
+    //loadJSONValue("colorArray"); // TODO Remove me ?
     loadJSONValue("randomName");
     loadJSONValue("cheatImage");
     loadJSONValue("glyph");
