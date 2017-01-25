@@ -37,9 +37,11 @@ This customization is available in the `resources` folder. This folder contains 
 
 #### `allowed_keys.json`
 
-This file allow to set the allowed keys for cheat code and keyboard navigation. It prevent from false positive, such as a click on ALT or CTRL keys.
- 
-Please keep in mind that the alphabet should always be defined here, as it is used to navigate between section using keyboard.
+This file allow to set the allowed keys for cheat code. It prevent from false positive, such as a click on ALT or CTRL keys.
+
+#### `keyboard_navigation.json`
+
+This file contains keys that are used to navigate through the differents section.
  
 #### `cheatImages.json`
 

@@ -9,7 +9,6 @@ $(document).ready(function () {
     const XM_INITIAL_VALUE = 30;
     const MAX_RESONATORS = 8;
     const BAN_TIME = 1000;
-    const KEYBOARD_NAVIGATION = [65, 66, 67, 68, 69, 70];
     const MAX_CHEAT = 3;
 
     let buttons = $(".section button");
@@ -26,6 +25,7 @@ $(document).ready(function () {
     let cheatImage;
     let glyph;
     let allowed_keys;
+    let keyboard_navigation;
 
     let cheatAttemptCounter = 0;
     let numberOfCheatAttempFailed = 0;
@@ -66,6 +66,9 @@ $(document).ready(function () {
                     break;
                 case "allowed_keys":
                     allowed_keys = array;
+                    break;
+                case "keyboard_navigation":
+                    keyboard_navigation = array;
                     break;
                 default:
                     alert("Error, no array found in loadJSONValue function");
@@ -170,9 +173,14 @@ $(document).ready(function () {
      *  Section, to find button to bind keys to.
      */
     function bindKeyEvent(section) {
+
+        // Game is not fully loaded.
+        if (keyboard_navigation == undefined)
+            return;
+
         section.find("button").each(function (index) {
-            let char = String.fromCharCode(KEYBOARD_NAVIGATION[index]);
-            $(this).data("charCode", KEYBOARD_NAVIGATION[index]);
+            let char = String.fromCharCode(keyboard_navigation[index]);
+            $(this).data("charCode", keyboard_navigation[index]);
 
             // Does HTML has been already set ?
             if ($(this).html().indexOf(char + "-") == -1) {
@@ -573,6 +581,27 @@ $(document).ready(function () {
     }
 
     /**
+     * This function reset counter of all cheatCode, except the one given in parameters
+     * @param cheatCodeName cheatCode to exclude.
+     * If cheatCodeName is undefined, all counter will be set to 0
+     */
+    function resetCounterExcept(cheatCodeName) {
+        let resetCode;
+
+        if (cheatCodeName != undefined) {
+            resetCode = $(cheatsCodes).filter(function () {
+                return this.name != cheatCodeName;
+            });
+        } else {
+            resetCode = $(cheatsCodes);
+        }
+
+        resetCode.each(function () {
+            this.cpt = 0;
+        });
+    }
+
+    /**
      * Click on button
      */
     buttons.click(function () {
@@ -618,7 +647,9 @@ $(document).ready(function () {
         log && console.log("|" + keyPressed + "|", keyCode);
 
         // Avoid false positive, such as ALTGR, CTRL, ...
-        if (allowed_keys != undefined && allowed_keys.indexOf(keyCode) == -1)
+        if ((allowed_keys != undefined && allowed_keys.indexOf(keyCode) == -1)
+            &&
+            (keyboard_navigation != undefined && keyboard_navigation.indexOf(keyCode) == -1))
             return;
 
         // Get active button inside current section.
@@ -634,27 +665,28 @@ $(document).ready(function () {
          * Handle cheat codes.
          */
         $(cheatsCodes).each(function () {
+            let cheatCodeName = this.name;
             if (keyCode == this.keys[this.cpt]) {
                 somethingHappened = true;
-                log == true && console.log(this.name + " triggered");
+                log == true && console.log(cheatCodeName + " triggered");
                 this.cpt++;
+                resetCounterExcept(cheatCodeName);
                 if (this.cpt == this.keys.length) {
                     this.success();
-                    this.cpt = 0;
+                    resetCounterExcept();
                 }
             }
         });
 
-        if (somethingHappened == true) {
-            // Cheat code handled
-        } else if (KEYBOARD_NAVIGATION.indexOf(keyCode) == -1) {
-            log == true && console.log("Someone is trying to cheat !");
-            cheatAttemptCounter++;
-        } else {
-            // Classic keyboard navigation
-            $(cheatsCodes).each(function () {
-                this.cpt = 0;
-            });
+        console.log(somethingHappened);
+        if (somethingHappened != true) {
+            // No Cheat code were used
+            resetCounterExcept();
+
+            if (keyboard_navigation != undefined && keyboard_navigation.indexOf(keyCode) == -1) {
+                log == true && console.log("Someone is trying to cheat !");
+                cheatAttemptCounter++;
+            }
         }
 
         // Funny little thing :)
@@ -677,6 +709,7 @@ $(document).ready(function () {
     });
 
     startGame();
+    loadJSONValue("keyboard_navigation");
     loadJSONValue("allowed_keys");
     //loadJSONValue("colorArray"); // TODO Remove me ?
     loadJSONValue("randomName");
