@@ -35,23 +35,44 @@ The game offers some "customization" to offer a custom experience.
 
 This customization is available in the `resources` folder. This folder contains some files that are described below.
 
-#### `allowed_keys.json`
+#### `navigation.json`
 
-This file allow to set the allowed keys for cheat code. It prevent from false positive, such as a click on ALT or CTRL keys.
+This file contains configuration for keyboard interaction.
 
-#### `keyboard_navigation.json`
+It is divided in 2 parts : 
 
-This file contains keys that are used to navigate through the differents section.
- 
-#### `cheatImages.json`
+- `navigate_between_section` is the object that represent keys that are used to navigate between sections.
+- `keys_allowed_for_cheat_code` is the object that contains all keys used for cheats codes. It prevent from false positive, such as a click on ALT or CTRL keys. 
 
-This file is used when a cheater is detected. After  multiple attempt of cheating, the player will have some surprise :)
+#### `cheats.json`
 
-You can customize in this file pictures that will be displayed.
+This file contains some configuration for cheats codes. 
 
-#### `colorArray.json`
+- `ban_time` is the time (in ms) that player will have to wait when he is banned.   
+- `max_attempt_before_ban` is the number of attempt that the player have before ban.
+- `codes` Contains configuration of cheats codes. A sample cheat code must look like this:
+```console
+"1": {
+      "name": "nameOfMyCheatCode",
+      "keys": [
+        73,
+        78,
+        71,
+        82,
+        69,
+        83,
+        83,
+        13
+      ], // Key that the player have to press (in that order) to enable the cheat code.
+      "cpt": 0, // Private counter. Leave it like this.
+      "success": "function () { alert('You are ready, agent. Go out, and fight for your faction.. Which will obviously be the Resistance :) !'); location.href = 'https://goo.gl/ADym2f'; }"
+      // Function that will be executed when cheat code is valid. Must be an anonymous function. Be careful, this function can put the game in a unstable state if the function contains errors.
+    },
+```
 
-Depreciated. Will probably be removed soon.
+#### `randomName.json`
+
+Contains a list of random name, that will be used if the player don't want to set one.
 
 #### `glyph.json`
 
