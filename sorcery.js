@@ -8,8 +8,6 @@ $(document).ready(function () {
 
     const XM_INITIAL_VALUE = 30;
     const MAX_RESONATORS = 8;
-    const BAN_TIME = 1000;
-    const MAX_CHEAT = 3;
 
     let buttons = $(".section button");
     let div_status = $("#status");
@@ -20,6 +18,9 @@ $(document).ready(function () {
     let inventory = [];
     let agentName;
 
+    // Variables that will be overriden by ajax calls.
+    let BAN_TIME = 100;
+    let MAX_ATTEMPT_BEFORE_BAN = 3;
     let colorArray;
     let randomName;
     let cheatImage;
@@ -28,6 +29,7 @@ $(document).ready(function () {
     let keyboard_navigation;
     let cheatsCodes;
 
+    // Some counters
     let cheatAttemptCounter = 0;
     let numberOfCheatAttempFailed = 0;
     let log = true;
@@ -47,32 +49,36 @@ $(document).ready(function () {
         let request = $.ajax(settings);
 
         request.done(function (json) {
+
             let array = $.map(json, function (el) {
                 return el;
             });
 
-            // TODO Refactor this ?
             switch (filename) {
-                case "colorArray":
-                    colorArray = array;
-                    break;
                 case "randomName":
                     randomName = array;
-                    break;
-                case "cheatsCodes":
-                    cheatsCodes = array;
-                    break;
-                case "cheatImage":
-                    cheatImage = array;
                     break;
                 case "glyph":
                     glyph = array;
                     break;
-                case "allowed_keys":
-                    allowed_keys = array;
+                case "navigation":
+                    keyboard_navigation = $.map(json.navigate_between_section, function (el) {
+                        return el;
+                    });
+
+                    allowed_keys = $.map(json.keys_allowed_for_cheat_code, function (el) {
+                        return el;
+                    });
                     break;
-                case "keyboard_navigation":
-                    keyboard_navigation = array;
+                case "cheats":
+                    BAN_TIME = json.ban_time;
+                    MAX_ATTEMPT_BEFORE_BAN = json.max_attempt_before_ban;
+                    cheatImage = $.map(json.images, function (el) {
+                        return el;
+                    });
+                    cheatsCodes = $.map(json.codes, function (el) {
+                        return el;
+                    });
                     break;
                 default:
                     alert("Error, no array found in loadJSONValue function");
@@ -671,7 +677,7 @@ $(document).ready(function () {
         }
 
         // Funny little thing :)
-        if (cheatAttemptCounter == MAX_CHEAT) {
+        if (cheatAttemptCounter == MAX_ATTEMPT_BEFORE_BAN) {
             let randomImage = cheatImage[getRandom(0, cheatImage.length - 1)];
             cheatAttemptCounter = 0;
             let activeSection = $(".section:visible");
@@ -689,12 +695,9 @@ $(document).ready(function () {
         }
     });
 
-    startGame();
-    loadJSONValue("keyboard_navigation");
-    loadJSONValue("allowed_keys");
-    loadJSONValue("cheatsCodes");
-    //loadJSONValue("colorArray"); // TODO Remove me ?
+    loadJSONValue("cheats");
+    loadJSONValue("navigation");
     loadJSONValue("randomName");
-    loadJSONValue("cheatImage");
     loadJSONValue("glyph");
+    startGame();
 });
