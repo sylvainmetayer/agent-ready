@@ -26,6 +26,7 @@ $(document).ready(function () {
     let glyph;
     let allowed_keys;
     let keyboard_navigation;
+    let cheatsCodes;
 
     let cheatAttemptCounter = 0;
     let numberOfCheatAttempFailed = 0;
@@ -57,6 +58,9 @@ $(document).ready(function () {
                     break;
                 case "randomName":
                     randomName = array;
+                    break;
+                case "cheatsCodes":
+                    cheatsCodes = array;
                     break;
                 case "cheatImage":
                     cheatImage = array;
@@ -588,6 +592,9 @@ $(document).ready(function () {
     function resetCounterExcept(cheatCodeName) {
         let resetCode;
 
+        if (cheatsCodes == undefined)
+            return;
+
         if (cheatCodeName != undefined) {
             resetCode = $(cheatsCodes).filter(function () {
                 return this.name != cheatCodeName;
@@ -607,37 +614,6 @@ $(document).ready(function () {
     buttons.click(function () {
         gotoSection($(this).data("go"));
     });
-
-    // Can't store function in JSON file, we have to set it here.
-    let cheatsCodes = [
-        {
-            "name": "goSomewhere",
-            "keys": [73, 78, 71, 82, 69, 83, 83, 13],
-            "cpt": 0,
-            "success": function () {
-                alert("You're ready, agent. Go out, and fight for your faction.. Which will obviously be the Resistance :) !");
-                location.href = "https://goo.gl/ADym2f";
-            }
-        },
-        {
-            "name": "cheatCode",
-            "keys": [32, 68, 69, 86, 32, 13],
-            "cpt": 0,
-            "success": function () {
-                let goto = prompt("You found a cheat code ! Enter the id of the section you wanna go to");
-                if (goto != undefined && goto.length > 0)
-                    gotoSection(goto, true);
-            }
-        },
-        {
-            "name": "XMCheat",
-            "keys": [88, 77, 88, 77, 88, 77, 13],
-            "cpt": 0,
-            "success": function () {
-                setXM(XM_INITIAL_VALUE);
-            }
-        }
-    ];
 
     // Enable key navigation & some others features.
     $(document).keyup(function (e) {
@@ -664,21 +640,24 @@ $(document).ready(function () {
         /**
          * Handle cheat codes.
          */
-        $(cheatsCodes).each(function () {
-            let cheatCodeName = this.name;
-            if (keyCode == this.keys[this.cpt]) {
-                somethingHappened = true;
-                log == true && console.log(cheatCodeName + " triggered");
-                this.cpt++;
-                resetCounterExcept(cheatCodeName);
-                if (this.cpt == this.keys.length) {
-                    this.success();
-                    resetCounterExcept();
+        if (cheatsCodes != undefined) {
+            $(cheatsCodes).each(function () {
+                let cheatCodeName = this.name;
+                if (keyCode == this.keys[this.cpt]) {
+                    somethingHappened = true;
+                    log == true && console.log(cheatCodeName + " triggered");
+                    this.cpt++;
+                    resetCounterExcept(cheatCodeName);
+                    if (this.cpt == this.keys.length) {
+                        eval('(' + this.success + "()" + ')');
+                        // FIXME Is their a better way to execute the function ?
+                        resetCounterExcept();
+                    }
                 }
-            }
-        });
+            });
+        }
 
-        console.log(somethingHappened);
+        log && console.log(somethingHappened);
         if (somethingHappened != true) {
             // No Cheat code were used
             resetCounterExcept();
@@ -711,6 +690,7 @@ $(document).ready(function () {
     startGame();
     loadJSONValue("keyboard_navigation");
     loadJSONValue("allowed_keys");
+    loadJSONValue("cheatsCodes");
     //loadJSONValue("colorArray"); // TODO Remove me ?
     loadJSONValue("randomName");
     loadJSONValue("cheatImage");
