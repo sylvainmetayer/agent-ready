@@ -9,29 +9,58 @@ IUT de Bordeaux - 2016-2017
 - Tiphaine GIRARDOT
 - Sylvain METAYER
 
-## Game
+## Requirements
 
-It is necessary to have a local server to run the game because some AJAX calls are made.
+- Node.js >=4
+- git
 
-### Run in local
+## Install
 
-A NodeJS example is avaible on this repository. 
-
-See `server.js` for details and run `node server.js` to run the server.
-
-Others way to run the game in local (not exhaustive)
-
+Clone the repository on your machine
 ```console
-$ php -S localhost:8080
-$ python -m SimpleHTTPServer 8080
-$ ...
+$ git clone https://github.com/sylvainmetayer/agent-ready.git && cd agent-ready
 ```
 
-See online version : https://sylvainmetayer.github.io/agent-ready/
+Install the global dependencies
+```console
+$ npm install --global gulp-cli
+```
+
+Install the local dependencies
+```console
+$ npm install
+```
+
+## Commands
+
+Run the dev server
+```console
+$ gulp serve
+```
+
+Build the project
+```console
+$ gulp
+```
+
+Preview of the build
+```console
+$ gulp serve:dist
+```
+
+Publish build on github-pages. (**require a gh-pages branch**)
+[How to setup gh-pages branch ?](https://github.com/yeoman/generator-webapp/blob/master/docs/recipes/gh-pages.md#3-ensure-that-your-repository-is-on-github-and-that-origin-is-set)
+```console
+$ gulp deploy
+```
+
+## Online version 
+
+https://sylvainmetayer.github.io/agent-ready/
 
 ## "Customization"
 
-The game offers some "customization" to offer a custom experience.
+The game has some "customization" available to offer a custom experience.
 
 This customization is available in the `resources` folder. This folder contains some files that are described below.
 
@@ -50,7 +79,7 @@ This file contains some configuration for cheats codes.
 
 - `ban_time` is the time (in ms) that player will have to wait when he is banned.   
 - `max_attempt_before_ban` is the number of attempt that the player have before ban.
-- `codes` Contains configuration of cheats codes. A sample cheat code must look like this:
+- `codes` Contains configuration of cheats codes. A sample cheat code **must** look like this:
 ```console
 "1": {
       "name": "nameOfMyCheatCode",
