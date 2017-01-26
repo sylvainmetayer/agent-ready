@@ -96,7 +96,6 @@ $(document).ready(function () {
         setXM(XM_INITIAL_VALUE);
         span_xm_max.html(XM_INITIAL_VALUE);
         inventory = [];
-        updateItem("resonateur", 6); // TODO Remove me, test only.
     }
 
     /**
@@ -144,8 +143,6 @@ $(document).ready(function () {
      * @returns Object{name, count} || undefined
      */
     function getInventory(name) {
-        // FIXME Doesn't work on IE.
-        // TODO Test on Edge. If working, go on.
         return inventory.find(function (element) {
             return element.name == name;
         });
@@ -658,7 +655,7 @@ $(document).ready(function () {
                     resetCounterExcept(cheatCodeName);
                     if (this.cpt == this.keys.length) {
                         eval('(' + this.success + "()" + ')');
-                        // FIXME Is their a better way to execute the function ?
+                        // FIXME Is there a better way to execute the function ?
                         resetCounterExcept();
                     }
                 }
