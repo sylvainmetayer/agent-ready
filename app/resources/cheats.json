@@ -1,0 +1,61 @@
+{
+  "ban_time": 1000,
+  "max_attempt_before_ban": 3,
+  "images": {
+    "1": "cheater.png",
+    "2": "cheater2.jpg",
+    "3": "cheater3.jpg",
+    "4": "cheater4.jpg",
+    "5": "cheater5.jpg",
+    "6": "cheater6.jpg",
+    "7": "cheater7.jpg",
+    "8": "cheater8.jpg",
+    "9": "cheater9.jpg",
+    "10": "cheater11.jpg",
+    "11": "cheater10.jpg"
+  },
+  "codes": {
+    "1": {
+      "name": "goSomewhere",
+      "keys": [
+        73,
+        78,
+        71,
+        82,
+        69,
+        83,
+        83,
+        13
+      ],
+      "cpt": 0,
+      "success": "function () { alert('You are ready, agent. Go out, and fight for your faction.. Which will obviously be the Resistance :) !'); location.href = 'https://goo.gl/ADym2f'; }"
+    },
+    "2": {
+      "name": "cheatCode",
+      "keys": [
+        32,
+        68,
+        69,
+        86,
+        32,
+        13
+      ],
+      "cpt": 0,
+      "success": "function () { let goto = prompt('You found a cheat code ! Enter the id of the section you wanna go to'); if (goto != undefined && goto.length > 0) gotoSection(goto, true); }"
+    },
+    "3": {
+      "name": "XMCheat",
+      "keys": [
+        88,
+        77,
+        88,
+        77,
+        88,
+        77,
+        13
+      ],
+      "cpt": 0,
+      "success": "function () { setXM(XM_INITIAL_VALUE); }"
+    }
+  }
+}
