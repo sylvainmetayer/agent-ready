@@ -147,7 +147,7 @@
         invasion.
     </p>
     <p>
-        Mais rapidement une scission apparue au sein de le groupe fondateur de Niantics, qui se répercuta sur
+        Mais rapidement une scission apparue au sein du groupe fondateur de Niantics, qui se répercuta sur
         l’ensemble des agents. Deux factions émergèrent alors, avec à leur tête deux leaders voulant oeuvrer pour le
         bien de tous : les Illuminés et la Résistance
     </p>
@@ -165,12 +165,12 @@
     <p>
         Ces factions sont toujours là, à livrer une guerre sans répit à travers le globe. De ces batailles ont émergé
         d’étranges comportements de la part des agents, qui se sont mis à croire en la venue d’un agent unique,
-        qui saura faire balancer le cours de cette guerre et permettre la victoire d’une des deux factions. Selon
+        qui saurais faire balancer le cours de cette guerre et permettre la victoire d’une des deux factions. Selon
         eux, vous êtes l’élu.
     </p>
     <p>
-        Avant de procéder au Choix, tu dois choisir ton nom d’agent, celui qui te permettra d’intégrer la résistance,
-        ou les illuminés.
+        Avant de procéder à la cérémonie du choix qui vous permettre d'intégrer
+        la Résistance ou les Illuminés, vous devez vous choisir un nom d'agent.
     </p>
 
     <button data-go="ceremonie_choix">Choisir mon nom d'agent, ainsi que ma destinée.</button>
@@ -183,9 +183,9 @@
             showInto=".agentName"></action>
 
     <p>
-        Bien, <span class="agentName"></span>, maintenant, tu dois procéder au Choix. Attention, en fonction de la
-        faction que tu choisira,
-        le destin de l’humanité sera totalement différents. Choisis prudemment.
+        Bien, <span class="agentName"></span>, maintenant vous pouvez procéder à la cérémonie du choix,
+        qui scellera votre destin d'agent. En fonction de votre choix, le destin de
+        l’humanité sera totalement différents. Choisisez prudemment.
     </p>
 
     <button data-go="bleu_hack" id="i_am_resistant">La Résistance</button>
@@ -196,16 +196,6 @@
 <div class="section" id="bleu_hack">
 
     <action name="setFaction" resistant="true" showInto=".factionName"></action>
-
-    <b>
-        TODO Refactor cette partie, tuto blabla puis initiation avec les mini-jeux & co. Regrouper habk bleu et vert
-        dans
-        une meme section (action js pour les paramètres.
-    </b>
-
-    <p>
-        Mini jeu portail
-    </p>
 
     <p>
         Bienvenue agent <span class="agentName"></span> dans la Résistance . Maintenant, place à
@@ -223,7 +213,7 @@
 
     <p class="info">
         Pour capturer le portail, utilisez les résonnateurs présent dans votre inventaire. Au début du jeu,
-        15 résonnateurs vous sont offerts pour découvrir le jeu, mais devront ensuite être gagner via le mini jeu des
+        15 résonnateurs vous sont offerts pour découvrir le jeu, mais pourront ensuite être gagner via le mini jeu des
         glyphes.
     </p>
 
@@ -233,6 +223,13 @@
         mais en déployer plusieurs permet d’accroitre le bonus de hack et la résistance du portail, mais aussi de gagner
         plus d’XP à chaque fois que tu poses un résonateurs, pour monter ainsi plus rapidement de niveau
     </p>
+
+    <!--Sylvain : to do = Afficher le portail et attribuer 15 résonnateurs au joueur -->
+
+    <!--Sylvain : to do = afficher le boutton pour deployer le portail. On ne doit pas pouvoir passer à la suite
+                          tant que le portail n'a pas au moins un réso de mis.
+                          Faire baisser l'XM à chaque fois qu'un réso est mis, mais je me doute que tu l'as déjà fait
+                          car tu es le meilleur ;) -->
 
     <button data-go="bleu_glyphe">Hacker le portail</button>
 
@@ -268,7 +265,12 @@
         plus d’XP à chaque fois que tu poses un résonateurs, pour monter ainsi plus rapidement de niveau
     </p>
 
-    <p>Mini jeu portail</p>
+    <!--Sylvain : to do = Afficher le portail et attribuer 15 résonnateurs au joueur -->
+
+    <!--Sylvain : to do = afficher le boutton pour deployer le portail. On ne doit pas pouvoir passer à la suite
+                          tant que le portail n'a pas au moins un réso de mis.
+                          Faire baisser l'XM à chaque fois qu'un réso est mis, mais je me doute que tu l'as déjà fait
+                          car tu es le meilleur ;) -->
 
     <button data-go="vert_glyphe">Hacker le portail</button>
 </div>
@@ -283,11 +285,13 @@
     </p>
 
     <p class="info">
-        Un échec à cette épreuve vous permettra de gagner qu’un montant minimum d’items, d’expérience,
-        alors qu’une réussite vous permettra de gagner un nombre plus conséquents d’items et d’expériences.
+        Un échec à cette épreuve ne vous rapportera aucun matériel et vous fera perdre de l'XM. Si jamais votre
+        niveau d'XM atteinds 0, vous perdez votre status d'agent et l'histoire s'arretera alors pour vous.
     </p>
 
-    <p>Mini jeu hack portail</p>
+    <!--Sylvain : to do =  mini jeu des glyphes ici. Tant qu'il n'est pas réussis, on ne passe pas
+                           à la suite du jeu. Perte de l'xm à chaque fois qu'il fail.
+                           Si le joueur n'as plus d'XM, l'id a afficher est la suivante : "no_more_xm"-->
 
     <button data-go="bleu_destination">Suite</button>
 
@@ -309,7 +313,9 @@
         alors qu’une réussite vous permettra de gagner un nombre plus conséquents d’items et d’expériences.
     </p>
 
-    <p>Mini jeu hack portail</p>
+    <!--Sylvain : to do =  mini jeu des glyphes ici. Tant qu'il n'est pas réussis, on ne passe pas
+                           à la suite du jeu. Perte de l'xm à chaque fois qu'il fail.
+                           Si le joueur n'as plus d'XM, l'id a afficher est la suivante : "no_more_xm"-->
 
     <button data-go="bleu_destination">Suite</button>
 </div>
@@ -356,15 +362,12 @@
 
     <p class="info">
         Ne vous inquiétez pas, si vous ratez une épreuve, vous pourrez toujours la recommencer jusqu'à ce
-        que vous la réussiez, mais cela vous coutera de l'XM. Car oui, vous pouvez stocker de l'XM sur vous pour
-        déployer
-        des portails et lutter contre l'invasion. Vaincre le mal par le mal. Plus vous augmenterez votre niveau, plus
-        vous
-        pourrez en stocker. Mais si jamais votre stock d'XM tombe à 0, l'aventure en tant qu'agent s'arrêtera là pour
+        que vous la réussiez, mais comme dis précédement, cela vous couteras de l'XM, et si jamais votre stock d'XM tombe à 0,
+         l'aventure en tant qu'agent s'arrêtera là pour
         vous.
     </p>
 
-    <button data-go="bleu_france_portal">Capturer les portails</button>
+    <button data-go="bleu_france_portal">Capturer le portail</button>
 </div>
 
 <div class="section" id="vert_france">
@@ -378,49 +381,49 @@
     </p>
 
     <p class="info">
-        Ne vous inquiétez pas, si vous ratez une épreuve, vous pourrez toujours la recommencer jusqu'à ce
-        que vous la réussiez, mais cela vous coutera de l'XM. Car oui, vous pouvez stocker de l'XM sur vous pour
-        déployer
-        des portails et lutter contre l'invasion. Vaincre le mal par le mal. Plus vous augmenterez votre niveau, plus
-        vous
-        pourrez en stocker. Mais si jamais votre stock d'XM tombe à 0, l'aventure en tant qu'agent s'arrêtera là pour
-        vous.
+      Ne vous inquiétez pas, si vous ratez une épreuve, vous pourrez toujours la recommencer jusqu'à ce
+      que vous la réussiez, mais comme dis précédement, cela vous couteras de l'XM, et si jamais votre stock d'XM tombe à 0,
+       l'aventure en tant qu'agent s'arrêtera là pour
+      vous.
     </p>
 
-    <button data-go="vert_france_portal">Capturer les portails</button>
+    <button data-go="vert_france_portal">Capturer le portail</button>
 </div>
 
 <div class="section" id="bleu_france_portal">
 
-    <p> MINI JEU SUR LE HACK DE PORTAIL</p>
+    <!--Sylvain : to do = Implémenter le mini jeu du hack comme précédemment -->
 
     <button data-go="bleu_france_glyphe">Hacker le portail</button>
 </div>
 
 <div class="section" id="vert_france_portal">
 
-    <p> MINI JEU SUR LE HACK DE PORTAIL</p>
+      <!--Sylvain : to do = Implémenter le mini jeu du hack comme précédemment -->
 
     <button data-go="vert_france_glyphe">Hacker le portail</button>
 </div>
 
 <div class="section" id="bleu_france_glyphe">
-    <p> MINI JEU GLYPHE </p>
+
+      <!--Sylvain : to do = Implémenter le mini jeu de glyphe comme précédemment -->
+
     <button data-go="bleu_france_attack_speach">Suite</button>
 </div>
 
 <div class="section" id="vert_france_glyphe">
-    <p> MINI JEU GLYPHE </p>
+
+      <!--Sylvain : to do = Implémenter le mini jeu de glyphe comme précédemment -->
+
     <button data-go="vert_france_attack_speach">Suite</button>
 </div>
 
 <div class="section" id="bleu_france_attack_speach">
     <p>
-        Bien agent <span class="agentName"></span>, il est maintenant l'heure pour vous l'heure d'allez combattre
+        Bien agent <span class="agentName"></span>, il est maintenant l'heure pour vous d'allez combattre
         l'ennemie sur le terrain en
         reprenant le contrôle de plusieurs portails contrôlé par des agent Illuminés, afin de lutter aux côtés de la
-        Résistance
-        et de protéger l'humanité.
+        Résistance et de protéger l'humanité.
     </p>
 
     <button data-go="bleu_france_attack"> Aller sur le terrain</button>
@@ -428,11 +431,10 @@
 
 <div class="section" id="vert_france_attack_speach">
     <p>
-        Bien agent <span class="agentName"></span>, il est maintenant l'heure pour vous l'heure d'allez combattre
+        Bien agent <span class="agentName"></span>, il est maintenant l'heure pour vous d'allez combattre
         l'ennemie sur le terrain en
         reprenant le contrôle de plusieurs portails contrôlé par des agent Illuminés, afin de lutter aux côtés de la
-        Résistance
-        et de protéger l'humanité.
+        Résistance  et de protéger l'humanité.
     </p>
 
     <button data-go="vert_france_attack"> Aller sur le terrain</button>
@@ -440,11 +442,11 @@
 
 <div class="section" id="bleu_france_attack">
     <p>
-        Alors que vous étiez en train de détruire un portail vert, contrôllé par les Illuminés, vous recevez
+        Alors que vous êtes en train de détruire un portail vert, contrôllé par les Illuminés, vous recevez
         une alerte sur votre scanner, signalant l'approche de plusieurs agent Illuminés.
     </p>
 
-    <button data-go="bleu_france_after_attack_stay">Rester et continuer à hacker les portails des Illuminés</button>
+    <button data-go="bleu_france_after_attack_stay">Rester et continuer à hacker le portail des Illuminés</button>
     <button data-go="bleu_france_after_attack_run">Courir (et tenter de s'enfuir)</button>
 </div>
 
@@ -452,10 +454,10 @@
     <p>
         Alors que vous étiez en train de détruire un portail bleu, contrôllé par les membre de la Résistance, vous
         recevez
-        une alerte sur votre scanner, signalant l'approche de plusieurs agent de la Résistance.
+        une alerte sur votre scanner, signalant l'approche de plusieurs agent Résistants.
     </p>
 
-    <button data-go="vert_france_after_attack_stay">Rester et continuer à hacker les portails de la Résistance</button>
+    <button data-go="vert_france_after_attack_stay">Rester et continuer à hacker le portail de la Résistance</button>
     <button data-go="bleu_france_after_attack_run">Courir (et tenter de s'enfuir)</button>
 </div>
 
@@ -485,7 +487,7 @@
 <div class="section" id="vert_france_after_attack_stay">
     <p>
         Des agents de la Résistance commencent à vous encercler, vous confisque votre scanner, vous mettant ainsi
-        hors d'état de nuire ou de rentrer en contact avec la Résistance.
+        hors d'état de nuire ou de rentrer en contact avec les Illuminés.
     </p>
 
     <button data-go="vert_lutte">Lutter et tenter de s'enfuir</button>
@@ -494,14 +496,14 @@
 
 <div class="section" id="bleu_lutte">
     <p>
-        Votre lutte et votre tentaive de vous enfuir sont un véritable échec ! Les agents illuminés vous ratrappent
-        et vous assoment. <br>
-        Vous réveillez alors dans une pièce sombre. Dans le contre jour, vous pouvez observez un garde Illuminés qui
+        Votre lutte et votre tentative pour vous enfuir sont un véritable échec ! Les agents Illuminés vous ratrappent
+        et vous assomment. <br>
+        Vous vous réveillez alors dans une pièce sombre. Dans le contre jour, vous pouvez observez un garde Illuminé qui
         semble sur le point de s'endormir
     </p>
 
-    <button data-go="bleu_lutte_run">Attendre et voir ce qu'il peux bien se passer</button>
-    <button data-go="bleu_lutte_wait">Attendre et tenter de s'évader une fois le garde endormis</button>
+    <button data-go="bleu_lutte_wait">Attendre et voir ce qu'il peux bien se passer</button>
+    <button data-go="bleu_lutte_run">Attendre et tenter de s'évader une fois le garde endormis</button>
 </div>
 
 <div class="section" id="bleu_lutte_wait">
@@ -511,7 +513,7 @@
         <br>
         Mais, alors que vous alliez vous évanouir, un agent arrive et commence à neutraliser les agents Illuminés
         présent. Devant vos yeux ahuris,
-        il vous dévoile une marque que vous reconaissez comme une marque de la Résistance ! Un agent infiltré est venu à
+        il vous dévoile une marque que vous reconnaissez comme une marque de la Résistance ! Un agent infiltré est venu à
         votre secours.
     </p>
 
@@ -526,7 +528,7 @@
         <br>
         Mais, alors que vous alliez vous évanouir, un agent arrive et commence à neutraliser les agents de la Résistance
         présent. Devant vos yeux ahuris,
-        il vous dévoile une marque que vous reconaissez comme une marque des agents Illuminés ! Un agent infiltré est
+        il vous dévoile une marque que vous reconnaissez comme une marque des agents Illuminés ! Un agent infiltré est
         venu à votre secours !
     </p>
 
@@ -536,7 +538,7 @@
 
 <div class="section" id="bleu_lutte_rien_parler">
     <p>
-        L'agent vous révèle alors qu'il est venu dérober les plans des futurs raids des Illuminés
+        L'agent vous révèle alors qu'il est venu dérober les plans des futurs raids des Illuminés.
     </p>
 
     <button data-go="bleu_lutte_rien_rien"> Ne rien faire et retourner à la surface</button>
@@ -545,7 +547,7 @@
 
 <div class="section" id="vert_lutte_rien_parler">
     <p>
-        L'agent vous révèle alors qu'il est venu dérober les plans des futurs raids des Illuminés
+        L'agent vous révèle alors qu'il est venu dérober les plans des futurs raids de la Résistance.
     </p>
 
     <button data-go="vert_lutte_rien_rien"> Ne rien faire et retourner à la surface</button>
@@ -554,7 +556,7 @@
 
 <div class="section" id="vert_lutte">
     <p>
-        Votre lutte et votre tentaive de vous enfuir sont un véritabl e échec ! Les agents de la résistance vous
+        Votre lutte et votre tentaive de vous enfuir sont un véritable échec ! Les agents de la Résistance vous
         ratrappent
         et vous assoment. <br>
         Vous réveillez alors dans une pièce sombre. Dans le contre jour, vous pouvez observez un garde Résistant qui
@@ -579,7 +581,7 @@
 <div class="section" id="vert_lutte_run">
     <p>
         Une fois le garde endormis et grâce à de nombreuses gesticulations, vous êtes libre ! En arpentant les couloirs
-        du quartier des Illuminés, vous vous retrouvez nez à nez avec un agent portant les couleurs de la
+        du quartier de la Résistance, vous vous retrouvez nez à nez avec un agent portant les couleurs de la
         Résistance.
     </p>
 
@@ -612,7 +614,7 @@
     <p>
         Il vous révèle alors qu'il est en mission en tant qu'agent infiltré pour récupérer les plans d'attaque des
         futurs
-        raid des Illuminés, et vous propose
+        raid des Résistants, et vous propose
         de l'accompagner dans sa mission
     </p>
 
@@ -636,7 +638,7 @@
 
 <div class="section" id="vert_lutte_rien_rien">
     <p>
-        Vous retournez sain et sauf à la surface et rejoignez les membres de la Résistance. De nouvelles s'aventures
+        Vous retournez sain et sauf à la surface et rejoignez les Illuminés. De nouvelles s'aventures
         s'offrent à vous.
         <br>
         Cette fois, faites attention à vos choix, vous connaissez maintenant que même la plus petite des actions peut
@@ -812,7 +814,7 @@
 <div class="section" id="bleu_calme_change_ask">
     <p>
         L'agent vous révèle alors qu'il est en mission en tant qu'agent infiltré pour récupérer les plans d'attaque des
-        futurs raid des Illuminés, et vous propose de l'accompagner dans sa mission
+        futurs raid des Illuminés, et vous propose de l'accompagner dans sa mission.
     </p>
 
     <button data-go="bleu_calme_reunion"> Refuser et passer votre chemin</button>
@@ -822,7 +824,7 @@
 <div class="section" id="vert_calme_change_ask">
     <p>
         L'agent vous révèle alors qu'il est en mission en tant qu'agent infiltré pour récupérer les plans d'attaque des
-        futurs raid des Illuminés, et vous propose de l'accompagner dans sa mission
+        futurs raid de la Résistance, et vous propose de l'accompagner dans sa mission.
     </p>
 
     <button data-go="vert_calme_reunion"> Refuser et passer votre chemin</button>
@@ -832,7 +834,7 @@
 <div class="section" id="bleu_calme_change_reveal">
     <p>
         Vous revelez à l'agent que vous êtes devenu un agent infiltré suite à une menace des Illuminés, vous forçant à
-        devenir un agent Illuminés.
+        devenir un agent Illuminé.
     </p>
 
     <button data-go="bleu_calme_change_ask"> Demander la raison de sa venue</button>
@@ -868,9 +870,9 @@
 
 <div class="section" id="vert_calme_away">
     <p>
-        Vous passez discrètement votre route en espérant qu'aucun Illuminé n'a entendu vos propos. Vos pas finissent par
+        Vous passez discrètement votre route en espérant qu'aucun Résistant n'a entendu vos propos. Vos pas finissent par
         vous
-        conduire dans une grande salle de réunion où tous les leaders Illuminés se trouvent, parlant de leurs futurs
+        conduire dans une grande salle de réunion où tous les leaders de la Résistance se trouvent, parlant de leurs futurs
         plans d'action.
     </p>
     <p>
@@ -880,7 +882,7 @@
     <button data-go="vert_calme_find"> Partir à la recherche de l'agent infiltré pour lui transmettre les informations
         que vous venez d'apprendre
     </button>
-    <button data-go="vert_calme_escape"> Quitter vite les lieux et partir à la recherche de la Résistance</button>
+    <button data-go="vert_calme_escape"> Quitter vite les lieux et partir à la recherche des Illuminés</button>
 </div>
 
 <div class="section" id="bleu_calme_find">
@@ -937,7 +939,7 @@
     <p>
         Les informations que vous venez de transmettre aux Illuminés a permi de renverser le cours de la guerre, et de
         vaincre la Résistance
-        . Grâce à vous, le monde est de nouveau en paix.
+        .Grâce à vous, le monde est de nouveau en paix.
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
@@ -992,13 +994,13 @@
 
 <div class="section" id="vert_calme_devoiler">
     <p>
-        Grâce à vos révélations par rapport à la Résistance, les Illuminés prennent le dessus sur le cours de la guerre,
-        entrainant leur victoire et celles des Shappers.
+        Grâce à vos révélations par rapport à la Résistance, les membres de la Résistance prennent le dessus sur le cours de la guerre,
+        entrainant leur victoire et la fin des Shappers.
     </p>
     <p>
-        Mais la victoire des Illuminés ne veux pas pour autant signifier une fin heureuse pour vous. Le soir de la
+        Mais la victoire de la Résistance ne veux pas pour autant signifier une fin heureuse pour vous. Le soir de la
         réunion,
-        un agent Résistant infiltré ayant appris votre trahison vous neutralise pendant votre sommeil.
+        un agent Illuminé infiltré ayant appris votre trahison vous neutralise pendant votre sommeil.
     </p>
     <button data-go="stop_game">Fin du jeu</button>
     <button data-go="intro">Recommencer depuis le début</button>
@@ -1040,7 +1042,20 @@
 
 <div class="section" id="vert_calme_the_end">
     <p>
-        Les Illuminés vous suspectent d'être toujours fidèle aux Illuminés et préfèrent vous neutraliser.
+        Les membres de la Résistance vous suspectent d'être toujours fidèle aux Illuminés et préfèrent vous neutraliser.
+    </p>
+
+    <button data-go="stop_game">Fin du jeu</button>
+    <button data-go="intro">Recommencer depuis le début</button>
+    <button data-go="ceremonie_choix">Recommencer depuis le début(mais en passant l'introduction)</button>
+</div>
+
+<div class="section" id="no_more_xm">
+    <p>
+        Vous avez malheureusement perdus tout l'XM que vous aviez.
+    </p>
+    <p>
+        Un agent ne possédant plus d'Xm perds son status d'agent. L'aventure s'arrête donc ici pour vous.
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
