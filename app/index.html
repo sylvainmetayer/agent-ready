@@ -54,6 +54,37 @@
     </div>
 </div>
 
+<div class="section" id="glyphGame">
+    <p>
+        Jouez pour gagner <span class="itemCount"></span> <span class="itemWon"></span> !
+    </p>
+
+    <action name="glyph" level="4" itemWon="resonateur" itemCount="4" time="2500"></action>
+
+    <button data-go="">
+        Bravo ! En avant, continuons !
+    </button>
+</div>
+
+<div class="section" id="deploy">
+    <action name="deploy" item="resonateur" looseXMPerDeploy="1"></action>
+
+    <div class="image"></div>
+
+    <p class="success">
+        Bravo ! Vous avez déployé avec succès un portail !
+    </p>
+
+    <p class="warningStuff">
+        Attention, vous n'avez plus assez de "<span class="item"></span>" ! <br/>
+        Faites un glyph avec le bouton ci-dessous pour en récupérer !
+    </p>
+
+    <button data-go="">Déployer un "<span class="item"></span>" sur le portail</button>
+    <button data-go="glyphGame" data-next="deploy">En manque de "<span class="item"></span>" ?</button>
+    <button data-go="">Continuer l'aventure !</button>
+</div>
+
 <div class="section" id="intro">
     <h2>Agent Ready, an Ingress Story</h2>
 
@@ -179,40 +210,8 @@
         Pour déployer totalement un portail, il vous faut déployer 8 résonateurs. C'est à vous !
     </p>
 
-    <button data-go="bleu_deploy">Déployer</button>
+    <button data-go="deploy" data-next="bleu_glyphe">Déployer</button>
 
-</div>
-
-<div class="section" id="bleu_deploy">
-    <action name="deploy" item="resonateur" looseXMPerDeploy="1"></action>
-
-    <div class="image"></div>
-
-    <p class="success">
-        Bravo ! Vous avez déployé avec succès un portail !
-    </p>
-
-    <p class="warningStuff">
-        Attention, vous n'avez plus assez de "<span class="item"></span>" ! <br/>
-        Faites un glyph avec le bouton ci-dessous pour en récupérer !
-    </p>
-
-    <button data-go="">Déployer un "<span class="item"></span>" sur le portail</button>
-    <button data-go="bleu_deploy_need_stuff">En manque de "<span class="item"></span>" ?</button>
-    <button data-go="bleu_glyphe">Continuer l'aventure !</button>
-</div>
-
-<div class="section" id="bleu_deploy_need_stuff">
-
-    <p>
-        En manque d'items ?
-    </p>
-
-    <action name="glyph" level="4" itemWon="resonateur" itemCount="4" time="2500"></action>
-
-    <button data-go="bleu_deploy">
-        Bravo ! Utilisez ces résonateurs fraichement acquis et finissez de déployer le portail !
-    </button>
 </div>
 
 <div class="section" id="bleu_glyphe">
@@ -239,17 +238,7 @@
         Toute cette histoire commence à vous effrayer, et vous décider de vous enfuir en
         courant au loin
     </button>
-    <button data-go="bleu_destination_hack">Allons y !</button>
-
-</div>
-
-<div class="section" id="bleu_destination_hack">
-
-    <action name="glyph" level="4" itemWon="resonateur" itemCount="4" time="2500"></action>
-
-    <button data-go="bleu_destination">
-        Félicitations ! Continuez l'aventure !
-    </button>
+    <button data-go="glyphGame" data-next="bleu_destination">Allons y !</button>
 
 </div>
 
@@ -295,39 +284,7 @@
         Pour déployer totalement un portail, il vous faut déployer 8 résonateurs. C'est à vous !
     </p>
 
-    <button data-go="vert_deploy">Déployer</button>
-</div>
-
-<div class="section" id="vert_deploy">
-    <action name="deploy" item="resonateur" looseXMPerDeploy="1"></action>
-
-    <div class="image"></div>
-
-    <p class="success">
-        Bravo ! Vous avez déployé avec succès un portail !
-    </p>
-
-    <p class="warningStuff">
-        Attention, vous n'avez plus assez de "<span class="item"></span>" ! <br/>
-        Faites un glyph avec le bouton ci-dessous pour en récupérer !
-    </p>
-
-    <button data-go="">Déployer un "<span class="item"></span>" sur le portail</button>
-    <button data-go="vert_deploy_need_stuff">En manque de "<span class="item"></span>" ?</button>
-    <button data-go="vert_glyphe">Continuer l'aventure !</button>
-</div>
-
-<div class="section" id="vert_deploy_need_stuff">
-
-    <p>
-        En manque d'items ?
-    </p>
-
-    <action name="glyph" level="4" itemWon="resonateur" itemCount="4" time="2500"></action>
-
-    <button data-go="vert_deploy">
-        Bravo ! Utilisez ces résonateurs fraichement acquis et finissez de déployer le portail !
-    </button>
+    <button data-go="deploy" data-next="vert_glyphe">Déployer</button>
 </div>
 
 <div class="section" id="vert_glyphe">
@@ -350,17 +307,7 @@
         Toute cette histoire commence à vous effrayer, et vous décider de vous enfuir en
         courant au loin
     </button>
-    <button data-go="vert_destination_hack">Allons y !</button>
-</div>
-
-<div class="section" id="vert_destination_hack">
-
-    <action name="glyph" level="4" itemWon="resonateur" itemCount="4" time="2500"></action>
-
-    <button data-go="vert_destination">
-        Félicitations ! Continuez l'aventure !
-    </button>
-
+    <button data-go="glyphGame" data-next="vert_destination">Allons y !</button>
 </div>
 
 <div class="section" id="bleu_destination">

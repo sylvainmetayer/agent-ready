@@ -247,7 +247,7 @@ $(document).ready(function () {
      *  Action element.
      * @see actions.md for details about availables actions.
      */
-    function handleSingleAction(action) {
+    function handleSingleAction(action, next) {
         let actionName = action.attr("name");
         let showInto;
         let item;
@@ -272,11 +272,16 @@ $(document).ready(function () {
                 break;
             case "glyph":
 
+                if (next == false) {
+                    alert("Sorry, there is an error.");
+                    location.reload();
+                }
+
                 let glyphLevel = parseInt(action.attr("level"));
                 let itemWon = action.attr("itemWon");
                 let itemCount = action.attr("itemCount");
                 let time = action.attr("time");
-                launchGlyphGame(glyphLevel, $(action), itemCount, itemWon, time);
+                launchGlyphGame(glyphLevel, $(action), itemCount, itemWon, time, next);
                 break;
             case "cssUpdate":
 
@@ -331,6 +336,13 @@ $(document).ready(function () {
                 if (divImage.children().size() == 0) {
                     // Starting deploy
                     updateImage("add", divImage, item["name"] + "/0.png", item["name"] + "_0", undefined);
+
+                    if (next == false) {
+                        alert("Oops, an error. Sorry about that");
+                        location.reload();
+                    }
+
+                    buttonsAction.last().data("go", next);
                 } else if (item["count"] <= 0) {
                     messageNoMoreStuff.find(".item").html(item["name"]);
                     messageNoMoreStuff.show();
@@ -470,13 +482,23 @@ $(document).ready(function () {
      *  Item that will be won
      * @param time
      * How long the solution will be shown ?
+     * @param next Used to determine what comes next (which section to show after this minigame)
      */
-    function launchGlyphGame(level, action, itemCount, itemWon, time) {
-        console.log(action);
+    function launchGlyphGame(level, action, itemCount, itemWon, time, next) {
+
+        if (next == false) {
+            alert("Oops, an error. Sorry :(");
+            location.reload();
+        }
+
         let section = action.parent(".section");
-        let buttons = action.siblings("button");
+        let button = action.siblings("button");
         section.append("<div id='glyphGame'></div>");
-        buttons.hide();
+        button.hide();
+
+        button.data("go", next);
+        section.find("span.itemCount").html(itemCount);
+        section.find("span.itemWon").html(itemWon);
 
         // Get glyph of level x
         let glyphsFilterLevel = $(glyph).filter(function () {
@@ -487,14 +509,10 @@ $(document).ready(function () {
         let randomNumber = getRandom(0, glyphsFilterLevel.size() - 1);
         let glyphSelected = glyphsFilterLevel.get(randomNumber).order;
 
-        console.log(glyphSelected);
-
         // Create pictures and affect order
         createPictures(glyphSelected, $("#glyphGame"));
         let glyphPictures = $("img.glyphPictures");
         showSolution(time, $(glyphPictures), level);
-
-        console.log(glyphPictures);
 
         let order = 1;
 
@@ -523,7 +541,7 @@ $(document).ready(function () {
                 setXM(XM_INITIAL_VALUE);
                 updateItem(itemWon, itemCount);
                 section.find("ol").remove();
-                buttons.show();
+                button.show();
             }
         });
     }
@@ -532,14 +550,15 @@ $(document).ready(function () {
      * Handle multiple actions, one after the others.
      * @param key
      *  Section id
+     * @param next Used in somes case to handle next move
      */
-    function handleActions(key) {
+    function handleActions(key, next) {
         let actions = $("#" + key).find("action");
         if (actions.size() == 0)
             return;
 
         actions.each(function (index, action) {
-            handleSingleAction($(action));
+            handleSingleAction($(action), next);
         });
     }
 
@@ -549,13 +568,18 @@ $(document).ready(function () {
      *  Section id
      * @param withLife
      *  Should we display status div ? Default true.
+     * @param next
+     *  Used in some case, to indicate the destination after handling the action
      */
-    function gotoSection(key, withLife) {
+    function gotoSection(key, withLife, next) {
 
         if (withLife === undefined)
             withLife = true;
 
-        handleActions(key);
+        if (next == undefined)
+            next = false;
+
+        handleActions(key, next);
         setXM(getXM());
         updateInventory();
 
@@ -635,7 +659,7 @@ $(document).ready(function () {
      * Click on button
      */
     buttons.click(function () {
-        gotoSection($(this).data("go"));
+        gotoSection($(this).data("go"), undefined, $(this).data("next"));
     });
 
     // Enable key navigation & some others features.
@@ -654,7 +678,7 @@ $(document).ready(function () {
         // Get active button inside current section.
         $(".section:visible button:visible").each(function () {
             if ($(this).data("charCode") == keyCode) {
-                gotoSection($(this).data("go"));
+                gotoSection($(this).data("go"), undefined, $(this).data("next"));
             }
         });
 
