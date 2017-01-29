@@ -6,8 +6,17 @@ IUT de Bordeaux - 2016-2017
 
 ## Authors
 
-- Tiphaine GIRARDOT
-- Sylvain METAYER
+- Tiphaine GIRARDOT - Story, Design and development
+- Sylvain METAYER - Development
+
+## Instructions
+
+Handle automatics actions, hits, life, a 15-20 sections' scenario, and at least 2 more functionality.
+
+- CSS/HTML must be cohrent with your story 
+- To return your project, send an email ([sbenard@mtwin.fr](mailto:sbenard@mtwin.fr)) with the solution.
+- The subject of the mail must be "SWORD Name 1, Name 2". 
+- The project must be return as ZIP, URL, or attachments.
 
 ## Requirements
 
@@ -107,7 +116,37 @@ Contains a list of random name, that will be used if the player don't want to se
 
 Contains all glyph sequences that will be used in the glyph game. You can defined new sequences here.
 
-Please keep in mind that pictures are stored in `img/glyph` folder.
+A glyph sequency **must** look like this.
+
+```console
+"sequence_4_1": {
+    "level": 4, // Level of the glyph. X images will be displayed.
+    "order": {
+      "1": {
+        "order": "1", // Order to complete the glyph.
+        "src": "gain.png", // Src of the image.
+        "name": "Gain" // Name that will be displayed
+      },
+      "2": {
+        "order": "2",
+        "src": "portal.png",
+        "name": "Portal"
+      },
+      "3": {
+        "order": "3",
+        "src": "attack.png",
+        "name": "Attack"
+      },
+      "4": {
+        "order": "4",
+        "src": "weak.png",
+        "name": "Weak"
+      }
+    }
+  },
+```
+
+Please keep in mind that pictures are stored in the `app/images/glyph` folder.
 
 ## Sources
 
