@@ -15,7 +15,8 @@
     <link rel="apple-touch-icon" sizes="144x144" href="//sylvainmetayer.github.io/agent-ready/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="//sylvainmetayer.github.io/agent-ready/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="//sylvainmetayer.github.io/agent-ready/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="//sylvainmetayer.github.io/agent-ready/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192"
+          href="//sylvainmetayer.github.io/agent-ready/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="//sylvainmetayer.github.io/agent-ready/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="//sylvainmetayer.github.io/agent-ready/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="//sylvainmetayer.github.io/agent-ready/favicon-16x16.png">
@@ -230,10 +231,6 @@
         vous.
     </p>
 
-    <!--Sylvain : to do =  mini jeu des glyphes ici. Tant qu'il n'est pas réussis, on ne passe pas
-                           à la suite du jeu. Perte de l'xm à chaque fois qu'il fail.
-                           Si le joueur n'as plus d'XM, l'id a afficher est la suivante : "no_more_xm"-->
-
     <button data-go="glyph_fail_run">
         Toute cette histoire commence à vous effrayer, et vous décider de vous enfuir en
         courant au loin
@@ -358,7 +355,7 @@
         vous.
     </p>
 
-    <button data-go="bleu_france_portal">Capturer le portail</button>
+    <button data-go="deploy" data-next="bleu_france_portal">Capturer le portail</button>
 </div>
 
 <div class="section" id="vert_france">
@@ -379,35 +376,29 @@
         vous.
     </p>
 
-    <button data-go="vert_france_portal">Capturer le portail</button>
+    <button data-go="deploy" data-next="vert_france_portal">Capturer le portail</button>
 </div>
 
 <div class="section" id="bleu_france_portal">
 
-    <!--Sylvain : to do = Implémenter le mini jeu du hack comme précédemment -->
+    <p>
+        Bravo ! Vous avez déjà fait la moitié du chemin. <br/> Il ne vous reste plus qu'à hacker ce portail fraichement
+        déployé.
 
-    <button data-go="bleu_france_glyphe">Hacker le portail</button>
+    </p>
+
+    <button data-go="glyphGame" data-next="bleu_france_attack_speach">Hacker le portail</button>
 </div>
 
 <div class="section" id="vert_france_portal">
 
-    <!--Sylvain : to do = Implémenter le mini jeu du hack comme précédemment -->
+    <p>
+        Bravo ! Vous avez déjà fait la moitié du chemin. <br/> Il ne vous reste plus qu'à hacker ce portail fraichement
+        déployé.
 
-    <button data-go="vert_france_glyphe">Hacker le portail</button>
-</div>
+    </p>
 
-<div class="section" id="bleu_france_glyphe">
-
-    <!--Sylvain : to do = Implémenter le mini jeu de glyphe comme précédemment -->
-
-    <button data-go="bleu_france_attack_speach">Suite</button>
-</div>
-
-<div class="section" id="vert_france_glyphe">
-
-    <!--Sylvain : to do = Implémenter le mini jeu de glyphe comme précédemment -->
-
-    <button data-go="vert_france_attack_speach">Suite</button>
+    <button data-go="glyphGame" data-next="vert_france_attack_speach">Hacker le portail</button>
 </div>
 
 <div class="section" id="bleu_france_attack_speach">
