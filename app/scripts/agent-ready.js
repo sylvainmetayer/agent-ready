@@ -472,6 +472,7 @@ $(document).ready(function () {
      * How long the solution will be shown ?
      */
     function launchGlyphGame(level, action, itemCount, itemWon, time) {
+        console.log(action);
         let section = action.parent(".section");
         let buttons = action.siblings("button");
         section.append("<div id='glyphGame'></div>");
@@ -486,10 +487,14 @@ $(document).ready(function () {
         let randomNumber = getRandom(0, glyphsFilterLevel.size() - 1);
         let glyphSelected = glyphsFilterLevel.get(randomNumber).order;
 
+        console.log(glyphSelected);
+
         // Create pictures and affect order
         createPictures(glyphSelected, $("#glyphGame"));
         let glyphPictures = $("img.glyphPictures");
         showSolution(time, $(glyphPictures), level);
+
+        console.log(glyphPictures);
 
         let order = 1;
 

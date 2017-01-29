@@ -96,48 +96,6 @@
     <action name="start"></action>
 
     <button data-go="intro_2">Suite</button>
-    <button data-go="testDivers">Zone de test (ne pas toucher)</button>
-</div>
-
-<div class="section" id="testDivers">
-
-    <action name="deploy" item="resonateur" looseXMPerDeploy="1"></action>
-
-    <div class="image"></div>
-
-    <p class="success">
-        Bravo ! Vous avez déployé avec succès un portail !
-    </p>
-
-    <p class="warningStuff">
-        Attention, vous n'avez plus assez de "<span class="item"></span>" ! <br/>
-        Faites un glyph avec le bouton ci-dessous pour en récupérer !
-    </p>
-
-    <button data-go="testDivers">Déployer un résonateur sur le portail</button>
-    <button data-go="glyphWhileDeploy">Récupérer du matos !</button>
-    <button data-go="LePortailEstCompletOnPasseALaSuite">Je m'affiche lorsque le portail est déployé !</button>
-</div>
-
-<div class="section" id="glyphWhileDeploy">
-
-    <p>
-        En manque d'items ? Hackez donc le portail devant vous, vous pourrez gagner jusqu'à 4 résonateurs si vous le
-        réussissez du premier coup !
-    </p>
-
-    <action name="glyph" level="4" itemWon="resonateur" itemCount="4" time="2500"></action>
-
-    <button data-go="testDivers">
-        Bravo ! Utilisez ces résonateurs fraichement acquis et finissez de déployer le portail !
-    </button>
-</div>
-
-<div class="section" id="LePortailEstCompletOnPasseALaSuite">
-
-    Je suis la section qui s'affiche après avoir réussi à déployer un portail.
-
-    <button data-go="intro">Je ne suis qu'un test, retourne donc à l'accueil</button>
 </div>
 
 <div class="section" id="intro_2">
@@ -191,7 +149,6 @@
     <button data-go="bleu_hack" id="i_am_resistant">La Résistance</button>
     <button data-go="vert_hack" id="i_am_enl">Les Illuminés</button>
 </div>
-
 
 <div class="section" id="bleu_hack">
 
@@ -258,45 +215,6 @@
     </button>
 </div>
 
-
-<div class="section" id="vert_hack">
-
-    <action name="setFaction" resistant="false" showInto=".factionName"></action>
-
-    <p>
-        Bienvenue agent <span class="agentName"></span> chez les Illuminés . Maintenant, place à
-        votre initiation
-    </p>
-
-    <p>
-        Devant vous se trouve un portail. Sa couleur indique qu'il est neutre pour l'instant. C'est une source
-        d'XM pure, contrôlé par aucune faction pour l'instant. Votre devoir, en temps que nouvel agent, est de le
-        capturer pour qu'il serve la cause des Illuminés et des Shapers. Une fois capturé, il sera vert, et pour pouvoir
-        en récupérer les données, il faudra le hacker. Pour réussir un hack, il vous faut réussir l'épreuve des glyphes.
-        Mais commencez par le capturer.
-    </p>
-
-    <p class="info">
-        Pour capturer le portail, utilisez les résonnateurs présent dans votre inventaire. Au début du jeu,
-        10 résonnateurs vous sont offerts pour découvrir le jeu, mais pourront ensuite être gagner via le mini jeu des
-        glyphes.
-    </p>
-
-    <p class="info">
-        Pour capturer le portail et déployer des résonnateurs, appuyer sur le bouton "Déployer". Un seul résonnateur est
-        suffisant pour capturer un portail, mais vous pouvez en déployer jusqu'à 8.
-    </p>
-
-    <!--Sylvain : to do = Afficher le portail et attribuer 15 résonnateurs au joueur -->
-
-    <!--Sylvain : to do = afficher le boutton pour deployer le portail. On ne doit pas pouvoir passer à la suite
-                          tant que le portail n'a pas au moins un réso de mis.
-                          Faire baisser l'XM à chaque fois qu'un réso est mis, mais je me doute que tu l'as déjà fait
-                          car tu es le meilleur ;) -->
-
-    <button data-go="vert_glyphe">Hacker le portail</button>
-</div>
-
 <div class="section" id="bleu_glyphe">
     <p>Bien, votre premier portail est enfin déployé. Maintenant, hackez le pour récupérer des items, en cliquant sur le
         bouton hack</p>
@@ -347,25 +265,102 @@
 
 </div>
 
+<div class="section" id="vert_hack">
+
+    <action name="setFaction" resistant="false" showInto=".factionName"></action>
+    <action name="itemUpdate" item="resonateur" count="10"></action>
+
+    <p>
+        Bienvenue agent <span class="agentName"></span> dans la Résistance . <br/>
+        Maintenant, place à votre initiation.
+    </p>
+
+    <p>
+        Devant vous se trouve un portail. Sa couleur indique qu'il est neutre pour l'instant.
+        <br/>
+        C'est une source d'XM pure qui n'est contrôlée par aucune faction pour le moment. Votre devoir, en temps que
+        nouvel agent, est de le capturer pour qu'il serve la cause des Illuminés et des Shapers. Une fois capturé, il
+        sera vert, et
+        pour pouvoir en récupérer les données, il faudra le hacker. Pour réussir un hack, il vous faut réussir l'épreuve
+        des glyphes. Mais commencez par le capturer.
+    </p>
+
+    <p class="info">
+        Pour capturer le portail, utilisez les résonateurs présent dans votre inventaire. Au début du jeu,
+        10 résonateurs vous sont offerts pour découvrir le jeu, mais il vous faudra ensuite les gagner via le mini-jeu
+        des glyphes.
+    </p>
+
+    <p class="info">
+        Pour déployer totalement un portail, il vous faut déployer 8 résonateurs. C'est à vous !
+    </p>
+
+    <button data-go="vert_deploy">Déployer</button>
+</div>
+
+<div class="section" id="vert_deploy">
+    <action name="deploy" item="resonateur" looseXMPerDeploy="1"></action>
+
+    <div class="image"></div>
+
+    <p class="success">
+        Bravo ! Vous avez déployé avec succès un portail !
+    </p>
+
+    <p class="warningStuff">
+        Attention, vous n'avez plus assez de "<span class="item"></span>" ! <br/>
+        Faites un glyph avec le bouton ci-dessous pour en récupérer !
+    </p>
+
+    <button data-go="">Déployer un "<span class="item"></span>" sur le portail</button>
+    <button data-go="vert_deploy_need_stuff">En manque de "<span class="item"></span>" ?</button>
+    <button data-go="vert_glyphe">Continuer l'aventure !</button>
+</div>
+
+<div class="section" id="vert_deploy_need_stuff">
+
+    <p>
+        En manque d'items ?
+    </p>
+
+    <action name="glyph" level="4" itemWon="resonateur" itemCount="4" time="2500"></action>
+
+    <button data-go="vert_deploy">
+        Bravo ! Utilisez ces résonateurs fraichement acquis et finissez de déployer le portail !
+    </button>
+</div>
+
 <div class="section" id="vert_glyphe">
-    <p>Bien, votre premier portail est enfin déployé. Maintenant, hackez le en cliquant sur le bouton hack</p>
+    <p>Bien, votre premier portail est enfin déployé. Maintenant, hackez le pour récupérer des items, en cliquant sur le
+        bouton hack</p>
 
     <p class="info">
         Pour pouvoir hacker un portail, vous devez passer l’épreuve des glypes. L’épreuve est assez simple,
         vous devez simplement mémoriser une série aléatoire de glyphes pour ensuite les remettre dans l’ordre avec les
-        images qui vous seront proposer.
+        images qui vous seront proposées.
     </p>
 
     <p class="info">
-        Un échec à cette épreuve ne vous rapportera aucun matériel et vous fera perdre de l'XM. Si jamais votre
-        niveau d'XM atteinds 0, vous perdez votre status d'agent et l'histoire s'arretera alors pour vous.
+        Un échec à cette épreuve ne vous rapportera moins (voir pas) d'items et vous fera perdre de l'XM.<br/>
+        Si jamais votre niveau d'XM atteind 0, vous perdez votre statut d'agent et l'histoire s'arretera pour
+        vous.
     </p>
 
-    <!--Sylvain : to do =  mini jeu des glyphes ici. Tant qu'il n'est pas réussis, on ne passe pas
-                           à la suite du jeu. Perte de l'xm à chaque fois qu'il fail.
-                           Si le joueur n'as plus d'XM, l'id a afficher est la suivante : "no_more_xm"-->
+    <button data-go="glyph_fail_run">
+        Toute cette histoire commence à vous effrayer, et vous décider de vous enfuir en
+        courant au loin
+    </button>
+    <button data-go="vert_destination_hack">Allons y !</button>
+</div>
 
-    <button data-go="vert_destination">Suite</button>
+<div class="section" id="vert_destination_hack">
+
+    <action name="glyph" level="4" itemWon="resonateur" itemCount="4" time="2500"></action>
+
+    <button data-go="vert_destination">
+        Félicitations ! Continuez l'aventure !
+    </button>
+
 </div>
 
 <div class="section" id="bleu_destination">
