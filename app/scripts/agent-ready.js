@@ -284,6 +284,9 @@ $(document).ready(function () {
                 break;
             case "setAgentName":
 
+                if (agentName != undefined)
+                    break;
+
                 let message = action.attr("message");
                 agentName = prompt(message);
                 if (agentName == undefined || agentName.length <= 0)
@@ -312,6 +315,13 @@ $(document).ready(function () {
                 let messageSuccess = action.siblings(".success");
                 let messageNoMoreStuff = action.siblings(".warningStuff");
 
+                action.parent(".section").find("span.item").each(function () {
+                    $(this).html(item["name"]);
+                });
+
+                // Set deploy items to self.
+                buttonsAction.first().data("go", action.parent(".section").attr("id"));
+
                 // Hide exit and success button
                 messageSuccess.hide();
                 buttonsAction.show();
@@ -338,9 +348,11 @@ $(document).ready(function () {
 
                     if (numberOfResoDeployed >= MAX_RESONATORS) {
                         // End, show exit button and success message
+                        divImage.html("");
                         buttonsAction.hide();
                         buttonsAction.last().show();
                         messageSuccess.show();
+                        setXM(parseInt(getXM() + MAX_RESONATORS)); // Regain MAX_RESONATORS XM
                     }
 
                     if (getXM() <= 0) {
@@ -491,7 +503,7 @@ $(document).ready(function () {
                 itemCount > 0 ? itemCount-- : false;
                 looseXM();
                 if (getXM() <= 0)
-                    endGame();
+                    gotoSection("no_more_xm", false);
                 glyphPictures.css("border", "none");
                 setTimeout(function () {
                     glyphPictures.css("border", "none");
@@ -545,7 +557,7 @@ $(document).ready(function () {
         log && console.log("Display section : " + key);
         showSection(key, withLife);
 
-        if (getXM() <= 0 && key != "death")
+        if (getXM() <= 0 && key != "stop_game" && key != "no_more_xm")
             endGame();
     }
 
@@ -587,7 +599,7 @@ $(document).ready(function () {
      * End game.
      */
     function endGame() {
-        gotoSection("death", false);
+        gotoSection("stop_game", false);
     }
 
     /**
@@ -663,7 +675,6 @@ $(document).ready(function () {
             });
         }
 
-        log && console.log(somethingHappened);
         if (somethingHappened != true) {
             // No Cheat code were used
             resetCounterExcept();

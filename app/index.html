@@ -6,22 +6,22 @@
     <title>Agent Ready</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/images/favicons/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/images/favicons/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
-    <link rel="manifest" href="/images/favicons/manifest.json">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/images/favicons/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
     <!-- build:css styles/main.css -->
@@ -196,42 +196,68 @@
 <div class="section" id="bleu_hack">
 
     <action name="setFaction" resistant="true" showInto=".factionName"></action>
+    <action name="itemUpdate" item="resonateur" count="10"></action>
 
     <p>
-        Bienvenue agent <span class="agentName"></span> dans la Résistance . Maintenant, place à
-        votre initiation.
+        Bienvenue agent <span class="agentName"></span> dans la Résistance . <br/>
+        Maintenant, place à votre initiation.
     </p>
 
     <p>
-        Devant vous se trouve un portail. Sa couleur indique qu'il est neutre pour l'instant. C'est une source
-        d'XM pure, contrôlé par aucune faction pour l'instant. Votre devoir, en temps que nouvel agent, est de le
-        capturer pour qu'il serve la cause de la Résistance. Une fois capturé, il sera bleu, et pour pouvoir en
-        récupérer les
-        données, il faudra le hacker. Pour réussir un hack, il vous faut réussir l'épreuve des glyphes.
-        Mais commencez par le capturer.
+        Devant vous se trouve un portail. Sa couleur indique qu'il est neutre pour l'instant.
+        <br/>
+        C'est une source d'XM pure qui n'est contrôlée par aucune faction pour le moment. Votre devoir, en temps que
+        nouvel agent, est de le capturer pour qu'il serve la cause de la Résistance. Une fois capturé, il sera bleu, et
+        pour pouvoir en récupérer les données, il faudra le hacker. Pour réussir un hack, il vous faut réussir l'épreuve
+        des glyphes. Mais commencez par le capturer.
     </p>
 
     <p class="info">
         Pour capturer le portail, utilisez les résonnateurs présent dans votre inventaire. Au début du jeu,
-        10 résonnateurs vous sont offerts pour découvrir le jeu, mais pourront ensuite être gagner via le mini jeu des
-        glyphes.
+        10 résonateurs vous sont offerts pour découvrir le jeu, mais il vous faudra ensuite les gagner via le mini-jeu
+        des glyphes.
     </p>
 
     <p class="info">
-        Pour capturer le portail et déployer des résonnateurs, appuyer sur le bouton "Déployer". Un seul résonnateur est 
-		suffisant pour capturer un portail, mais vous pouvez en déployer jusqu'à 8.
+        Pour déployer totalement un portail, il vous faut déployer 8 résonateurs. C'est à vous !
     </p>
 
-    <!--Sylvain : to do = Afficher le portail et attribuer 15 résonnateurs au joueur -->
-
-    <!--Sylvain : to do = afficher le boutton pour deployer le portail. On ne doit pas pouvoir passer à la suite
-                          tant que le portail n'a pas au moins un réso de mis.
-                          Faire baisser l'XM à chaque fois qu'un réso est mis, mais je me doute que tu l'as déjà fait
-                          car tu es le meilleur ;) -->
-
-    <button data-go="bleu_glyphe">Hacker le portail</button>
+    <button data-go="bleu_deploy">Déployer</button>
 
 </div>
+
+<div class="section" id="bleu_deploy">
+    <action name="deploy" item="resonateur" looseXMPerDeploy="1"></action>
+
+    <div class="image"></div>
+
+    <p class="success">
+        Bravo ! Vous avez déployé avec succès un portail !
+    </p>
+
+    <p class="warningStuff">
+        Attention, vous n'avez plus assez de "<span class="item"></span>" ! <br/>
+        Faites un glyph avec le bouton ci-dessous pour en récupérer !
+    </p>
+
+    <button data-go="">Déployer un "<span class="item"></span>" sur le portail</button>
+    <button data-go="bleu_deploy_need_stuff">En manque de "<span class="item"></span>" ?</button>
+    <button data-go="bleu_glyphe">Continuer l'aventure !</button>
+</div>
+
+<div class="section" id="bleu_deploy_need_stuff">
+
+    <p>
+        En manque d'items ?
+    </p>
+
+    <action name="glyph" level="4" itemWon="resonateur" itemCount="4" time="2500"></action>
+
+    <button data-go="bleu_deploy">
+        Bravo ! Utilisez ces résonateurs fraichement acquis et finissez de déployer le portail !
+    </button>
+</div>
+
 
 <div class="section" id="vert_hack">
 
@@ -257,8 +283,8 @@
     </p>
 
     <p class="info">
-        Pour capturer le portail et déployer des résonnateurs, appuyer sur le bouton "Déployer". Un seul résonnateur est 
-		suffisant pour capturer un portail, mais vous pouvez en déployer jusqu'à 8.
+        Pour capturer le portail et déployer des résonnateurs, appuyer sur le bouton "Déployer". Un seul résonnateur est
+        suffisant pour capturer un portail, mais vous pouvez en déployer jusqu'à 8.
     </p>
 
     <!--Sylvain : to do = Afficher le portail et attribuer 15 résonnateurs au joueur -->
@@ -272,6 +298,56 @@
 </div>
 
 <div class="section" id="bleu_glyphe">
+    <p>Bien, votre premier portail est enfin déployé. Maintenant, hackez le pour récupérer des items, en cliquant sur le
+        bouton hack</p>
+
+    <p class="info">
+        Pour pouvoir hacker un portail, vous devez passer l’épreuve des glypes. L’épreuve est assez simple,
+        vous devez simplement mémoriser une série aléatoire de glyphes pour ensuite les remettre dans l’ordre avec les
+        images qui vous seront proposées.
+    </p>
+
+    <p class="info">
+        Un échec à cette épreuve ne vous rapportera moins (voir pas) d'items et vous fera perdre de l'XM.<br/>
+        Si jamais votre niveau d'XM atteind 0, vous perdez votre statut d'agent et l'histoire s'arretera pour
+        vous.
+    </p>
+
+    <!--Sylvain : to do =  mini jeu des glyphes ici. Tant qu'il n'est pas réussis, on ne passe pas
+                           à la suite du jeu. Perte de l'xm à chaque fois qu'il fail.
+                           Si le joueur n'as plus d'XM, l'id a afficher est la suivante : "no_more_xm"-->
+
+    <button data-go="glyph_fail_run">
+        Toute cette histoire commence à vous effrayer, et vous décider de vous enfuir en
+        courant au loin
+    </button>
+    <button data-go="bleu_destination_hack">Allons y !</button>
+
+</div>
+
+<div class="section" id="bleu_destination_hack">
+
+    <action name="glyph" level="4" itemWon="resonateur" itemCount="4" time="2500"></action>
+
+    <button data-go="bleu_destination">
+        Félicitations ! Continuez l'aventure !
+    </button>
+
+</div>
+
+<div class="section" id="glyph_fail_run">
+
+    <p>
+        Vous pensiez pouvoir vous échapper facilement. Malheureusement, dans votre course, vous n'avez pas fait
+        attention à la branche devant vous.<br/>
+        Vous tombez par terre, inconscient. L'aventure s'arrête ici.
+    </p>
+
+    <button data-go="stop_game">Fin du jeu</button>
+
+</div>
+
+<div class="section" id="vert_glyphe">
     <p>Bien, votre premier portail est enfin déployé. Maintenant, hackez le en cliquant sur le bouton hack</p>
 
     <p class="info">
@@ -284,28 +360,6 @@
         Un échec à cette épreuve ne vous rapportera aucun matériel et vous fera perdre de l'XM. Si jamais votre
         niveau d'XM atteinds 0, vous perdez votre status d'agent et l'histoire s'arretera alors pour vous.
     </p>
-
-    <!--Sylvain : to do =  mini jeu des glyphes ici. Tant qu'il n'est pas réussis, on ne passe pas
-                           à la suite du jeu. Perte de l'xm à chaque fois qu'il fail.
-                           Si le joueur n'as plus d'XM, l'id a afficher est la suivante : "no_more_xm"-->
-
-    <button data-go="bleu_destination">Suite</button>
-
-</div>
-
-<div class="section" id="vert_glyphe">
-  <p>Bien, votre premier portail est enfin déployé. Maintenant, hackez le en cliquant sur le bouton hack</p>
-
-  <p class="info">
-      Pour pouvoir hacker un portail, vous devez passer l’épreuve des glypes. L’épreuve est assez simple,
-      vous devez simplement mémoriser une série aléatoire de glyphes pour ensuite les remettre dans l’ordre avec les
-      images qui vous seront proposer.
-  </p>
-
-  <p class="info">
-      Un échec à cette épreuve ne vous rapportera aucun matériel et vous fera perdre de l'XM. Si jamais votre
-      niveau d'XM atteinds 0, vous perdez votre status d'agent et l'histoire s'arretera alors pour vous.
-  </p>
 
     <!--Sylvain : to do =  mini jeu des glyphes ici. Tant qu'il n'est pas réussis, on ne passe pas
                            à la suite du jeu. Perte de l'xm à chaque fois qu'il fail.
@@ -356,8 +410,9 @@
 
     <p class="info">
         Ne vous inquiétez pas, si vous ratez une épreuve, vous pourrez toujours la recommencer jusqu'à ce
-        que vous la réussiez, mais comme dis précédement, cela vous couteras de l'XM, et si jamais votre stock d'XM tombe à 0,
-         l'aventure en tant qu'agent s'arrêtera là pour
+        que vous la réussiez, mais comme dis précédement, cela vous couteras de l'XM, et si jamais votre stock d'XM
+        tombe à 0,
+        l'aventure en tant qu'agent s'arrêtera là pour
         vous.
     </p>
 
@@ -375,10 +430,11 @@
     </p>
 
     <p class="info">
-      Ne vous inquiétez pas, si vous ratez une épreuve, vous pourrez toujours la recommencer jusqu'à ce
-      que vous la réussiez, mais comme dis précédement, cela vous couteras de l'XM, et si jamais votre stock d'XM tombe à 0,
-       l'aventure en tant qu'agent s'arrêtera là pour
-      vous.
+        Ne vous inquiétez pas, si vous ratez une épreuve, vous pourrez toujours la recommencer jusqu'à ce
+        que vous la réussiez, mais comme dis précédement, cela vous couteras de l'XM, et si jamais votre stock d'XM
+        tombe à 0,
+        l'aventure en tant qu'agent s'arrêtera là pour
+        vous.
     </p>
 
     <button data-go="vert_france_portal">Capturer le portail</button>
@@ -393,21 +449,21 @@
 
 <div class="section" id="vert_france_portal">
 
-      <!--Sylvain : to do = Implémenter le mini jeu du hack comme précédemment -->
+    <!--Sylvain : to do = Implémenter le mini jeu du hack comme précédemment -->
 
     <button data-go="vert_france_glyphe">Hacker le portail</button>
 </div>
 
 <div class="section" id="bleu_france_glyphe">
 
-      <!--Sylvain : to do = Implémenter le mini jeu de glyphe comme précédemment -->
+    <!--Sylvain : to do = Implémenter le mini jeu de glyphe comme précédemment -->
 
     <button data-go="bleu_france_attack_speach">Suite</button>
 </div>
 
 <div class="section" id="vert_france_glyphe">
 
-      <!--Sylvain : to do = Implémenter le mini jeu de glyphe comme précédemment -->
+    <!--Sylvain : to do = Implémenter le mini jeu de glyphe comme précédemment -->
 
     <button data-go="vert_france_attack_speach">Suite</button>
 </div>
@@ -427,7 +483,8 @@
     <p>
         Bien agent <span class="agentName"></span>, il est maintenant l'heure pour vous d'allez combattre
         l'ennemie sur le terrain en
-        reprenant le contrôle de plusieurs portails contrôlé par des agent Résistant, afin de lutter aux côtés des Shappers
+        reprenant le contrôle de plusieurs portails contrôlé par des agent Résistant, afin de lutter aux côtés des
+        Shappers
         pour le bien de l'humanité.
     </p>
 
@@ -463,8 +520,6 @@
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
-    <button data-go="intro">Recommencer depuis le début</button>
-    <button data-go="ceremonie_choix">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 
@@ -507,7 +562,8 @@
         <br>
         Mais, alors que vous alliez vous évanouir, un agent arrive et commence à neutraliser les agents Illuminés
         présent. Devant vos yeux ahuris,
-        il vous dévoile une marque que vous reconnaissez comme une marque de la Résistance ! Un agent infiltré est venu à
+        il vous dévoile une marque que vous reconnaissez comme une marque de la Résistance ! Un agent infiltré est venu
+        à
         votre secours.
     </p>
 
@@ -626,8 +682,6 @@
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
-    <button data-go="intro">Recommencer depuis le début</button>
-    <button data-go="ceremonie_choix">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="vert_lutte_rien_rien">
@@ -640,8 +694,6 @@
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
-    <button data-go="intro">Recommencer depuis le début</button>
-    <button data-go="ceremonie_choix">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="bleu_lutte_rien_aider">
@@ -657,8 +709,6 @@
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
-    <button data-go="intro">Recommencer depuis le début</button>
-    <button data-go="ceremonie_choix">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="vert_lutte_rien_aider">
@@ -674,8 +724,6 @@
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
-    <button data-go="intro">Recommencer depuis le début</button>
-    <button data-go="ceremonie_choix">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="bleu_lutte_neutraliser">
@@ -692,8 +740,6 @@
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
-    <button data-go="intro">Recommencer depuis le début</button>
-    <button data-go="ceremonie_choix">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="vert_lutte_neutraliser">
@@ -709,8 +755,6 @@
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
-    <button data-go="intro">Recommencer depuis le début</button>
-    <button data-go="ceremonie_choix">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="bleu_calme">
@@ -864,9 +908,11 @@
 
 <div class="section" id="vert_calme_away">
     <p>
-        Vous passez discrètement votre route en espérant qu'aucun Résistant n'a entendu vos propos. Vos pas finissent par
+        Vous passez discrètement votre route en espérant qu'aucun Résistant n'a entendu vos propos. Vos pas finissent
+        par
         vous
-        conduire dans une grande salle de réunion où tous les leaders de la Résistance se trouvent, parlant de leurs futurs
+        conduire dans une grande salle de réunion où tous les leaders de la Résistance se trouvent, parlant de leurs
+        futurs
         plans d'action.
     </p>
     <p>
@@ -894,8 +940,6 @@
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
-    <button data-go="intro">Recommencer depuis le début</button>
-    <button data-go="ceremonie_choix">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="vert_calme_find">
@@ -913,8 +957,6 @@
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
-    <button data-go="intro">Recommencer depuis le début</button>
-    <button data-go="ceremonie_choix">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="bleu_calme_escape">
@@ -925,8 +967,6 @@
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
-    <button data-go="intro">Recommencer depuis le début</button>
-    <button data-go="ceremonie_choix">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="vert_calme_escape">
@@ -937,8 +977,6 @@
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
-    <button data-go="intro">Recommencer depuis le début</button>
-    <button data-go="ceremonie_choix">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="bleu_calme_change_true">
@@ -982,13 +1020,12 @@
         un agent Résistant infiltré ayant appris votre trahison vous neutralise pendant votre sommeil.
     </p>
     <button data-go="stop_game">Fin du jeu</button>
-    <button data-go="intro">Recommencer depuis le début</button>
-    <button data-go="ceremonie_choix">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="vert_calme_devoiler">
     <p>
-        Grâce à vos révélations par rapport à la Résistance, les membres de la Résistance prennent le dessus sur le cours de la guerre,
+        Grâce à vos révélations par rapport à la Résistance, les membres de la Résistance prennent le dessus sur le
+        cours de la guerre,
         entrainant leur victoire et la fin des Shappers.
     </p>
     <p>
@@ -997,8 +1034,6 @@
         un agent Illuminé infiltré ayant appris votre trahison vous neutralise pendant votre sommeil.
     </p>
     <button data-go="stop_game">Fin du jeu</button>
-    <button data-go="intro">Recommencer depuis le début</button>
-    <button data-go="ceremonie_choix">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="bleu_calme_mentir">
@@ -1030,8 +1065,6 @@
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
-    <button data-go="intro">Recommencer depuis le début</button>
-    <button data-go="ceremonie_choix">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="vert_calme_the_end">
@@ -1040,26 +1073,23 @@
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
-    <button data-go="intro">Recommencer depuis le début</button>
-    <button data-go="ceremonie_choix">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="no_more_xm">
     <p>
-        Vous avez malheureusement perdus tout l'XM que vous aviez.
+        Vous avez malheureusement perdu tout l'XM que vous aviez.
     </p>
     <p>
-        Un agent ne possédant plus d'Xm perds son status d'agent. L'aventure s'arrête donc ici pour vous.
+        Un agent ne possédant plus d'Xm perd son statut d'agent. L'aventure s'arrête donc ici pour vous.
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
-    <button data-go="intro">Recommencer depuis le début</button>
-    <button data-go="ceremonie_choix">Recommencer depuis le début(mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="stop_game">
     <p>
-        Nous espérons que vous avez apprécié ce jeu. Pour quitter, veuillez fermer la fenêtre/onglet de vote navigateur<br/>
+        Nous espérons que vous avez apprécié ce jeu. Pour quitter, veuillez fermer la fenêtre/onglet de vote
+        navigateur<br/>
         &copy; Tiphaine Girardot - Sylvain Metayer
     </p>
 
