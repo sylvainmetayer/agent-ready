@@ -588,6 +588,9 @@ $(document).ready(function () {
 
         if (getXM() <= 0 && key != "stop_game" && key != "no_more_xm")
             endGame();
+
+        if (getXM() > XM_INITIAL_VALUE)
+            setXM(XM_INITIAL_VALUE);
     }
 
     /**
