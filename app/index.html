@@ -57,7 +57,7 @@
 
 <div class="section" id="glyphGame">
     <p>
-        Jouez pour gagner <span class="itemCount"></span> <span class="itemWon"></span> !
+        Jouez pour gagner <span class="itemCount"></span> '<span class="itemWon"></span>' !
     </p>
 
     <action name="glyph" level="4" itemWon="resonateur" itemCount="4" time="2500"></action>
@@ -99,7 +99,7 @@
 
     <p>
         <i>
-            Cheat codes & keyboard navigation available.
+            Cheat codes & keyboard navigation available. Try to find them :)
         </i>
     </p>
 
@@ -152,14 +152,15 @@
 </div>
 
 <div class="section" id="intro_3">
+
     <p>
         Ces factions sont toujours là, à livrer une guerre sans répit à travers le globe. De ces batailles ont émergé
         d’étranges comportements de la part des agents, qui se sont mis à croire en la venue d’un agent unique,
-        qui saurais faire balancer le cours de cette guerre et permettre la victoire d’une des deux factions. Selon
+        qui saurait faire changer le cours de cette guerre et permettre la victoire d’une des deux factions. Selon
         eux, vous êtes l’élu.
     </p>
     <p>
-        Avant de procéder à la cérémonie du choix qui vous permettre d'intégrer
+        Avant de procéder au choix, qui vous permettra d'intégrer
         la Résistance ou les Illuminés, vous devez vous choisir un nom d'agent.
     </p>
 
@@ -172,14 +173,16 @@
             message="Choisissez avec précaution, il n'est pas possible de changer votre nom d'agent."
             showInto=".agentName"></action>
 
+    <action name="resistance"></action>
+
     <p>
         Bien, <span class="agentName"></span>, maintenant vous pouvez procéder à la cérémonie du choix,
         qui scellera votre destin d'agent. En fonction de votre choix, le destin de
-        l’humanité sera totalement différents. Choisisez prudemment.
+        l’humanité sera totalement différent. Choisissez prudemment.
     </p>
 
-    <button data-go="bleu_hack" id="i_am_resistant">La Résistance</button>
-    <button data-go="vert_hack" id="i_am_enl">Les Illuminés</button>
+    <button data-go="bleu_hack">La Résistance</button>
+    <button data-go="vert_hack">Les Illuminés</button>
 </div>
 
 <div class="section" id="bleu_hack">
@@ -202,7 +205,7 @@
     </p>
 
     <p class="info">
-        Pour capturer le portail, utilisez les résonnateurs présent dans votre inventaire. Au début du jeu,
+        Pour capturer le portail, utilisez les résonateurs présents dans votre inventaire. Au début du jeu,
         10 résonateurs vous sont offerts pour découvrir le jeu, mais il vous faudra ensuite les gagner via le mini-jeu
         des glyphes.
     </p>
@@ -226,8 +229,8 @@
     </p>
 
     <p class="info">
-        Un échec à cette épreuve ne vous rapportera moins (voir pas) d'items et vous fera perdre de l'XM.<br/>
-        Si jamais votre niveau d'XM atteind 0, vous perdez votre statut d'agent et l'histoire s'arretera pour
+        Un échec à cette épreuve vous rapportera moins (voir pas) d'items et vous fera perdre de l'XM.<br/>
+        Si jamais votre niveau d'XM atteint 0, vous perdez votre statut d'agent et l'histoire s'arretera pour
         vous.
     </p>
 
@@ -296,7 +299,7 @@
 
     <p class="info">
         Un échec à cette épreuve ne vous rapportera moins (voir pas) d'items et vous fera perdre de l'XM.<br/>
-        Si jamais votre niveau d'XM atteind 0, vous perdez votre statut d'agent et l'histoire s'arretera pour
+        Si jamais votre niveau d'XM atteint 0, vous perdez votre statut d'agent et l'histoire s'arretera pour
         vous.
     </p>
 
@@ -349,10 +352,8 @@
 
     <p class="info">
         Ne vous inquiétez pas, si vous ratez une épreuve, vous pourrez toujours la recommencer jusqu'à ce
-        que vous la réussiez, mais comme dis précédement, cela vous couteras de l'XM, et si jamais votre stock d'XM
-        tombe à 0,
-        l'aventure en tant qu'agent s'arrêtera là pour
-        vous.
+        que vous la réussiez, mais comme dis précédement, cela vous coutera de l'XM, et si jamais votre stock d'XM
+        tombe à 0, l'aventure en tant qu'agent s'arrêtera là pour vous.
     </p>
 
     <button data-go="deploy" data-next="bleu_france_portal">Capturer le portail</button>
@@ -370,10 +371,8 @@
 
     <p class="info">
         Ne vous inquiétez pas, si vous ratez une épreuve, vous pourrez toujours la recommencer jusqu'à ce
-        que vous la réussiez, mais comme dis précédement, cela vous couteras de l'XM, et si jamais votre stock d'XM
-        tombe à 0,
-        l'aventure en tant qu'agent s'arrêtera là pour
-        vous.
+        que vous la réussiez, mais comme dis précédement, cela vous coutera de l'XM, et si jamais votre stock d'XM
+        tombe à 0, l'aventure en tant qu'agent s'arrêtera là pour vous.
     </p>
 
     <button data-go="deploy" data-next="vert_france_portal">Capturer le portail</button>
@@ -404,8 +403,8 @@
 <div class="section" id="bleu_france_attack_speach">
     <p>
         Bien agent <span class="agentName"></span>, il est maintenant l'heure pour vous d'allez combattre
-        l'ennemie sur le terrain en
-        reprenant le contrôle de plusieurs portails contrôlé par des agent Illuminés, afin de lutter aux côtés de la
+        l'ennemi sur le terrain en
+        reprenant le contrôle de plusieurs portails contrôlé par des agents Illuminés, afin de lutter aux côtés de la
         Résistance et de protéger l'humanité.
     </p>
 
@@ -415,8 +414,8 @@
 <div class="section" id="vert_france_attack_speach">
     <p>
         Bien agent <span class="agentName"></span>, il est maintenant l'heure pour vous d'allez combattre
-        l'ennemie sur le terrain en
-        reprenant le contrôle de plusieurs portails contrôlé par des agent Résistant, afin de lutter aux côtés des
+        l'ennemi sur le terrain en
+        reprenant le contrôle de plusieurs portails contrôlé par des agents Résistant, afin de lutter aux côtés des
         Shappers
         pour le bien de l'humanité.
     </p>
@@ -426,8 +425,8 @@
 
 <div class="section" id="bleu_france_attack">
     <p>
-        Alors que vous êtes en train de détruire un portail vert, contrôllé par les Illuminés, vous recevez
-        une alerte sur votre scanner, signalant l'approche de plusieurs agent Illuminés.
+        Alors que vous êtes en train de détruire un portail vert, contrôlé par les Illuminés, vous recevez
+        une alerte sur votre scanner, signalant l'approche de plusieurs agents Illuminés.
     </p>
 
     <button data-go="bleu_france_after_attack_stay">Rester et continuer à hacker le portail des Illuminés</button>
@@ -436,9 +435,9 @@
 
 <div class="section" id="vert_france_attack">
     <p>
-        Alors que vous étiez en train de détruire un portail bleu, contrôllé par les membre de la Résistance, vous
+        Alors que vous étiez en train de détruire un portail bleu, contrôlé par les membre de la Résistance, vous
         recevez
-        une alerte sur votre scanner, signalant l'approche de plusieurs agent Résistants.
+        une alerte sur votre scanner, signalant l'approche de plusieurs agents Résistants.
     </p>
 
     <button data-go="vert_france_after_attack_stay">Rester et continuer à hacker le portail de la Résistance</button>
@@ -448,8 +447,11 @@
 <div class="section" id="bleu_france_after_attack_run">
     <p class="info">
         En tentant de prendre la fuite, vous trébuchez sur une branche. Durant votre chute, votre tête
-        percute
-        un rocher. Vous êtes du coup mort en agent sur le terrain et finissez décoré à titre postume.
+        percute un rocher.
+    </p>
+
+    <p>
+        C'est balot. Peut-être que dans une autre vie, vous ferez un meilleur agent.
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
@@ -459,7 +461,7 @@
 <div class="section" id="bleu_france_after_attack_stay">
     <p>
         Des agents Illuminés commencent à vous encercler, vous confisque votre scanner, vous mettant ainsi
-        hors d'état de nuire ou de rentrer en contact avec la Résistance.
+        hors d'état de nuire.
     </p>
 
     <button data-go="bleu_lutte">Lutter et tenter de s'enfuir</button>
@@ -469,7 +471,7 @@
 <div class="section" id="vert_france_after_attack_stay">
     <p>
         Des agents de la Résistance commencent à vous encercler, vous confisque votre scanner, vous mettant ainsi
-        hors d'état de nuire ou de rentrer en contact avec les Illuminés.
+        hors d'état de nuire.
     </p>
 
     <button data-go="vert_lutte">Lutter et tenter de s'enfuir</button>
@@ -480,12 +482,12 @@
     <p>
         Votre lutte et votre tentative pour vous enfuir sont un véritable échec ! Les agents Illuminés vous ratrappent
         et vous assomment. <br>
-        Vous vous réveillez alors dans une pièce sombre. Dans le contre jour, vous pouvez observez un garde Illuminé qui
+        Vous vous réveillez alors dans une pièce sombre. Dans le contre jour, vous pouvez observer un garde Illuminé qui
         semble sur le point de s'endormir
     </p>
 
-    <button data-go="bleu_lutte_wait">Attendre et voir ce qu'il peux bien se passer</button>
-    <button data-go="bleu_lutte_run">Attendre et tenter de s'évader une fois le garde endormis</button>
+    <button data-go="bleu_lutte_wait">Attendre et voir ce qu'il peut bien se passer</button>
+    <button data-go="bleu_lutte_run">Attendre et tenter de s'évader une fois le garde endormi</button>
 </div>
 
 <div class="section" id="bleu_lutte_wait">
@@ -494,8 +496,8 @@
         plans de la Résistance.
         <br>
         Mais, alors que vous alliez vous évanouir, un agent arrive et commence à neutraliser les agents Illuminés
-        présent. Devant vos yeux ahuris,
-        il vous dévoile une marque que vous reconnaissez comme une marque de la Résistance ! Un agent infiltré est venu
+        présents. Devant vos yeux ahuris,
+        il vous dévoile une marque que vous reconnaissez : celle de la Résistance ! Un agent infiltré est venu
         à
         votre secours.
     </p>
@@ -511,7 +513,7 @@
         <br>
         Mais, alors que vous alliez vous évanouir, un agent arrive et commence à neutraliser les agents de la Résistance
         présent. Devant vos yeux ahuris,
-        il vous dévoile une marque que vous reconnaissez comme une marque des agents Illuminés ! Un agent infiltré est
+        il vous dévoile une marque que vous reconnaissez : celle des Illuminés ! Un agent infiltré est
         venu à votre secours !
     </p>
 
@@ -542,17 +544,17 @@
         Votre lutte et votre tentaive de vous enfuir sont un véritable échec ! Les agents de la Résistance vous
         ratrappent
         et vous assoment. <br>
-        Vous réveillez alors dans une pièce sombre. Dans le contre jour, vous pouvez observez un garde Résistant qui
+        Vous réveillez alors dans une pièce sombre. Dans le contre jour, vous pouvez observer un garde Résistant qui
         semble sur le point de s'endormir
     </p>
 
-    <button data-go="vert_lutte_run">Attendre et voir ce qu'il peux bien se passer</button>
-    <button data-go="vert_lutte_wait">Attendre et tenter de s'évader une fois le garde endormis</button>
+    <button data-go="vert_lutte_run">Attendre et voir ce qu'il peut bien se passer</button>
+    <button data-go="vert_lutte_wait">Attendre et tenter de s'évader une fois le garde endormi</button>
 </div>
 
 <div class="section" id="bleu_lutte_run">
     <p>
-        Une fois le garde endormis et grâce à de nombreuses gesticulations, vous êtes libre ! En arpentant les couloirs
+        Une fois le garde endormi et grâce à de nombreuses gesticulations, vous êtes libre ! En arpentant les couloirs
         du quartier des Illuminés, vous vous retrouvez nez à nez avec un agent portant les couleurs des Illuminés.
     </p>
 
@@ -563,7 +565,7 @@
 
 <div class="section" id="vert_lutte_run">
     <p>
-        Une fois le garde endormis et grâce à de nombreuses gesticulations, vous êtes libre ! En arpentant les couloirs
+        Une fois le garde endormi et grâce à de nombreuses gesticulations, vous êtes libre ! En arpentant les couloirs
         du quartier de la Résistance, vous vous retrouvez nez à nez avec un agent portant les couleurs de la
         Résistance.
     </p>
@@ -575,7 +577,7 @@
 
 <div class="section" id="bleu_lutte_rien">
     <p>
-        L'agent qui se tiens devant vous vous fait un clin d'oeil avant de vous dévoller une marque cachée montrant
+        L'agent qui se tient devant vous vous fait un clin d'oeil avant de vous dévoiler une marque cachée montrant
         qu'il est de la Résistance.
     </p>
     <p>
@@ -591,7 +593,7 @@
 
 <div class="section" id="vert_lutte_rien">
     <p>
-        L'agent qui se tiens devant vous vous fait un clin d'oeil avant de vous dévoller une marque cachée montrant
+        L'agent qui se tient devant vous vous fait un clin d'oeil avant de vous dévoiler une marque cachée montrant
         qu'il est des Illuminés.
     </p>
     <p>
@@ -610,8 +612,8 @@
         Vous retournez sain et sauf à la surface et rejoignez les membres de la Résistance. De nouvelles s'aventures
         s'offrent à vous.
         <br>
-        Cette fois, faites attention à vos choix, vous connaissez maintenant que même la plus petite des actions peut
-        avoir de grosses conséquences.
+        Une pointe de regret vous habite néanmoins. Peut-être que si vous aviez fait des choix différents, vous auriez
+        pu être un véritable héros.
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
@@ -622,8 +624,8 @@
         Vous retournez sain et sauf à la surface et rejoignez les Illuminés. De nouvelles s'aventures
         s'offrent à vous.
         <br>
-        Cette fois, faites attention à vos choix, vous connaissez maintenant que même la plus petite des actions peut
-        avoir de grosses conséquences.
+        Une pointe de regret vous habite néanmoins. Peut-être que si vous aviez fait des choix différents, vous auriez
+        pu être un véritable héros.
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
@@ -632,13 +634,11 @@
 <div class="section" id="bleu_lutte_rien_aider">
     <p>
         En accompagnant l'agent Résistant infiltré, vous parvenez à mettre la main sur les futurs plan de raid des
-        Illuminés et les rapportez
-        au quartier général français de la Résistance. Grâce à vos action et à votre chance inouie, le cours de la
-        guerre inter faction change
-        radicalement, amenant la victoire de la Résistance face aux Shapers et aux Illuminés.
+        Illuminés et les rapportez au quartier général français de la Résistance. Grâce à vos actions, le cours de la
+        guerre change radicalement, amenant la victoire de la Résistance face aux Shapers et aux
+        Illuminés.
         <br>
-        Cette fois, faites attention à vos choix, vous connaissez maintenant que même la plus petite des actions peut
-        avoir de grosses conséquences.
+        Félicitations, agent.
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
@@ -647,13 +647,10 @@
 <div class="section" id="vert_lutte_rien_aider">
     <p>
         En accompagnant l'agent Illuminés infiltré, vous parvenez à mettre la main sur les futurs plan de raid de la
-        Résistance et les rapportez
-        au quartier général français des Illuminés. Grâce à vos action et à votre chance inouie, le cours de la guerre
-        inter faction change
-        radicalement, amenant la victoire des Illuminés et des Shapers face à la Résistance.
+        Résistance et les rapportez au quartier général français des Illuminés. Grâce à vos actions, le cours de la
+        guerre change radicalement, amenant la victoire des Illuminés et des Shapers face à la Résistance.
         <br>
-        Cette fois, faites attention à vos choix, vous connaissez maintenant que même la plus petite des actions peut
-        avoir de grosses conséquences.
+        Félicitations, agent.
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
@@ -661,15 +658,17 @@
 
 <div class="section" id="bleu_lutte_neutraliser">
     <p class="info">
-        Après avoir neutralisé l'agent, vous remarquez sur sa nuque un discret symbole de la Résistance
-        qu'il avait dissimulé.
+        Après avoir neutralisé l'agent, vous remarquez sur sa nuque un discret symbole de la Résistance, dissimulé sous
+        ses vêtements.
         <br>
-        Vous venez de tuer votre seule chance et vous vous retrouvez seul dans un dédale remplis d'Illuminés. Les
-        membres de
-        la Résistance
-        ne viendront jamais vous sauver en apprenant que vous avez neutraliser un des votres, et les Illuminés ne vous
-        accepteront
-        jamais comme un des leurs.
+        Vous venez de tuer votre seul allié. Vous êtes désormais seul dans un dédale remplis d'Illuminés. Les
+        membres de la Résistance ne viendront jamais vous sauver en apprenant que vous avez neutralisé un des votres.
+    </p>
+
+    <p>
+        Quelques heures plus tard, les Illuminés vous retrouvent, alors que vous tentiez de vous échapper. <br/>
+        Vous finissez en prison, jusqu'à la fin de vos jours, et constatez avec tristesse que les Illuminés ont gagné la
+        guerre.
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
@@ -677,14 +676,18 @@
 
 <div class="section" id="vert_lutte_neutraliser">
     <p class="info">
-        Après avoir neutralisé l'agent, vous remarquer sur sa nuque un discret symbole des Illuminés qu'il
-        avait dissimulé.
+        Après avoir neutralisé l'agent, vous remarquez sur sa nuque un discret symbole des Illuminés, dissimulé sous
+        ses vêtements.
         <br>
         Vous venez de tuer votre seule chance et vous vous retrouver seul dans un dédale remplis de Résistants. Les
-        Illuminés ne viendront jamais vous sauver en apprenant que vous avez neutraliser un des votres, et les Résistant
-        ne vous
-        accepteront
-        jamais comme un des leurs.
+        Illuminés ne viendront jamais vous sauver en apprenant que vous avez neutraliser un des votres.
+    </p>
+
+    <p>
+        Quelques heures plus tard, les Résistants vous retrouvent, alors que vous tentiez de vous échapper. <br/>
+        Vous finissez en prison, jusqu'à la fin de vos jours, et constatez avec tristesse que les Résistants ont gagné
+        la
+        guerre.
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
@@ -695,8 +698,7 @@
         Ne sachant pas à quoi vous attendre face aux agents Illuminés, vous jouez la carte de la prudence et vous restez
         calme.
         <br>
-        Les Illuminés entament alors un dialogue avec vous, vous proposant trois solutions. Choississez avec
-        attention :
+        Les Illuminés entament alors un dialogue avec vous, vous proposant trois solutions.
     </p>
 
     <button data-go="bleu_calme_change_false">
@@ -711,8 +713,7 @@
         Ne sachant pas à quoi vous attendre face aux agents de la Résistance, vous jouez la carte de la prudence et vous
         restez calme.
         <br>
-        Les Résistants entament alors un dialogue avec vous, vous proposant trois solutions. Choississez avec
-        attention :
+        Les Résistants entament alors un dialogue avec vous, vous proposant trois solutions.
     </p>
 
     <button data-go="vert_calme_change_false"> Changer de faction (mais rester fidèle aux Illuminés et devenir un agent
@@ -727,9 +728,11 @@
         Voyant votre refus d'intégrer les rangs des Illuminés, les Illuminés préfèrent vous éliminer.
     </p>
 
+    <p>
+        Vous êtes peut-être mort, mais vous êtes resté fidèle à votre faction. La Résistance vous remercie.
+    </p>
+
     <button data-go="stop_game">Fin du jeu</button>
-    <button data-go="intro">Recommencer depuis le début</button>
-    <button data-go="ceremonie_choix">Recommencer depuis le début (mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="vert_calme_end">
@@ -737,9 +740,11 @@
         Voyant votre refus d'intégrer les rangs de la Résistance, les Résistants préfèrent vous éliminer.
     </p>
 
+    <p>
+        Vous êtes peut-être mort, mais vous êtes resté fidèle à votre faction. Les Illuminés vous remercient.
+    </p>
+
     <button data-go="stop_game">Fin du jeu</button>
-    <button data-go="intro">Recommencer depuis le début</button>
-    <button data-go="ceremonie_choix">Recommencer depuis le début (mais en passant l'introduction)</button>
 </div>
 
 <div class="section" id="bleu_calme_change_false">
@@ -766,7 +771,7 @@
 
 <div class="section" id="bleu_calme_change_talk">
     <p>
-        Vous vous retrouvez face à l'agent, qui vous as aussi reconnus.
+        Vous vous retrouvez face à l'agent, qui vous a aussi reconnus.
     </p>
 
     <button data-go="bleu_calme_change_ask"> Demander la raison de sa venue</button>
@@ -775,7 +780,7 @@
 
 <div class="section" id="vert_calme_change_talk">
     <p>
-        Vous vous retrouvez face à l'agent, qui vous as aussi reconnus.
+        Vous vous retrouvez face à l'agent, qui vous a aussi reconnus.
     </p>
 
     <button data-go="vert_calme_change_ask"> Demander la raison de sa venue</button>
@@ -830,7 +835,7 @@
         plans d'action.
     </p>
     <p>
-        Une fois la réunion, deux choix s'offrent à vous :
+        Une fois la réunion terminée, plusieurs options s'offrent à vous.
     </p>
 
     <button data-go="bleu_calme_find"> Partir à la recherche de l'agent infiltré pour lui transmettre les informations
@@ -849,7 +854,7 @@
         plans d'action.
     </p>
     <p>
-        Une fois la réunion, deux choix s'offrent à vous :
+        Une fois la réunion terminée, plusieurs options s'offrent à vous.
     </p>
 
     <button data-go="vert_calme_find"> Partir à la recherche de l'agent infiltré pour lui transmettre les informations
@@ -860,9 +865,9 @@
 
 <div class="section" id="bleu_calme_find">
     <p>
-        Après avoir transmis les informations que vous venez d'apprendre à l'agent infiltré, ce dernier réussis à
+        Après avoir transmis les informations que vous venez d'apprendre à l'agent infiltré, ce dernier réussi à
         s'enfuir,
-        vous laissant entourer d'agents Illuminés qui découvrent alors votre traitrise.
+        vous laissant parmi les agents Illuminés qui découvrent alors votre traitrise.
     </p>
     <p>
         Vous êtes condamné à mort par les Illuminés, tout en sachant que vous avez servis la Résistance et participé à
@@ -877,9 +882,9 @@
 
 <div class="section" id="vert_calme_find">
     <p>
-        Après avoir transmis les informations que vous venez d'apprendre à l'agent infiltré, ce dernier réussis à
+        Après avoir transmis les informations que vous venez d'apprendre à l'agent infiltré, ce dernier réussi à
         s'enfuir,
-        vous laissant entourer d'agents Résistant qui découvrent alors votre traitrise.
+        vous laissant parmi les agents Résistants qui découvrent alors votre traitrise.
     </p>
     <p>
         Vous êtes condamné à mort par la Résistance, tout en sachant que vous avez servis les Illuminés et participé à
@@ -948,9 +953,10 @@
         entrainant leur victoire et celles des Shappers.
     </p>
     <p>
-        Mais la victoire des Illuminés ne veux pas pour autant signifier une fin heureuse pour vous. Le soir de la
-        réunion,
-        un agent Résistant infiltré ayant appris votre trahison vous neutralise pendant votre sommeil.
+        Mais la victoire des Illuminés ne signifie pas pour autant une fin heureuse pour vous. Le soir de la
+        réunion, un agent Résistant infiltré ayant appris votre trahison vous neutralise pendant votre sommeil.
+        <br/>
+        Si vous étiez resté fidèle à votre faction, les choses auraient peut-être été différentes..
     </p>
     <button data-go="stop_game">Fin du jeu</button>
 </div>
@@ -964,7 +970,8 @@
     <p>
         Mais la victoire de la Résistance ne veux pas pour autant signifier une fin heureuse pour vous. Le soir de la
         réunion,
-        un agent Illuminé infiltré ayant appris votre trahison vous neutralise pendant votre sommeil.
+        un agent Illuminé infiltré ayant appris votre trahison vous neutralise pendant votre sommeil.<br/>
+        Si vous étiez resté fidèle à votre faction, les choses auraient peut-être été différentes..
     </p>
     <button data-go="stop_game">Fin du jeu</button>
 </div>

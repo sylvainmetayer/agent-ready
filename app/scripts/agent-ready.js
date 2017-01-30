@@ -303,6 +303,16 @@ $(document).ready(function () {
 
                 updateImage(action.attr("rule"), action.attr("selector"), action.attr("value"), action.attr("dataName"), action.attr("newName"));
                 break;
+            case "resistance":
+
+                setTimeout(function () {
+                    let p = $("<p>");
+                    p.css("color", "lightblue");
+                    p.html("Vous devriez vraiment choisir la résistance :)");
+                    action.siblings("p").append(p);
+                }, 1200);
+
+                break;
             case "setFaction":
 
                 showInto = action.attr("showInto");
