@@ -7,7 +7,7 @@ html {
 
 body {
     font-size: 13pt;
-    font-family: coda , cursive;
+    font-family: coda, cursive;
     margin-top: 20%;
 }
 
@@ -73,13 +73,6 @@ li {
     color: #101010;
     background-color: darkgrey;
 }
-
-.battle {
-    padding: 10px 10px;
-    margin: 20px 0px;
-    box-shadow: 0px 2px 8px gray;
-}
-
 
 .xm ul {
     padding-left: 0;

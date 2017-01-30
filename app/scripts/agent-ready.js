@@ -777,8 +777,10 @@ $(document).ready(function () {
             if (numberOfCheatAttempFailed == 0)
                 alert("Be careful, each time you will fail to find a cheat code, ban time will be doubled");
             numberOfCheatAttempFailed++;
+            $("html").css("background-color", "transparent");
             $("body").css("background-image", "url(images/cheats/" + randomImage + ")");
             setTimeout(function () {
+                $("html").css("background-color", "#000000");
                 $("body").css("background-image", "none");
                 activeSection.show();
                 div_status.show();
