@@ -1,11 +1,23 @@
+html {
+    background-color: #000000;
+    color: lightgrey;
+    text-align: justify;
+}
+
 body {
     font-size: 13pt;
     font-family: "Trebuchet MS", Arial, sans-serif;
+    margin-top: 20%;
 }
 
 h2 {
     margin-top: 0px;
     font-weight: bold;
+}
+
+li {
+    list-style: none;
+    margin: 0px;
 }
 
 #status {
@@ -43,7 +55,7 @@ h2 {
 .section button {
     display: block;
     width: 100%;
-    color: black;
+    color: #101010;
     text-decoration: none;
     padding: 5px;
     margin-top: 30px;
@@ -57,8 +69,8 @@ h2 {
 }
 
 .section button:hover {
-    color: lightGray;
-    background-color: black;
+    color: #101010;
+    background-color: darkgrey;
 }
 
 .battle {
@@ -67,4 +79,14 @@ h2 {
     box-shadow: 0px 2px 8px gray;
 }
 
+
+.xm ul {
+    padding-left: 0;
+}
+
+a {
+    color: cyan;
+    text-decoration: none;
+    font-style: italic;
+}
 
