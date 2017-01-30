@@ -2,11 +2,12 @@ html {
     background-color: #000000;
     color: lightgrey;
     text-align: justify;
+
 }
 
 body {
     font-size: 13pt;
-    font-family: "Trebuchet MS", Arial, sans-serif;
+    font-family: coda , cursive;
     margin-top: 20%;
 }
 
