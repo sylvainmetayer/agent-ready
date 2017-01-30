@@ -483,7 +483,7 @@ $(document).ready(function () {
             img.data("name", this.name);
             img.after();
             p.append(img);
-            loadInto.prepend(p);
+            loadInto.append(p);
         });
     }
 
@@ -499,6 +499,8 @@ $(document).ready(function () {
 
         let ol = $("<ol>");
         let li;
+
+        ol.html("Solution : ");
 
         for (let i = 0; i < level; i++) {
             li = $("<li>");
@@ -543,7 +545,6 @@ $(document).ready(function () {
 
         let section = action.parent(".section");
         let button = action.siblings("button");
-        section.append("<div id='glyphGame'></div>");
         button.hide();
 
         button.data("go", next);
