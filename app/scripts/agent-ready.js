@@ -303,22 +303,61 @@ $(document).ready(function () {
 
                 updateImage(action.attr("rule"), action.attr("selector"), action.attr("value"), action.attr("dataName"), action.attr("newName"));
                 break;
+            case "resetCSS":
+
+                let neutralColor = "#d3d3d3";
+
+                $("html").css("color", neutralColor);
+                $("button").css("background-color", neutralColor);
+                $(".section button:hover").css({
+                    'background-color': "dark-grey",
+                    "color": "#101010"
+                });
+                $("#status").css("border-color", neutralColor);
+                $(".section").css("border-color", neutralColor);
+                $(".xm").css({
+                    'border-color': neutralColor,
+                    "color": neutralColor
+                });
+
+                break;
             case "resistance":
 
+                let p = action.siblings("p").last();
+                p.css({
+                    "color": "lightblue",
+                    "text-align": "center"
+                });
+                p.hide();
+
                 setTimeout(function () {
-                    let p = $("<p>");
-                    p.css("color", "lightblue");
-                    p.html("Vous devriez vraiment choisir la résistance :)");
-                    action.siblings("p").append(p);
-                }, 1200);
+                    p.show();
+                }, 1000);
 
                 break;
             case "setFaction":
 
                 showInto = action.attr("showInto");
                 let isResistant = action.attr("resistant");
-                isResistant == "true" && $(showInto).html("résistance");
-                isResistant == "false" && $(showInto).html("illuminés");
+                //isResistant == "true" && $(showInto).html("résistance");
+                //isResistant == "false" && $(showInto).html("illuminés");
+
+                let colorCSS;
+
+                if (isResistant == "true")
+                    colorCSS = "#11ecf7";
+                else
+                    colorCSS = "#06cc58";
+
+                $("html").css("color", colorCSS);
+                $("button").css('background-color', colorCSS);
+                $(".section").css("border-color", colorCSS);
+                $("#status").css("border-color", colorCSS);
+                $(".xm").css({
+                    'border-color': colorCSS,
+                    "color": colorCSS
+                });
+
                 break;
             case "deploy":
 

@@ -90,14 +90,8 @@
 
 <div class="section" id="intro">
 
-    <action name="cssUpdate" element="html" rule="color" value="#d3d3d3"></action>
-    <action name="cssUpdate" element="button" rule="background-color" value="#d3d3d3"></action>
-    <action name="cssUpdate" element=".section button:hover" rule="background-color" value="dark-grey"></action>
-    <action name="cssUpdate" element=".section button:hover" rule="color" value="#101010"></action>
-    <action name="cssUpdate" element=".section " rule="border-color" value="#d3d3d3"></action>
-    <action name="cssUpdate" element="#status " rule="border-color" value="#d3d3d3"></action>
-    <action name="cssUpdate" element=".xm" rule="border-color" value="#d3d3d3"></action>
-    <action name="cssUpdate" element=".xm" rule="color" value="#d3d3d3"></action>
+    <action name="resetCSS"></action>
+    <action name="reset"></action>
 
     <h2>Agent Ready, an Ingress Story</h2>
 
@@ -114,8 +108,6 @@
             Cheat codes & keyboard navigation available. Try to find them :)
         </i>
     </p>
-
-    <action name="reset"></action>
 
     <button data-go="intro_1">Commencer l'immersion !</button>
 </div>
@@ -185,21 +177,18 @@
             message="Choisissez avec précaution, il n'est pas possible de changer votre nom d'agent."
             showInto=".agentName"></action>
 
-    <action name="cssUpdate" element="html" rule="color" value="#d3d3d3"></action>
-    <action name="cssUpdate" element="button" rule="background-color" value="#d3d3d3"></action>
-    <action name="cssUpdate" element=".section button:hover" rule="background-color" value="dark-grey"></action>
-    <action name="cssUpdate" element=".section button:hover" rule="color" value="#101010"></action>
-    <action name="cssUpdate" element=".section " rule="border-color" value="#d3d3d3"></action>
-    <action name="cssUpdate" element="#status " rule="border-color" value="#d3d3d3"></action>
-    <action name="cssUpdate" element=".xm" rule="border-color" value="#d3d3d3"></action>
-    <action name="cssUpdate" element=".xm" rule="color" value="#d3d3d3"></action>
-
+    <action name="resetCSS"></action>
+    <action name="reset"></action>
     <action name="resistance"></action>
 
     <p>
         Bien, <span class="agentName"></span>, maintenant vous pouvez procéder à la cérémonie du choix,
         qui scellera votre destin d'agent. En fonction de votre choix, le destin de
         l’humanité sera totalement différent. Choisissez prudemment.
+    </p>
+
+    <p>
+        Vous devriez vraiment choisir la résistance :)
     </p>
 
     <button data-go="bleu_hack">La Résistance</button>
@@ -210,12 +199,6 @@
 
     <action name="setFaction" resistant="true" showInto=".factionName"></action>
     <action name="itemUpdate" item="resonateur" count="10"></action>
-    <action name="cssUpdate" element="html" rule="color" value="#11ecf7"></action>
-    <action name="cssUpdate" element="button" rule="background-color" value="#11ecf7"></action>
-    <action name="cssUpdate" element=".section " rule="border-color" value="#11ecf7"></action>
-    <action name="cssUpdate" element="#status " rule="border-color" value="#11ecf7"></action>
-    <action name="cssUpdate" element=".xm" rule="border-color" value="#11ecf7"></action>
-    <action name="cssUpdate" element=".xm" rule="color" value="#11ecf7"></action>
 
     <p>
         Bienvenue agent <span class="agentName"></span> dans la Résistance . <br/>
@@ -285,12 +268,6 @@
 
     <action name="setFaction" resistant="false" showInto=".factionName"></action>
     <action name="itemUpdate" item="resonateur" count="10"></action>
-    <action name="cssUpdate" element="html" rule="color" value="#06cc58"></action>
-    <action name="cssUpdate" element="button" rule="background-color" value="#06cc58"></action>
-    <action name="cssUpdate" element=".section " rule="border-color" value="#06cc58"></action>
-    <action name="cssUpdate" element="#status " rule="border-color" value="#06cc58"></action>
-    <action name="cssUpdate" element=".xm" rule="border-color" value="#06cc58"></action>
-    <action name="cssUpdate" element=".xm" rule="color" value="#06cc58"></action>
 
     <p>
         Bienvenue agent <span class="agentName"></span> chez les Illuminés. <br/>
@@ -1061,14 +1038,8 @@
 
 <div class="section" id="stop_game">
 
-    <action name="cssUpdate" element="html" rule="color" value="#d3d3d3"></action>
-    <action name="cssUpdate" element="button" rule="background-color" value="#d3d3d3"></action>
-    <action name="cssUpdate" element=".section button:hover" rule="background-color" value="dark-grey"></action>
-    <action name="cssUpdate" element=".section button:hover" rule="color" value="#101010"></action>
-    <action name="cssUpdate" element=".section " rule="border-color" value="#d3d3d3"></action>
-    <action name="cssUpdate" element="#status " rule="border-color" value="#d3d3d3"></action>
-    <action name="cssUpdate" element=".xm" rule="border-color" value="#d3d3d3"></action>
-    <action name="cssUpdate" element=".xm" rule="color" value="#d3d3d3"></action>
+    <action name="resetCSS"></action>
+
     <p>
         Nous espérons que vous avez apprécié ce jeu. Pour quitter, veuillez fermer la fenêtre/onglet de vote
         navigateur<br/>

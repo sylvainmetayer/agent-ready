@@ -38,6 +38,11 @@ gulp.task('json', function () {
         .pipe(gulp.dest('dist/resources'));
 });
 
+gulp.task("extras", () => {
+    return gulp.src(["./app/robots.txt"])
+        .pipe(gulp.dest("dist/"));
+});
+
 gulp.task('html', ['styles', 'scripts'], () => {
     return gulp.src('app/index.html')
         .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
@@ -85,7 +90,7 @@ gulp.task('serve:dist', ['default'], () => {
     });
 });
 
-gulp.task('build', ['html', 'images', "json", "favicons"], () => {
+gulp.task('build', ['html', 'images', "json", "favicons", "extras"], () => {
     return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
