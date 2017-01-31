@@ -41,10 +41,6 @@
 
 </head>
 <body>
-<!--[if lt IE 11]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-    your browser</a> to improve your experience.</p>
-<![endif]-->
 
 <div id="status">
     <div class="xm">
@@ -59,7 +55,7 @@
 
 <div class="section" id="glyphGame">
     <p>
-        Jouez pour gagner <span class="itemCount"></span> '<span class="itemWon"></span>' !
+        Jouez pour gagner jusqu'à <span class="itemCount"></span> '<span class="itemWon"></span>' !
     </p>
 
     <action name="glyph" level="4" itemWon="resonateur" itemCount="4" time="2500"></action>
@@ -124,7 +120,7 @@
         en scanner, permettant ainsi d’étudier cette étrange énergie.
     </p>
     <p>
-        Ils ont ainsi recrutés des agents, un groupe de personnes chargées de parcourir le monde afin d’étudier l’XM et
+        Ils ont ainsi recruté des agents, un groupe de personnes chargées de parcourir le monde afin d’étudier l’XM et
         de découvrir ses propriétés. Avec leurs scanners, les résultats étaient directement envoyés au laboratoire
         de Niantics, créé par les quatre personnes ayant découvert l’XM.
     </p>
@@ -206,7 +202,7 @@
     </p>
 
     <p>
-        Devant vous se trouve un portail. Sa couleur indique qu'il est neutre pour l'instant.
+        Devant vous se trouve un portail. Sa couleur indique qu'il est neutre.
         <br/>
         C'est une source d'XM pure qui n'est contrôlée par aucune faction pour le moment. Votre devoir, en tant que
         nouvel agent, est de le capturer pour qu'il serve la cause de la Résistance. Une fois capturé, il sera bleu, et
@@ -245,7 +241,7 @@
     </p>
 
     <button data-go="glyph_fail_run">
-        Toute cette histoire commence à vous effrayer, et vous décider de vous enfuir en
+        Toute cette histoire commence à vous effrayer, et vous décidez de vous enfuir en
         courant au loin
     </button>
     <button data-go="glyphGame" data-next="bleu_destination">Allons y !</button>
@@ -275,7 +271,7 @@
     </p>
 
     <p>
-        Devant vous se trouve un portail. Sa couleur indique qu'il est neutre pour l'instant.
+        Devant vous se trouve un portail. Sa couleur indique qu'il est neutre.
         <br/>
         C'est une source d'XM pure qui n'est contrôlée par aucune faction pour le moment. Votre devoir, en tant que
         nouvel agent, est de le capturer pour qu'il serve la cause des Illuminés et des Shapers. Une fois capturé, il
@@ -285,7 +281,7 @@
     </p>
 
     <p class="info">
-        Pour capturer le portail, utilisez les résonateurs présent dans votre inventaire. Au début du jeu,
+        Pour capturer le portail, utilisez les résonateurs présents dans votre inventaire. Au début du jeu,
         10 résonateurs vous sont offerts pour découvrir le jeu, mais il vous faudra ensuite les gagner via le mini-jeu
         des glyphes.
     </p>
@@ -314,7 +310,7 @@
     </p>
 
     <button data-go="glyph_fail_run">
-        Toute cette histoire commence à vous effrayer, et vous décider de vous enfuir en
+        Toute cette histoire commence à vous effrayer, et vous décidez de vous enfuir en
         courant au loin
     </button>
     <button data-go="glyphGame" data-next="vert_destination">Allons y !</button>
@@ -329,7 +325,7 @@
     </p>
 
     <p>
-        La première étape de votre voyage sera la France.
+        Votre première destination sera la France.
     </p>
 
     <button data-go="bleu_france">Partir en France</button>
@@ -340,11 +336,11 @@
     <p>
         Bien agent <span class="agentName"></span>, vous êtes fin prêt à arpenter le monde pour découvrir les secrets de
         l'XM. Mais souvenez vous,
-        faites attention à vos choix, l'humanité en dépends.
+        faites attention à vos choix, l'humanité en dépend.
     </p>
 
     <p>
-        La première étape de votre voyage sera la France.
+        Votre première destination sera la France.
     </p>
 
     <button data-go="vert_france">Partir en France</button>
@@ -393,7 +389,6 @@
     <p>
         Bravo ! Vous avez déjà fait la moitié du chemin. <br/> Il ne vous reste plus qu'à hacker ce portail fraichement
         déployé.
-
     </p>
 
     <button data-go="glyphGame" data-next="bleu_france_attack_speach">Hacker le portail</button>
@@ -404,7 +399,6 @@
     <p>
         Bravo ! Vous avez déjà fait la moitié du chemin. <br/> Il ne vous reste plus qu'à hacker ce portail fraichement
         déployé.
-
     </p>
 
     <button data-go="glyphGame" data-next="vert_france_attack_speach">Hacker le portail</button>
@@ -414,7 +408,7 @@
     <p>
         Bien agent <span class="agentName"></span>, il est maintenant l'heure pour vous d'allez combattre
         l'ennemi sur le terrain en
-        reprenant le contrôle de plusieurs portails contrôlé par des agents Illuminés, afin de lutter aux côtés de la
+        reprenant le contrôle de plusieurs portails contrôlés par des agents Illuminés, afin de lutter aux côtés de la
         Résistance et de protéger l'humanité.
     </p>
 
@@ -425,7 +419,7 @@
     <p>
         Bien agent <span class="agentName"></span>, il est maintenant l'heure pour vous d'allez combattre
         l'ennemi sur le terrain en
-        reprenant le contrôle de plusieurs portails contrôlé par des agents Résistants, afin de lutter aux côtés des
+        reprenant le contrôle de plusieurs portails contrôlés par des agents Résistants, afin de lutter aux côtés des
         Shappers
         pour le bien de l'humanité.
     </p>
@@ -440,7 +434,7 @@
     </p>
 
     <button data-go="bleu_france_after_attack_stay">Rester et continuer à hacker le portail des Illuminés</button>
-    <button data-go="bleu_france_after_attack_run">Courir (et tenter de s'enfuir)</button>
+    <button data-go="france_after_attack_run">Courir (et tenter de s'enfuir)</button>
 </div>
 
 <div class="section" id="vert_france_attack">
@@ -451,10 +445,10 @@
     </p>
 
     <button data-go="vert_france_after_attack_stay">Rester et continuer à hacker le portail de la Résistance</button>
-    <button data-go="bleu_france_after_attack_run">Courir (et tenter de s'enfuir)</button>
+    <button data-go="france_after_attack_run">Courir (et tenter de s'enfuir)</button>
 </div>
 
-<div class="section" id="bleu_france_after_attack_run">
+<div class="section" id="france_after_attack_run">
     <p class="info">
         En tentant de prendre la fuite, vous trébuchez sur une branche. Durant votre chute, votre tête
         percute un rocher.
@@ -467,11 +461,10 @@
     <button data-go="stop_game">Fin du jeu</button>
 </div>
 
-
 <div class="section" id="bleu_france_after_attack_stay">
     <p>
-        Des agents Illuminés commencent à vous encercler, vous confisque votre scanner, vous mettant ainsi
-        hors d'état de nuire.
+        Des agents Illuminés commencent à vous encercler puis se mettent à vous confisquer votre scanner, vous mettant
+        ainsi hors d'état de nuire.
     </p>
 
     <button data-go="bleu_lutte">Lutter et tenter de s'enfuir</button>
@@ -480,8 +473,8 @@
 
 <div class="section" id="vert_france_after_attack_stay">
     <p>
-        Des agents de la Résistance commencent à vous encercler, vous confisque votre scanner, vous mettant ainsi
-        hors d'état de nuire.
+        Des agents de la Résistance commencent à vous encercler puis se mettent à vous confisquer votre scanner, vous
+        mettant ainsi hors d'état de nuire.
     </p>
 
     <button data-go="vert_lutte">Lutter et tenter de s'enfuir</button>
@@ -491,7 +484,7 @@
 <div class="section" id="bleu_lutte">
     <p>
         Votre lutte et votre tentative pour vous enfuir sont un véritable échec ! Les agents Illuminés vous rattrappent
-        et vous assommes. <br>
+        et vous assomment. <br>
         Vous vous réveillez alors dans une pièce sombre. Dans le contre-jour, vous pouvez observer un garde Illuminé qui
         semble sur le point de s'endormir
     </p>
@@ -502,7 +495,8 @@
 
 <div class="section" id="bleu_lutte_wait">
     <p>
-        Des agents Illuminés finissent par revenir et vous torture, afin de vous faire parler et de connaître les
+        Des agents Illuminés finissent par revenir. Vous êtes alors torturé, afin de vous faire parler et de connaître
+        les
         plans de la Résistance.
         <br>
         Mais, alors que vous alliez vous évanouir, un agent arrive et commence à neutraliser les agents Illuminés
@@ -518,7 +512,8 @@
 
 <div class="section" id="vert_lutte_wait">
     <p>
-        Des agents Résistants finissent par revenir et vous torture, afin de vous faire parler et de connaître les
+        Des agents Résistants finissent par revenir. Vous êtes alors torturé, afin de vous faire parler et de connaître
+        les
         plans des Illuminés.
         <br>
         Mais, alors que vous alliez vous évanouir, un agent arrive et commence à neutraliser les agents de la Résistance
@@ -551,9 +546,10 @@
 
 <div class="section" id="vert_lutte">
     <p>
-        Votre lutte et votre tentaive de vous enfuir sont un véritable échec ! Les agents de la Résistance vous
-        ratrappe et vous assoment. <br>
-        Vous réveillez alors dans une pièce sombre. Dans le contre-jour, vous pouvez observer un garde Résistant qui
+        Votre lutte et votre tentative de vous enfuir sont un véritable échec ! Les agents de la Résistance vous
+        ratrappent et vous assomment. <br>
+        Vous vous réveillez alors dans une pièce sombre. Dans le contre-jour, vous pouvez observer un garde Résistant
+        qui
         semble sur le point de s'endormir
     </p>
 
@@ -587,12 +583,12 @@
 <div class="section" id="bleu_lutte_rien">
     <p>
         L'agent qui se tient devant vous fait un clin d'oeil avant de vous dévoiler une marque cachée montrant
-        qu'il est de la Résistance.
+        qu'il est membre de la Résistance.
     </p>
     <p>
         Il vous révèle alors qu'il est en mission en tant qu'agent infiltré pour récupérer les plans d'attaque des
         futurs
-        raid des Illuminés, et vous propose
+        raids des Illuminés, et vous propose
         de l'accompagner dans sa mission
     </p>
 
@@ -603,12 +599,12 @@
 <div class="section" id="vert_lutte_rien">
     <p>
         L'agent qui se tient devant vous fait un clin d'oeil avant de vous dévoiler une marque cachée montrant
-        qu'il est des Illuminés.
+        qu'il est membre des Illuminés.
     </p>
     <p>
         Il vous révèle alors qu'il est en mission en tant qu'agent infiltré pour récupérer les plans d'attaque des
         futurs
-        raid des Résistants, et vous propose
+        raids des Résistants, et vous propose
         de l'accompagner dans sa mission
     </p>
 
@@ -642,7 +638,7 @@
 
 <div class="section" id="bleu_lutte_rien_aider">
     <p>
-        En accompagnant l'agent Résistant infiltré, vous parvenez à mettre la main sur les futurs plan de raid des
+        En accompagnant l'agent Résistant infiltré, vous parvenez à mettre la main sur les futurs plans de raid des
         Illuminés et les rapportez au quartier général français de la Résistance. Grâce à vos actions, le cours de la
         guerre change radicalement, amenant la victoire de la Résistance face aux Shapers et aux
         Illuminés.
@@ -655,7 +651,7 @@
 
 <div class="section" id="vert_lutte_rien_aider">
     <p>
-        En accompagnant l'agent Illuminés infiltré, vous parvenez à mettre la main sur les futurs plan de raid de la
+        En accompagnant l'agent Illuminé infiltré, vous parvenez à mettre la main sur les futurs plans de raid de la
         Résistance et les rapportez au quartier général français des Illuminés. Grâce à vos actions, le cours de la
         guerre change radicalement, amenant la victoire des Illuminés et des Shapers face à la Résistance.
         <br>
@@ -713,7 +709,7 @@
     <button data-go="bleu_calme_change_false">
         Changer de faction (mais rester fidèle à la Résistance et devenir un agent infiltré)
     </button>
-    <button data-go="bleu_calme_end"> Refuser de cooptérer et de changer de faction</button>
+    <button data-go="bleu_calme_end"> Refuser de coopérer et de changer de faction</button>
     <button data-go="bleu_calme_change_true"> Changer de faction (et devenir un Illuminé )</button>
 </div>
 
@@ -728,7 +724,7 @@
     <button data-go="vert_calme_change_false"> Changer de faction (mais rester fidèle aux Illuminés et devenir un agent
         infiltré)
     </button>
-    <button data-go="vert_calme_end"> Refuser de cooptérer et de changer de faction</button>
+    <button data-go="vert_calme_end"> Refuser de coopérer et de changer de faction</button>
     <button data-go="vert_calme_change_true"> Changer de faction (et devenir un Résistant )</button>
 </div>
 
@@ -780,7 +776,7 @@
 
 <div class="section" id="bleu_calme_change_talk">
     <p>
-        Vous vous retrouvez face à l'agent, qui vous a aussi reconnus.
+        Vous vous retrouvez face à l'agent, qui vous a aussi reconnu.
     </p>
 
     <button data-go="bleu_calme_change_ask"> Demander la raison de sa venue</button>
@@ -789,7 +785,7 @@
 
 <div class="section" id="vert_calme_change_talk">
     <p>
-        Vous vous retrouvez face à l'agent, qui vous a aussi reconnus.
+        Vous vous retrouvez face à l'agent, qui vous a aussi reconnu.
     </p>
 
     <button data-go="vert_calme_change_ask"> Demander la raison de sa venue</button>
@@ -799,7 +795,7 @@
 <div class="section" id="bleu_calme_change_ask">
     <p>
         L'agent vous révèle alors qu'il est en mission en tant qu'agent infiltré pour récupérer les plans d'attaque des
-        futurs raid des Illuminés, et vous propose de l'accompagner dans sa mission.
+        futurs raids des Illuminés, et vous propose de l'accompagner dans sa mission.
     </p>
 
     <button data-go="bleu_calme_reunion"> Refuser et passer votre chemin</button>
@@ -809,7 +805,7 @@
 <div class="section" id="vert_calme_change_ask">
     <p>
         L'agent vous révèle alors qu'il est en mission en tant qu'agent infiltré pour récupérer les plans d'attaque des
-        futurs raid de la Résistance, et vous propose de l'accompagner dans sa mission.
+        futurs raids de la Résistance, et vous propose de l'accompagner dans sa mission.
     </p>
 
     <button data-go="vert_calme_reunion"> Refuser et passer votre chemin</button>
@@ -908,9 +904,8 @@
 
 <div class="section" id="bleu_calme_escape">
     <p>
-        Les informations que vous venez de transmettre à la Résistance a permis de renverser le cours de la guerre, et de
-        vaincre les Shappers et
-        les Illuminés. Grâce à vous, le monde est de nouveau en paix.
+        Les informations que vous venez de transmettre à la Résistance ont permis de renverser le cours de la guerre, et
+        de vaincre les Shappers et les Illuminés. Grâce à vous, le monde est de nouveau en paix.
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
@@ -919,8 +914,7 @@
 <div class="section" id="vert_calme_escape">
     <p>
         Les informations que vous venez de transmettre aux Illuminés a permis de renverser le cours de la guerre, et de
-        vaincre la Résistance
-        .Grâce à vous, le monde est de nouveau en paix.
+        vaincre la Résistance. Grâce à vous, le monde est de nouveau en paix.
     </p>
 
     <button data-go="stop_game">Fin du jeu</button>
@@ -936,7 +930,7 @@
         des Illuminés. Tous les regards se portent alors sur vous.
     </p>
 
-    <button data-go="bleu_calme_devoiler"> Devoiler les secrets de la Résistance pour montrer votre nouvel engagement
+    <button data-go="bleu_calme_devoiler"> Dévoiler les secrets de la Résistance pour montrer votre nouvel engagement
     </button>
     <button data-go="bleu_calme_mentir"> Ne rien dire</button>
 </div>
@@ -951,7 +945,7 @@
         de la Résistance. Tous les regards se portent alors sur vous.
     </p>
 
-    <button data-go="vert_calme_devoiler"> Devoiler les secrets des Illuminés pour montrer votre nouvel engagement
+    <button data-go="vert_calme_devoiler"> Dévoiler les secrets des Illuminés pour montrer votre nouvel engagement
     </button>
     <button data-go="vert_calme_mentir"> Ne rien dire</button>
 </div>
@@ -992,7 +986,7 @@
         votre nouvelle faction dans ses futures actions.
     </p>
 
-    <button data-go="bleu_calme_devoiler"> Devoiler les secrets de la Résistance pour montrer votre nouvel engagement
+    <button data-go="bleu_calme_devoiler"> Dévoiler les secrets de la Résistance pour montrer votre nouvel engagement
     </button>
     <button data-go="bleu_calme_the_end"> Ne rien dire</button>
 </div>
@@ -1003,7 +997,7 @@
         d'aider
         votre nouvelle faction dans ses futures actions.
     </p>
-    <button data-go="vert_calme_devoiler"> Devoiler les secrets des Illuminés pour montrer votre nouvel engagement
+    <button data-go="vert_calme_devoiler"> Dévoiler les secrets des Illuminés pour montrer votre nouvel engagement
     </button>
     <button data-go="vert_calme_the_end"> Ne rien dire</button>
 </div>
@@ -1040,7 +1034,7 @@
     <action name="resetCSS"></action>
 
     <p>
-        Nous espérons que vous avez apprécié ce jeu. Pour quitter, veuillez fermer la fenêtre/onglet de vote
+        Nous espérons que vous avez apprécié ce jeu. Pour quitter, veuillez fermer la fenêtre/onglet de votre
         navigateur<br/>
         &copy; Tiphaine Girardot - Sylvain Metayer
     </p>
