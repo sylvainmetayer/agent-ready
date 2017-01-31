@@ -96,7 +96,6 @@ $(document).ready(function () {
         setXM(XM_INITIAL_VALUE);
         span_xm_max.html(XM_INITIAL_VALUE);
         inventory = [];
-        agentName = undefined;
         updateItem("resonateur", 0);
     }
 
@@ -257,8 +256,10 @@ $(document).ready(function () {
 
         switch (actionName) {
             case "start":
+                init();
+                agentName = undefined;
+                break;
             case "reset":
-
                 init();
                 break;
             case "hit":
