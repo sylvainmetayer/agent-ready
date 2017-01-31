@@ -20,11 +20,40 @@ Handle automatics actions, hits, life, a 15-20 sections' scenario, and at least 
 
 ## How to [set up your environment](https://github.com/sylvainmetayer/agent-ready/wiki/Installation) ?
 
+### Requirements
+
+- Node.js >=4
+- git
+
+### Install
+
+Clone the repository on your machine
+```console
+$ git clone https://github.com/sylvainmetayer/agent-ready.git && cd agent-ready
+```
+
+Install the global dependencies
+```console
+$ npm install --global gulp-cli
+```
+
+Install the local dependencies
+```console
+$ npm install
+```
+
+Run the dev server
+```console
+$ gulp serve
+```
+
 ## [Available 'customizations'](https://github.com/sylvainmetayer/agent-ready/wiki/Customization)
 
 ## Online version 
 
 https://sylvainmetayer.github.io/agent-ready/
+
+## [Wiki](https://github.com/sylvainmetayer/agent-ready/wiki)
 
 ## Sources
 
