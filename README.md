@@ -1,5 +1,7 @@
 # Agent Ready, an Ingress Story
 
+[![CircleCI](https://circleci.com/gh/sylvainmetayer/agent-ready/tree/master.svg?style=svg)](https://circleci.com/gh/sylvainmetayer/agent-ready/tree/master)
+
 Gamebook ("Livre-jeu") game ([Startup files](http://deepnight.net/iut/))
 
 IUT de Bordeaux - 2016-2017
