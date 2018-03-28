@@ -10,7 +10,10 @@ jobs:
                 command: npm install
             - run:
                 name: Start Server 
-                command: npm start & && sleep 1
+                command: npm start &
+            - run:
+                name: Wait 1s
+                command: sleep 1
     build-test:
         docker:
             - image: cypress/base:8
