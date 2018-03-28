@@ -11,6 +11,7 @@ jobs:
             - run:
                 name: Start Server 
                 command: npm start &
+                background: true
             - run:
                 name: Wait 1s
                 command: sleep 1
