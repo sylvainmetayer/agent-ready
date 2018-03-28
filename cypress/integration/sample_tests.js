@@ -1,4 +1,5 @@
 var BASE_URL = 'https://sylvainmetayer.github.io/agent-ready/';
+var BASE_URL = "http://localhost:9000/";
 
 describe('Tests', function () {
 
@@ -13,4 +14,5 @@ describe('Tests', function () {
     it('.should() - assert their is the start button', function () {
         cy.get('button').should('contain', "Commencer l'immersion !")
     })
+
 })

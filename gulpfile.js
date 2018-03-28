@@ -82,6 +82,7 @@ gulp.task('serve', () => {
 
 gulp.task('serve:dist', ['default'], () => {
     browserSync.init({
+        open: false,
         notify: false,
         port: 9000,
         server: {
