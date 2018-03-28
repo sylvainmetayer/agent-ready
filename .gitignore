@@ -5,3 +5,4 @@
 /.publish/
 /.vscode/
 /cypress/videos/
+/cypress/screenshots/

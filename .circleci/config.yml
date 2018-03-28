@@ -1,5 +1,16 @@
 version: 2
 jobs:
+    start:
+        docker:
+            - image: circleci/node:8
+        steps:
+            - checkout
+            - run:
+                name: install-dependencies
+                command: npm install
+            - run:
+                name: Start Server 
+                command: npm start & && sleep 1
     build-test:
         docker:
             - image: cypress/base:8
@@ -10,7 +21,7 @@ jobs:
                 command: npm install
             - run:
                 name: tests
-                command: npm run test-ci
+                command: npm test
     deploy-production:
         docker:
             - image: circleci/node:8
@@ -23,6 +34,8 @@ workflows:
     build-deploy:
         jobs:
             - build-test:
+                requires:
+                      - start
                 filters:
                     branches: 
                         ignore: gh-pages

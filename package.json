@@ -4,7 +4,7 @@
   "author": "Sylvain METAYER <sylvain.metayer@etu.u-bordeaux.fr>",
   "description": "An Ingress Story",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cypress run",
     "start": "gulp serve",
     "cypress": "npx cypress open",
     "test-ci": "./node_modules/.bin/gulp serve:dist & pid=$!; cypress run && kill -9 $pid || (kill -9 $pid && return $?)",
