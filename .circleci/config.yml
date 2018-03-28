@@ -3,7 +3,7 @@ jobs:
     build-test:
         docker:
             - image: circleci/node:8
-            - image: redis
+            - image: cypress/base:8
         steps:
             - checkout
             - run:

@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "gulp serve",
     "cypress": "npx cypress open",
-    "test-ci": "./node_modules/.bin/gulp serve:dist & pid=$!; npx cypress run && kill -9 $pid || (kill -9 $pid && return $?)",
+    "test-ci": "./node_modules/.bin/gulp serve:dist & pid=$!; cypress run && kill -9 $pid || (kill -9 $pid && return $?)",
     "deploy": "./node_modules/.bin/gulp deploy"
   },
   "keywords": [
