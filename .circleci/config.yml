@@ -26,6 +26,12 @@ jobs:
             - run:
                 name: install-dependencies
                 command: npm install
+            - run: 
+                name: Setup Git User
+                command: git config --global user.email "circleci@localhost" && git config --global user.name "CircleCI"
+            - run: 
+                name: WorkAround for gh-pages
+                command: cd node_modules/gulp-gh-pages/ && npm install --save gift@0.10.2 && cd ../../
             - deploy:
                 name: Deploy to production
                 command: npm run deploy
