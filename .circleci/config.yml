@@ -12,7 +12,9 @@ jobs:
                 name: Start Server 
                 command: npm run start:dist
                 background: true
-            - sleep 20
+            - run:
+                name: Sleep until server is up
+                command: sleep 20
             - run:
                 name: tests
                 command: npm test
