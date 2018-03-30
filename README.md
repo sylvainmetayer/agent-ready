@@ -1,6 +1,7 @@
 # Agent Ready, an Ingress Story
 
 [![CircleCI](https://circleci.com/gh/sylvainmetayer/agent-ready/tree/master.svg?style=svg)](https://circleci.com/gh/sylvainmetayer/agent-ready/tree/master)
+[![Cypress.io tests](https://img.shields.io/badge/cypress.io-tests-green.svg?style=flat-square)](https://cypress.io)
 
 Gamebook ("Livre-jeu") game ([Startup files](http://deepnight.net/iut/))
 
