@@ -2,6 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/sylvainmetayer/agent-ready/tree/master.svg?style=svg)](https://circleci.com/gh/sylvainmetayer/agent-ready/tree/master)
 [![Cypress.io tests](https://img.shields.io/badge/cypress.io-tests-green.svg?style=flat-square)](https://cypress.io)
+[![Depfu](https://badges.depfu.com/badges/6e80e2b88d2d9125de5e373a0894acc6/overview.svg)](https://depfu.com/github/sylvainmetayer/agent-ready)
 
 Gamebook ("Livre-jeu") game ([Startup files](http://deepnight.net/iut/))
 
