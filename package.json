@@ -6,6 +6,7 @@
   "scripts": {
     "test": "cypress run",
     "start": "gulp serve",
+    "start:dist": "gulp serve:dist",
     "cypress": "npx cypress open",
     "test-ci": "./node_modules/.bin/gulp serve:dist & pid=$!; cypress run && kill -9 $pid || (kill -9 $pid && return $?)",
     "deploy": "./node_modules/.bin/gulp deploy"
