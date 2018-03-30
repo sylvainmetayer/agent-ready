@@ -10,7 +10,7 @@ jobs:
                 command: npm install
             - run:
                 name: Start Server 
-                command: npm run start:dist
+                command: npm run start:dist &
                 background: true
             - run:
                 name: "Test server"
