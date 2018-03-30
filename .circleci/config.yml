@@ -9,16 +9,8 @@ jobs:
                 name: install-dependencies
                 command: npm install
             - run:
-                name: Start Server 
-                command: npm run start:dist &
-                background: true
-            - run:
-                name: "Test server"
-                shell: /bin/sh
-                command: wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 10 http://localhost:9000/
-            - run:
                 name: tests
-                command: npm test
+                command: npm run start:dist & && wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 10 http://localhost:9000/ && npm test
     deploy-production:
         docker:
             - image: circleci/node:8
