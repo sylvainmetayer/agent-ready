@@ -51,7 +51,7 @@
     "cypress": "^3.0.2",
     "del": "^3.0.0",
     "gulp": "^3.9.0",
-    "gulp-autoprefixer": "^5.0.0",
+    "gulp-autoprefixer": "^6.0.0",
     "gulp-babel": "^7.0.1",
     "gulp-cache": "^1.0.2",
     "gulp-cssnano": "^2.0.0",
