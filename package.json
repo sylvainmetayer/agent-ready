@@ -7,20 +7,20 @@
     "test": "cypress run",
     "start": "gulp serve",
     "start:dist": "gulp serve:dist",
-    "cypress": "npx cypress open",
-    "test-ci": "./node_modules/.bin/gulp serve:dist & pid=$!; cypress run && kill -9 $pid || (kill -9 $pid && return $?)",
-    "deploy": "./node_modules/.bin/gulp deploy"
+    "cypress": "cypress open",
+    "test-ci": "gulp serve:dist & pid=$!; cypress run && kill -9 $pid || (kill -9 $pid && return $?)",
+    "deploy": "gulp deploy"
   },
   "keywords": [
     "ingress",
     "story",
     "agent",
     "resistance",
-    "enlightened "
+    "enlightened"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sylvainmetayer/sword-sorcery.git"
+    "url": "git+https://github.com/sylvainmetayer/agent-ready.git"
   },
   "contributors": [
     {
@@ -36,9 +36,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sylvainmetayer/sword-sorcery/issues"
+    "url": "https://github.com/sylvainmetayer/agent-ready/issues"
   },
-  "homepage": "https://github.com/sylvainmetayer/sword-sorcery#readme",
+  "homepage": "https://github.com/sylvainmetayer/agent-ready#readme",
   "private": true,
   "engines": {
     "node": ">=4"
@@ -50,7 +50,7 @@
     "browser-sync": "^2.26.3",
     "cypress": "^3.1.0",
     "del": "^3.0.0",
-    "gulp": "^3.9.0",
+    "gulp": "^4.0.0",
     "gulp-autoprefixer": "^5.0.0",
     "gulp-babel": "^7.0.1",
     "gulp-cache": "^1.0.2",
