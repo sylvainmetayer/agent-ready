@@ -2,12 +2,18 @@
 // File edited manually.
 const gulp = require('gulp');
 const gulpLoadPlugins = require('gulp-load-plugins');
-const browserSync = require('browser-sync').create();
+
+try {
+    const browserSync = require('browser-sync').create();
+    const reload = browserSync.reload;
+} catch (e) {
+    console.error("Browser Sync is not installed");
+    const reload = function (args) { };
+}
+
 const jsonminify = require('gulp-jsonminify');
 const del = require('del');
-
 const $ = gulpLoadPlugins();
-const reload = browserSync.reload;
 
 gulp.task('styles', () => {
     return gulp.src('app/styles/*.css')
