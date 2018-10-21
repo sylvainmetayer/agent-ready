@@ -15,10 +15,15 @@
   # Directory with the lambda functions to deploy to AWS.
   # functions = "project/functions/"
 
+  # Because I don't want devDependencies to be installed
+  environment = { NODE_ENV = "production" }
+
 # Deploy Preview context: all deploys resulting from a pull/merge request will 
 # inherit these settings.
 [context.deploy-preview]
   publish = "dist/"
+  # Because I don't want devDependencies to be installed
+  environment = { NODE_ENV = "production" }
 
 [[headers]]
   # Define which paths this specific [[headers]] block will cover.
