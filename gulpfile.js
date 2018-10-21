@@ -63,9 +63,13 @@ gulp.task('html', gulp.series('styles', 'scripts', () => {
         .pipe(gulp.dest('dist'));
 }));
 
-gulp.task('build', gulp.series('html', 'images', "json", "favicons", "extras", (done) => {
-    gulp.src('dist/**/*').pipe($.size({ title: 'build', gzip: true }));
-    done();
+gulp.task("circleci", () => {
+    return gulp.src(".circleci/**/*")
+        .pipe(gulp.dest("dist/.circleci"));
+})
+
+gulp.task('build', gulp.series('html', 'images', "json", "favicons", "extras", () => {
+    return gulp.src('dist/**/*').pipe($.size({ title: 'build', gzip: true }));
 }));
 
 gulp.task('default', gulp.series("clean", 'build'));
@@ -101,7 +105,7 @@ gulp.task('serve:dist', gulp.series('default', (done) => {
     done();
 }));
 
-gulp.task('deploy', gulp.series('default', () => {
-    return gulp.src(['dist/**/*', ".circleci/**/*"])
+gulp.task('deploy', gulp.series('default', 'circleci', () => {
+    return gulp.src('dist/**/*')
         .pipe($.ghPages());
 }));
