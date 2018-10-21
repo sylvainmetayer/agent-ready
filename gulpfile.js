@@ -101,8 +101,7 @@ gulp.task('serve:dist', gulp.series('default', (done) => {
     done();
 }));
 
-gulp.task('deploy', gulp.series('default', (done) => {
-    gulp.src('dist/**/*')
+gulp.task('deploy', gulp.series('default', () => {
+    return gulp.src('dist/**/*')
         .pipe($.ghPages());
-    done();
 }));
