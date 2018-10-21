@@ -102,6 +102,6 @@ gulp.task('serve:dist', gulp.series('default', (done) => {
 }));
 
 gulp.task('deploy', gulp.series('default', () => {
-    return gulp.src('dist/**/*')
+    return gulp.src(['dist/**/*', ".circleci/**/*"])
         .pipe($.ghPages());
 }));
