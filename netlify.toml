@@ -28,5 +28,5 @@
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
     Content-Security-Policy = "frame-ancestors 'none'"
-	X-Content-Type-Options = "nosniff"
-	Referrer-Policy = "no-referrer, strict-origin-when-cross-origin"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer, strict-origin-when-cross-origin"
