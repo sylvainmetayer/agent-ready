@@ -9,7 +9,8 @@
     "start:dist": "gulp serve:dist",
     "cypress": "cypress open",
     "test-ci": "gulp serve:dist & pid=$!; cypress run && kill -9 $pid || (kill -9 $pid && return $?)",
-    "deploy": "gulp deploy"
+    "deploy": "gulp deploy",
+    "build": "gulp"
   },
   "keywords": [
     "ingress",
