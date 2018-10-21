@@ -4,14 +4,16 @@ const gulp = require('gulp');
 const gulpLoadPlugins = require('gulp-load-plugins');
 
 let browserSync = undefined;
-let reload  = undefined
+let reload = undefined;
 
 try {
     browserSync = require('browser-sync').create();
     reload = browserSync.reload;
 } catch (e) {
     console.error("Browser Sync is not installed");
-    reload = function (args) { };
+    reload = function (args) {
+        return Promise.resolve();
+    };
 }
 
 const jsonminify = require('gulp-jsonminify');
