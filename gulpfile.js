@@ -68,7 +68,7 @@ gulp.task("circleci", () => {
         .pipe(gulp.dest("dist/.circleci"));
 })
 
-gulp.task('build', gulp.series('html', 'images', "json", "favicons", "extras", () => {
+gulp.task('build', gulp.series('html', 'images', "json", "favicons", "extras", "circleci", () => {
     return gulp.src('dist/**/*').pipe($.size({ title: 'build', gzip: true }));
 }));
 
@@ -105,7 +105,7 @@ gulp.task('serve:dist', gulp.series('default', (done) => {
     done();
 }));
 
-gulp.task('deploy', gulp.series('default', 'circleci', () => {
+gulp.task('deploy', gulp.series('default', () => {
     return gulp.src('dist/**/*')
         .pipe($.ghPages());
 }));
