@@ -48,8 +48,8 @@ jobs:
         steps:
             - checkout
             - run:
-                name: install-dependencies
-                command: npm install
+                name: Install dependencies
+                command: npm install --production
             - run: 
                 name: Setup Git User
                 command: git config --global user.email "circleci@localhost" && git config --global user.name "CircleCI"
