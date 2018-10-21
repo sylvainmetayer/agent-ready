@@ -10,18 +10,19 @@ const runSequence = require('run-sequence');
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
-var dev = true;
-
 gulp.task('styles', () => {
     return gulp.src('app/styles/*.css')
-        .pipe($.autoprefixer({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR']}))
+        .pipe($.autoprefixer({ browsers: ['> 1%', 'last 2 versions', 'Firefox ESR'] }))
         .pipe(gulp.dest('.tmp/styles'))
-        .pipe(reload({stream: true}));
+        .pipe(reload({ stream: true }));
+
 });
 
 gulp.task("favicons", () => {
-    return gulp.src(["./app/*.png", "./app/browserconfig.xml", "./app/favicon.ico", "./app/manifest.json"])
+    return gulp
+        .src(["./app/*.png", "./app/browserconfig.xml", "./app/favicon.ico", "./app/manifest.json"])
         .pipe(gulp.dest("dist/"));
+
 });
 
 gulp.task('scripts', () => {
@@ -29,7 +30,8 @@ gulp.task('scripts', () => {
         .pipe($.plumber())
         .pipe($.babel())
         .pipe(gulp.dest('.tmp/scripts'))
-        .pipe(reload({stream: true}));
+        .pipe(reload({ stream: true }));
+
 });
 
 gulp.task('json', function () {
@@ -43,44 +45,53 @@ gulp.task("extras", () => {
         .pipe(gulp.dest("dist/"));
 });
 
-gulp.task('html', ['styles', 'scripts'], () => {
-    return gulp.src('app/index.html')
-        .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
-        .pipe($.if('*.js', $.uglify()))
-        .pipe($.if('*.css', $.cssnano({safe: true, autoprefixer: false})))
-        .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))
-        .pipe(gulp.dest('dist'));
-});
-
 gulp.task('images', () => {
     return gulp.src('app/images/**/*')
         .pipe($.cache($.imagemin()))
         .pipe(gulp.dest('dist/images'));
 });
 
-gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
-
-gulp.task('serve', () => {
-    runSequence(['clean'], ['styles', 'scripts'], () => {
-        browserSync.init({
-            notify: false,
-            port: 9000,
-            server: {
-                baseDir: ['.tmp', 'app']
-            }
-        });
-
-        gulp.watch([
-            'app/*.html',
-            'app/images/**/*'
-        ]).on('change', reload);
-
-        gulp.watch('app/styles/**/*.css', ['styles']);
-        gulp.watch('app/scripts/**/*.js', ['scripts']);
-    });
+gulp.task('clean', (done) => {
+    del.bind(null, ['.tmp', 'dist']);
+    done();
 });
 
-gulp.task('serve:dist', ['default'], () => {
+gulp.task('html', gulp.series('styles', 'scripts', () => {
+    return gulp.src('app/index.html')
+        .pipe($.useref({ searchPath: ['.tmp', 'app', '.'] }))
+        .pipe($.if('*.js', $.uglify()))
+        .pipe($.if('*.css', $.cssnano({ safe: true, autoprefixer: false })))
+        .pipe($.if('*.html', $.htmlmin({ collapseWhitespace: true })))
+        .pipe(gulp.dest('dist'));
+}));
+
+gulp.task('build', gulp.series('html', 'images', "json", "favicons", "extras", (done) => {
+    gulp.src('dist/**/*').pipe($.size({ title: 'build', gzip: true }));
+    done();
+}));
+
+gulp.task('default', gulp.series("clean", 'build'));
+
+gulp.task('serve', gulp.series('clean', 'styles', 'scripts', (done) => {
+    browserSync.init({
+        notify: false,
+        port: 9000,
+        server: {
+            baseDir: ['.tmp', 'app']
+        }
+    });
+
+    gulp.watch([
+        'app/*.html',
+        'app/images/**/*'
+    ]).on('change', reload);
+
+    gulp.watch('app/styles/**/*.css', gulp.series('styles'));
+    gulp.watch('app/scripts/**/*.js', gulp.series('scripts'));
+    done();
+}));
+
+gulp.task('serve:dist', gulp.series('default', (done) => {
     browserSync.init({
         open: false,
         notify: false,
@@ -89,20 +100,11 @@ gulp.task('serve:dist', ['default'], () => {
             baseDir: ['dist']
         }
     });
-});
+    done();
+}));
 
-gulp.task('build', ['html', 'images', "json", "favicons", "extras"], () => {
-    return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
-});
-
-gulp.task('deploy', ['default'], () => {
-    return gulp.src('dist/**/*')
+gulp.task('deploy', gulp.series('default', (done) => {
+    gulp.src('dist/**/*')
         .pipe($.ghPages());
-});
-
-gulp.task('default', () => {
-    return new Promise(resolve => {
-        dev = false;
-        runSequence(['clean'], 'build', resolve);
-    });
-});
+    done();
+}));
