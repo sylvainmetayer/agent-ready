@@ -47,7 +47,6 @@ gulp.task("extras", () => {
 
 gulp.task('images', () => {
     return gulp.src('app/images/**/*')
-        .pipe($.cache($.imagemin()))
         .pipe(gulp.dest('dist/images'));
 });
 
