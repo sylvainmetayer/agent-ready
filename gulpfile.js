@@ -5,7 +5,6 @@ const gulpLoadPlugins = require('gulp-load-plugins');
 const browserSync = require('browser-sync').create();
 const jsonminify = require('gulp-jsonminify');
 const del = require('del');
-const runSequence = require('run-sequence');
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
