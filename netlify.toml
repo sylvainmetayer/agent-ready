@@ -16,7 +16,7 @@
   # functions = "project/functions/"
 
   # Because I don't want devDependencies to be installed
-  environment = { NODE_ENV = "production" }
+  environment = { NODE_ENV = "production", NODE_VERSION = "8.12.0" }
 
 # Deploy Preview context: all deploys resulting from a pull/merge request will 
 # inherit these settings.
