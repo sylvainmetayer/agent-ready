@@ -9,9 +9,6 @@ jobs:
                 name: Install Dependencies
                 command: npm install
             - run:
-                name: Security Audit
-                command: npm audit
-            - run:
                 name: Start Server 
                 command: npm run start:dist
                 background: true
