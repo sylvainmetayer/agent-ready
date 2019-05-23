@@ -66,6 +66,6 @@
     "browser-sync": "2.26.5"
   },
   "devDependencies": {
-    "cypress": "3.3.0"
+    "cypress": "3.3.1"
   }
 }
