@@ -1,9 +1,7 @@
 # Agent Ready, an Ingress Story
 
-[![CircleCI](https://circleci.com/gh/sylvainmetayer/agent-ready/tree/master.svg?style=svg)](https://circleci.com/gh/sylvainmetayer/agent-ready/tree/master)
 [![Cypress.io tests](https://img.shields.io/badge/cypress.io-tests-green.svg?style=flat-square)](https://cypress.io)
-[![Depfu](https://badges.depfu.com/badges/6e80e2b88d2d9125de5e373a0894acc6/overview.svg)](https://depfu.com/github/sylvainmetayer/agent-ready)
-
+![Tests](https://github.com/sylvainmetayer/agent-ready/workflows/Main/badge.svg)
 Gamebook ("Livre-jeu") game ([Startup files](http://deepnight.net/iut/))
 
 IUT de Bordeaux - 2016-2017
@@ -17,9 +15,9 @@ IUT de Bordeaux - 2016-2017
 
 Handle automatics actions, hits, life, a 15-20 sections' scenario, and at least 2 more functionality.
 
-- CSS/HTML must be cohrent with your story 
+- CSS/HTML must be cohrent with your story
 - To return your project, send an email ([sbenard@mtwin.fr](mailto:sbenard@mtwin.fr)) with the solution.
-- The subject of the mail must be "SWORD Name 1, Name 2". 
+- The subject of the mail must be "SWORD Name 1, Name 2".
 - The project must be return as ZIP, URL, or attachments.
 
 ## How to [set up your environment](https://github.com/sylvainmetayer/agent-ready/wiki/Installation) ?
@@ -53,7 +51,7 @@ $ gulp serve
 
 ## [Available 'customizations'](https://github.com/sylvainmetayer/agent-ready/wiki/Customization)
 
-## Online version 
+## Online version
 
 https://sylvainmetayer.github.io/agent-ready/
 
