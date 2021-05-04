@@ -63,12 +63,7 @@ gulp.task('html', gulp.series('styles', 'scripts', () => {
         .pipe(gulp.dest('dist'));
 }));
 
-gulp.task("circleci", () => {
-    return gulp.src(".circleci/**/*")
-        .pipe(gulp.dest("dist/.circleci"));
-})
-
-gulp.task('build', gulp.series('html', 'images', "json", "favicons", "extras", "circleci", () => {
+gulp.task('build', gulp.series('html', 'images', "json", "favicons", "extras", () => {
     return gulp.src('dist/**/*').pipe($.size({ title: 'build', gzip: true }));
 }));
 
@@ -103,11 +98,4 @@ gulp.task('serve:dist', gulp.series('default', (done) => {
         }
     });
     done();
-}));
-
-gulp.task('deploy', gulp.series('default', () => {
-    return gulp.src('dist/**/*', { dot: true })
-        .pipe($.ghPages({
-            force: true
-        }));
 }));
